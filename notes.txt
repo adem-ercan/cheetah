@@ -1,0 +1,21 @@
+
+Dark Palette:
+
+.color1 {color: #11253f;}
+.color2 {color: #0d4e77;}
+.color3 {color: #0886b6;}
+.color4 {color: #03cbf9;}
+.color5 {color: #0ffff8;}
+
+
+Light Palette:
+
+.color1 {color: #2084d8;}
+.color2 {color: #20abd8;}
+.color3 {color: #20dad8;}
+.color4 {color: #b3edeb;}
+.color5 {color: #f8efed;}
+
+
+
+=> Tema controlü GetX paketi ile yapılabilir.

@@ -1,0 +1,10 @@
+
+
+{
+  "DarkTheme" : {
+    "scaffold" : {
+      "backgroundColor":"0xff5568FE"
+    },
+    "loginLabelTextColor" : "0xff5568FE"
+  }
+}
