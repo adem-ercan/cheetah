@@ -1,3 +1,4 @@
+import 'package:cheetah/view/components/cheetah_scaffold_appbar.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,10 +10,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          /*appBar: CheetahScaffoldAppBar(
-            titleAppBar: "Cheetah",
-            titleCenterAppBar: true,
-          ),*/
+          appBar: CheetahAppBar(),
           body: const Center(child: Text("Main Page"),),
         )
     );

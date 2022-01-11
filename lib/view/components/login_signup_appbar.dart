@@ -5,7 +5,7 @@ class LoginSignInAppBar extends AppBar {
   final String? titleX;
 
   LoginSignInAppBar({Key? key, this.titleX}):super(key: key,
-    title:  Text(titleX!=null ? titleX : "Login",),
+    title:  Text(titleX ?? "Login",),
   );
 }
 

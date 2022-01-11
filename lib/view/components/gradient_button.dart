@@ -20,7 +20,7 @@ class GradientRaisedButton extends StatelessWidget {
       height: 70,
       borderRadiusValue: 25,
       child:  Text(buttonText!,
-        style: TextStyle(color: Color(0xffF4FBFF),
+        style: TextStyle(color: const Color(0xffF4FBFF),
             fontWeight: FontWeight.bold,
             fontSize: 14,
             letterSpacing: letterSpace),),
