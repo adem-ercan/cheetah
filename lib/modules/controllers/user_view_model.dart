@@ -6,20 +6,18 @@ import 'package:flutter/material.dart';
 
 class UserModelView with ChangeNotifier implements AuthBase {
 
+  String? _name, _email, _password, _confirmPassword;
 
   @override
-  Future<UserCheetah> createUserWithEmailAndPassword() {
+  Future<UserCheetah?> createUserWithEmailAndPassword() {
     // TODO: implement createUserWithEmailAndPassword
     throw UnimplementedError();
   }
 
   @override
-  Future<UserCheetah> signInWithEmailAndPassword() {
+  Future<UserCheetah?> signInWithEmailAndPassword() {
     // TODO: implement signInWithEmailAndPassword
     throw UnimplementedError();
   }
-
-
-
 
 }

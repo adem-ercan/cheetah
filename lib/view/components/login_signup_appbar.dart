@@ -1,24 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CheetahScaffoldAppBar extends AppBar {
+class LoginSignInAppBar extends AppBar {
 
-  final String? titleAppBar;
-  final Widget? leadingAppBar;
-  final List<Widget>? actionAppBar;
-  final bool? titleCenterAppBar;
-  final ShapeBorder? shapeBorderAppBar;
+  final String? titleX;
 
-  CheetahScaffoldAppBar({Key? key,
-    this.titleAppBar,
-    this.leadingAppBar,
-    this.actionAppBar,
-    this.titleCenterAppBar,
-    this.shapeBorderAppBar
-  }):super(key: key,
-    title:  Text(titleAppBar ?? "",),
-    leading: leadingAppBar,
-    actions: actionAppBar,
-    centerTitle: titleCenterAppBar,
+  LoginSignInAppBar({Key? key, this.titleX}):super(key: key,
+    title:  Text(titleX!=null ? titleX : "Login",),
   );
 }
 

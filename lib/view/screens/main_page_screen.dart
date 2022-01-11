@@ -1,5 +1,5 @@
-import 'package:cheetah/view/components/login_signup_appbar.dart';
 import 'package:flutter/material.dart';
+
 
 
 class MainScreen extends StatelessWidget {
@@ -9,11 +9,11 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          appBar: CheetahScaffoldAppBar(
+          /*appBar: CheetahScaffoldAppBar(
             titleAppBar: "Cheetah",
             titleCenterAppBar: true,
-          ),
-          body: Center(child: Text("Main Page"),),
+          ),*/
+          body: const Center(child: Text("Main Page"),),
         )
     );
   }

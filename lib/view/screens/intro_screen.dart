@@ -42,7 +42,7 @@ class IntroPage extends StatelessWidget {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [Colors.black, Colors.black.withOpacity(0)],
-                            stops: [0.2, 0.75]).createShader(rect);
+                            stops: const [0.2, 0.75]).createShader(rect);
                       },
                       blendMode: BlendMode.dstOut,
                       child: Image.asset(

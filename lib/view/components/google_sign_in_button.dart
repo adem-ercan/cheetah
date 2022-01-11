@@ -17,7 +17,11 @@ class GoogleSignInButton extends StatelessWidget {
           width: 24,
           height: 24,),
         buttonText: "Sing in with Google",
-      textStyle: const TextStyle(fontFamily: "Raleway", fontWeight: FontWeight.bold, fontSize: 14),
+      textStyle: const TextStyle(
+          fontFamily: "Raleway",
+          color: Color(0xff181920),
+          fontWeight: FontWeight.bold,
+          fontSize: 14),
     );
   }
 }

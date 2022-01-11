@@ -13,14 +13,22 @@ class CheetahTextFormField extends StatelessWidget {
   TextInputType? keyboardType;
   bool? isRightPrefix = false;
   bool? obscureText;
+  final  Function(String?)? onSaved;
+  final String? Function(String? s)? validator;
+  final void Function(String? s)? onChange;
+
 
   CheetahTextFormField({Key? key,
     this.isRightPrefix,
     this.labelTextC,
     this.hintTextC,
     this.prefixIconC,
+    this.onSaved,
+    this.validator,
+    this.onChange,
     this.keyboardType,
     this.obscureText,
+
     this.prefixC
   }) : super(key: key);
 
@@ -64,6 +72,9 @@ class CheetahTextFormField extends StatelessWidget {
             filled: true,
             fillColor: const Color(0xff252A34),
           ),
+          onSaved: onSaved,
+          validator: validator,
+          onChanged: onChange,
         ),
 
         if (isRightPrefix != null && isRightPrefix==true) ...[

@@ -2,11 +2,12 @@ import 'package:cheetah/config/themes/dark_theme.dart';
 import 'package:cheetah/config/themes/light_theme.dart';
 import 'package:cheetah/core/utils/general.dart';
 import 'package:cheetah/modules/controllers/component_state.dart';
+import 'package:cheetah/modules/controllers/form_view_model.dart';
 import 'package:cheetah/modules/controllers/route_view_model.dart';
 import 'package:cheetah/modules/controllers/theme_view_model.dart';
+import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/init.dart';
 import 'package:cheetah/view/screens/intro_screen.dart';
-import 'package:cheetah/view/screens/main_page_screen.dart';
 import 'package:cheetah/view/splash_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,8 @@ class CheetahApp extends StatelessWidget {
         ChangeNotifierProvider<ThemeModeView>(create: (context)=>ThemeModeView()),
         ChangeNotifierProvider<RouteModel>(create: (context)=>RouteModel()),
         ChangeNotifierProvider<ComponentState>(create: (context)=>ComponentState()),
+        ChangeNotifierProvider<UserModelView>(create: (context)=>UserModelView()),
+        ChangeNotifierProvider<FormViewModel>(create: (context)=>FormViewModel()),
 
       ],
       child: FutureBuilder(
@@ -45,10 +48,9 @@ class CheetahApp extends StatelessWidget {
                   GeneralUtils.closeKeyboardWhenUnFocus(context);
                 },
                 child: MaterialApp(
-
                   debugShowCheckedModeBanner: false,
                   theme: (themeData.themeState != true)  ? DarkThemeData.init() : LightThemeData.init(),
-                  home: const MainScreen(),
+                  home: const IntroPage(),
                 ),
               );
             }
