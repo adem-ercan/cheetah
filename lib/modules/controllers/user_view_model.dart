@@ -22,7 +22,7 @@ class UserModelView with ChangeNotifier implements AuthBase {
   }
 
   @override
-  Future<UserCheetah> signInWithEmailAndPassword() {
+  Future<UserCheetah> signInWithEmailAndPassword(String email, String password) {
     // TODO: implement signInWithEmailAndPassword
     throw UnimplementedError();
   }

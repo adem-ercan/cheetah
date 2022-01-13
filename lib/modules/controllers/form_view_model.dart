@@ -2,21 +2,21 @@ import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:provider/provider.dart';
+
 
 
 
 class FormViewModel with ChangeNotifier {
 
-  late String _name, _email, _password, _confirmPassword;
+  late String  _email, _password, _confirmPassword, _name;
   String? _emailLogin, _passwordLogin;
   final List<int> fieldNumberIdList = [1,2,3,4];
 
   final UserModelView _userModelView = locator<UserModelView>();
 
-formNameValidate(String? value){
+  formValidate(String? value){
     if (value == null || value.isEmpty) {
+      //Error mesajı için bir switch oluşturulacak.
       return 'Enter your first name';
     }
     return null;
@@ -43,11 +43,21 @@ formNameValidate(String? value){
     }
   }
 
-  void formSave(GlobalKey<FormState> formKey) async {
+  void formSaveAndSignUp(GlobalKey<FormState> formKey) async {
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
       UserCheetah _userCheetah = await _userModelView.createUserWithEmailAndPassword(_email,_password);
       debugPrint(_userCheetah.email);
     }
   }
+
+  void signInWithEmailAndPassword(GlobalKey<FormState> formKey) async{
+    if(formKey.currentState!.validate()){
+      formKey.currentState!.save();
+      //UserCheetah _userCheetah = await _userModelView..signInWithEmailAndPassword(_emailLogin, _passwordLogin);
+      //debugPrint(_userCheetah.email);
+      debugPrint("dfdfffffffffffffffff");
+    }
+  }
+
 }

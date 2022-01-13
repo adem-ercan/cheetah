@@ -28,10 +28,9 @@ class FirebaseAuthX implements FirebaseAuthBase{
   }
 
   @override
-  Future<User?> signInWithEmailAndPassword() async {
-
+  Future<User?> signInWithEmailAndPassword(String email, String password) async {
     try{
-        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: "ademxx@ercan.com", password: "ademercan");
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
         return userCredential.user;
     }on FirebaseAuthException catch (e){
       if (e.code == 'user-not-found') {

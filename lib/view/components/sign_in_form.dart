@@ -11,8 +11,9 @@ import 'gradient_button.dart';
 class SignInForm extends StatelessWidget {
 
   final GlobalKey<FormState> formKey;
+  List<int> idWillSentToForm = [5,6];
 
-  const SignInForm({Key? key,
+  SignInForm({Key? key,
   required this.formKey}) : super(key: key);
 
   @override
@@ -33,9 +34,9 @@ class SignInForm extends StatelessWidget {
               labelTextC: "Email Address",
               hintTextC: "Enter your email",
               prefixIconC: const Icon(Icons.alternate_email),
-              validator: (value) => formModel.formNameValidate(value),
-              //onSaved: (value) => formModel.onSave(value),
-             // onChange: (value) => formModel.onChange(value, formKey),
+              validator: (value) => formModel.formValidate(value),
+              onSaved: (value) => formModel.onSave(value!, idWillSentToForm[0]),
+              onChange: (value) => formModel.onChange(value, formKey),
             ),
             const SizedBox(height: 10),
             CheetahTextFormField(
@@ -45,6 +46,9 @@ class SignInForm extends StatelessWidget {
               labelTextC: "Password",
               hintTextC: "Enter your password",
               prefixIconC: const Icon(Icons.vpn_key_outlined),
+              validator: (value) => formModel.formValidate(value),
+              onSaved: (value) => formModel.onSave(value!, idWillSentToForm[1]),
+              onChange: (value) => formModel.onChange(value, formKey),
             ),
             const SizedBox(
               height: 5,
@@ -58,7 +62,7 @@ class SignInForm extends StatelessWidget {
             const SizedBox(height: 50),
             GradientRaisedButton(
               buttonText: "Sign In",
-              func: (){},
+              func: () => formModel.signInWithEmailAndPassword(formKey),
             ),
             const SizedBox(
               height: 20,

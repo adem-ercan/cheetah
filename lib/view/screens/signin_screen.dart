@@ -1,22 +1,18 @@
-
 import 'package:cheetah/modules/controllers/route_view_model.dart';
-import 'package:cheetah/view/components/google_sign_in_button.dart';
-import 'package:cheetah/view/components/gradient_button.dart';
-import 'package:cheetah/view/components/register_text_form_field.dart';
-import 'package:cheetah/view/components/text_button.dart';
+import 'package:cheetah/modules/controllers/user_view_model.dart';
+import 'package:cheetah/view/components/sign_in_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SignInScreen extends StatelessWidget {
-  SignInScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  LoginScreen({Key? key}) : super(key: key);
 
-  final GlobalKey _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey= GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final route = Provider.of<RouteModel>(context, listen: false);
-
-    //final userModelView = Provider.of<UserModelView>(context, listen: false);
+    final userModelView = Provider.of<UserModelView>(context, listen: false);
 
     return SafeArea(
       top: false,
@@ -50,7 +46,7 @@ class SignInScreen extends StatelessWidget {
                   margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*.15, bottom: 20),
                   child: const Center(
                     child: Text(
-                      "Welcome to Cheetah!",
+                      "Welcome to Cheetah! xxxxx",
                       style: TextStyle(
                           fontSize: 28,
                           fontFamily: 'Relaway',
@@ -74,64 +70,7 @@ class SignInScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10.0),
-                  child: Form(
-                      key: _formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CheetahTextFormField(
-                            obscureText: true,
-                            keyboardType: TextInputType.emailAddress,
-                            labelTextC: "Email Address",
-                            hintTextC: "Enter your email",
-                            prefixIconC: const Icon(Icons.alternate_email),
-                          ),
-                          const SizedBox(height: 10),
-                          CheetahTextFormField(
-                            obscureText: true,
-                            keyboardType: TextInputType.visiblePassword,
-                            isRightPrefix: true,
-                            labelTextC: "Password",
-                            hintTextC: "Enter your password",
-                            prefixIconC: const Icon(Icons.vpn_key_outlined),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Container(
-                              alignment: Alignment.centerRight,
-                              child: const ButtonText(
-                                text: "Forgot Password?",
-                                color: Color(0xff686A70),
-                              )),
-                          const SizedBox(height: 50),
-                          GradientRaisedButton(
-                            buttonText: "Sign In",
-                            func: (){},
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          const GoogleSignInButton(),
-                          const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Don't have an Account?",
-                                style: TextStyle(
-                                    color: Color(0xffffffff),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              ButtonText(
-                                text: "Sign Up",
-                                color: const Color(0xff5568FE),
-                                func: () => route.goToSignUpScreen(context),
-                              ),
-                            ],
-                          )
-                        ],
-                      )),
+                  child: SignInForm(formKey: formKey),
                 ),
               ],
             ),
