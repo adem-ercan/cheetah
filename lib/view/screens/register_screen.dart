@@ -9,6 +9,10 @@ class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormFieldState> nameFieldKey = GlobalKey<FormFieldState>(debugLabel: "nameX");
+  final GlobalKey<FormFieldState> emailFieldKey = GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> passwordFieldKey = GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> confirmPassWordFieldKey = GlobalKey<FormFieldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +34,6 @@ class SignUpScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
-
-
                 Container(
                   margin:  EdgeInsets.only(top:MediaQuery.of(context).size.height*.12, bottom: 20),
                   child: const Center(
@@ -53,7 +54,11 @@ class SignUpScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10.0),
-                  child: RegisterForm(formKey: formKey,),
+                  child: RegisterForm(formKey: formKey,
+                    nameFieldKey: nameFieldKey,
+                    emailFieldKey: emailFieldKey,
+                    passwordFieldKey: passwordFieldKey,
+                  confirmPasswordFieldKey: confirmPassWordFieldKey,),
                 ),
               ],
             ),

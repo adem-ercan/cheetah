@@ -9,6 +9,7 @@ class CheetahTextFormField extends StatelessWidget {
   Widget? prefixC;
   Widget? rightPrefix;
   String? hintTextC;
+  String? id;
   String? labelTextC;
   TextInputType? keyboardType;
   bool? isRightPrefix = false;
@@ -16,14 +17,17 @@ class CheetahTextFormField extends StatelessWidget {
   final  Function(String?)? onSaved;
   final String? Function(String? s)? validator;
   final void Function(String? s)? onChange;
+  final GlobalKey<FormFieldState>? fieldKey;
 
 
   CheetahTextFormField({Key? key,
     this.isRightPrefix,
     this.labelTextC,
+    required this.id,
     this.hintTextC,
     this.prefixIconC,
     this.onSaved,
+    this.fieldKey,
     this.validator,
     this.onChange,
     this.keyboardType,
@@ -43,6 +47,7 @@ class CheetahTextFormField extends StatelessWidget {
       width: MediaQuery.of(context).size.width * .9,
       child: Stack(alignment: AlignmentDirectional.centerEnd, children: [
         TextFormField(
+          key: fieldKey,
           keyboardType:keyboardType,
           textAlignVertical: TextAlignVertical.center,
           obscureText: (isRightPrefix != null && isRightPrefix==true) ? componentState.obscureText : false,
