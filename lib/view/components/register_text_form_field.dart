@@ -9,7 +9,6 @@ class CheetahTextFormField extends StatelessWidget {
   Widget? prefixC;
   Widget? rightPrefix;
   String? hintTextC;
-  String? id;
   String? labelTextC;
   TextInputType? keyboardType;
   bool? isRightPrefix = false;
@@ -23,7 +22,6 @@ class CheetahTextFormField extends StatelessWidget {
   CheetahTextFormField({Key? key,
     this.isRightPrefix,
     this.labelTextC,
-    required this.id,
     this.hintTextC,
     this.prefixIconC,
     this.onSaved,

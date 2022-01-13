@@ -28,8 +28,6 @@ class UserCheetah {
    email = map['email'];
    userName = map['userName'];
    profilePhotoURL = map['profilePhotoURL'];
-
-
   }
 
 

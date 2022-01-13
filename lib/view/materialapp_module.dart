@@ -8,8 +8,6 @@ import 'package:cheetah/modules/controllers/theme_view_model.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/init.dart';
 import 'package:cheetah/view/screens/intro_screen.dart';
-import 'package:cheetah/view/screens/main_page_screen.dart';
-import 'package:cheetah/view/screens/register_screen.dart';
 import 'package:cheetah/view/splash_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,8 +16,6 @@ class CheetahApp extends StatelessWidget {
 
 
   const CheetahApp({Key? key}) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +27,6 @@ class CheetahApp extends StatelessWidget {
         ChangeNotifierProvider<ComponentState>(create: (context)=>ComponentState()),
         ChangeNotifierProvider<UserModelView>(create: (context)=>UserModelView()),
         ChangeNotifierProvider<FormViewModel>(create: (context)=>FormViewModel()),
-
       ],
       child: FutureBuilder(
           future: Init.instance.initialize(),

@@ -1,3 +1,4 @@
+import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/view/materialapp_module.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ void main() async {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
   await Firebase.initializeApp();
+  setupLocator();
   runApp(const CheetahApp());
 }
 

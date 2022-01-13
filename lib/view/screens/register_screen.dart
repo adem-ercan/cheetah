@@ -54,11 +54,7 @@ class SignUpScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10.0),
-                  child: RegisterForm(formKey: formKey,
-                    nameFieldKey: nameFieldKey,
-                    emailFieldKey: emailFieldKey,
-                    passwordFieldKey: passwordFieldKey,
-                  confirmPasswordFieldKey: confirmPassWordFieldKey,),
+                  child: RegisterForm(formKey: formKey),
                 ),
               ],
             ),

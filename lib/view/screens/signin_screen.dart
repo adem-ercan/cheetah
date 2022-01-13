@@ -80,7 +80,6 @@ class SignInScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           CheetahTextFormField(
-                            id: "emailLogin",
                             obscureText: true,
                             keyboardType: TextInputType.emailAddress,
                             labelTextC: "Email Address",
@@ -89,7 +88,6 @@ class SignInScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           CheetahTextFormField(
-                            id: "passwordLogin",
                             obscureText: true,
                             keyboardType: TextInputType.visiblePassword,
                             isRightPrefix: true,
