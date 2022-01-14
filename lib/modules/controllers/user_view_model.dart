@@ -9,22 +9,21 @@ import 'package:flutter/material.dart';
 class UserModelView with ChangeNotifier implements AuthBase {
 
 
-  late String _name, _email, _password, _confirmPassword;
 
-  Repository _repository = locator<Repository>();
+  final Repository _repository = locator<Repository>();
 
   @override
-  Future<UserCheetah> createUserWithEmailAndPassword(String email, String password) async {
-    _email = email;
-    _password = password;
-    UserCheetah userCheetah = await _repository.createUserWithEmailAndPassword(_email, _password);
+  Future<UserCheetah> createUserWithEmailAndPassword(String email, String password) async{
+
+    UserCheetah userCheetah = await _repository.createUserWithEmailAndPassword(email, password);
     return userCheetah;
   }
 
   @override
-  Future<UserCheetah> signInWithEmailAndPassword(String email, String password) {
-    // TODO: implement signInWithEmailAndPassword
-    throw UnimplementedError();
+  Future<UserCheetah> signInWithEmailAndPassword(String email, String password) async{
+
+    UserCheetah userCheetah = await _repository.signInWithEmailAndPassword(email, password);
+    return userCheetah;
   }
 
 }

@@ -11,10 +11,11 @@ import 'gradient_button.dart';
 class SignInForm extends StatelessWidget {
 
   final GlobalKey<FormState> formKey;
-  List<int> idWillSentToForm = [5,6];
+  final List<int> _idWillSentToForm = [5,6];
 
   SignInForm({Key? key,
-  required this.formKey}) : super(key: key);
+  required this.formKey
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class SignInForm extends StatelessWidget {
               hintTextC: "Enter your email",
               prefixIconC: const Icon(Icons.alternate_email),
               validator: (value) => formModel.formValidate(value),
-              onSaved: (value) => formModel.onSave(value!, idWillSentToForm[0]),
+              onSaved: (value) => formModel.onSave(value!, _idWillSentToForm[0]),
               onChange: (value) => formModel.onChange(value, formKey),
             ),
             const SizedBox(height: 10),
@@ -47,7 +48,7 @@ class SignInForm extends StatelessWidget {
               hintTextC: "Enter your password",
               prefixIconC: const Icon(Icons.vpn_key_outlined),
               validator: (value) => formModel.formValidate(value),
-              onSaved: (value) => formModel.onSave(value!, idWillSentToForm[1]),
+              onSaved: (value) => formModel.onSave(value!, _idWillSentToForm[1]),
               onChange: (value) => formModel.onChange(value, formKey),
             ),
             const SizedBox(

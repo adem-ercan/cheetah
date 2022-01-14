@@ -8,10 +8,10 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
         child: Scaffold(
           appBar: CheetahAppBar(),
-          body: const Center(child: Text("Main Page"),),
+          body: Center(child: Text("Main Page"),),
         )
     );
   }

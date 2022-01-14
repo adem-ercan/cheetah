@@ -4,8 +4,8 @@ import 'package:cheetah/view/components/sign_in_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class SignInScreen extends StatelessWidget {
+  SignInScreen({Key? key}) : super(key: key);
 
   final GlobalKey<FormState> formKey= GlobalKey<FormState>();
 

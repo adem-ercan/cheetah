@@ -9,8 +9,9 @@ import 'package:flutter/material.dart';
 class FormViewModel with ChangeNotifier {
 
   late String  _email, _password, _confirmPassword, _name;
-  String? _emailLogin, _passwordLogin;
+  late String _emailLogin, _passwordLogin;
   final List<int> fieldNumberIdList = [1,2,3,4];
+
 
   final UserModelView _userModelView = locator<UserModelView>();
 
@@ -40,6 +41,10 @@ class FormViewModel with ChangeNotifier {
       _password = value;
     }else if(fieldId==4){
       _confirmPassword = value;
+    }else if(fieldId==5){
+      _emailLogin = value;
+    }else if(fieldId==6){
+      _passwordLogin = value;
     }
   }
 
@@ -54,9 +59,10 @@ class FormViewModel with ChangeNotifier {
   void signInWithEmailAndPassword(GlobalKey<FormState> formKey) async{
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
-      //UserCheetah _userCheetah = await _userModelView..signInWithEmailAndPassword(_emailLogin, _passwordLogin);
-      //debugPrint(_userCheetah.email);
-      debugPrint("dfdfffffffffffffffff");
+      UserCheetah _userCheetah = await _userModelView.signInWithEmailAndPassword(_emailLogin, _passwordLogin);
+      if(_userCheetah != null){
+        //_routeModel.goToMainScreen();
+      }
     }
   }
 
