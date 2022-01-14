@@ -44,9 +44,8 @@ class Repository implements AuthBase{
   }
 
   @override
-  Stream<UserCheetah> userChange(UserCheetah user) {
-    // TODO: implement userChange
-    throw UnimplementedError();
+  Stream<UserCheetah> userChange(UserCheetah user) async*{
+    //UserCheetah userCheetah = _userModelView.currentUserX;
   }
 
 

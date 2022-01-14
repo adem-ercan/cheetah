@@ -3,7 +3,9 @@ class UserCheetah {
    String? userID;
    String? email;
    String? userName;
+   String? name;
    String? profilePhotoURL;
+   String? documentURL;
 
 
   UserCheetah({

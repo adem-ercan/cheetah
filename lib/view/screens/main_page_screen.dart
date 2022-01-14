@@ -1,6 +1,5 @@
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/view/components/cheetah_scaffold_appbar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,8 +23,7 @@ class MainScreen extends StatelessWidget {
               TextButton(
                 child: const Text("Current User"),
                 onPressed: () async {
-                 await userModelView.currentUser();
-                  debugPrint(userModelView.currentUserX.email.toString());
+                  debugPrint(userModelView.currentUserX!.email.toString());
                   }
                   ),
               const SizedBox(

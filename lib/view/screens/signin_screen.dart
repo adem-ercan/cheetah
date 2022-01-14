@@ -1,5 +1,4 @@
 import 'package:cheetah/modules/controllers/route_view_model.dart';
-import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/view/components/sign_in_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

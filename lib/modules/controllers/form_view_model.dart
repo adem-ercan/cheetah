@@ -12,9 +12,9 @@ class FormViewModel with ChangeNotifier {
   late String  _email, _password, _confirmPassword, _name;
   late String _emailLogin, _passwordLogin;
   final List<int> idWillSentToForm = [1,2,3,4,5,6];
+  late UserModelView _userModelView;
 
 
-  final UserModelView _userModelView = locator<UserModelView>();
 
   formValidate(String? value, int fieldId){
     if (value == null || value.isEmpty) {
@@ -61,7 +61,8 @@ class FormViewModel with ChangeNotifier {
     }
   }
 
-  void formSaveAndSignUp(GlobalKey<FormState> formKey) async {
+  void formSaveAndSignUp(GlobalKey<FormState> formKey, BuildContext context) async {
+    _userModelView = Provider.of<UserModelView>(context, listen: false);
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
       UserCheetah _userCheetah = await _userModelView.createUserWithEmailAndPassword(_email,_password);
@@ -70,6 +71,8 @@ class FormViewModel with ChangeNotifier {
   }
 
   void signInWithEmailAndPassword(GlobalKey<FormState> formKey, BuildContext context) async{
+    _userModelView = Provider.of<UserModelView>(context, listen: false);
+
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
       UserCheetah _userCheetah = await _userModelView.signInWithEmailAndPassword(_emailLogin, _passwordLogin);

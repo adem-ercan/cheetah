@@ -8,6 +8,7 @@ import 'package:cheetah/modules/controllers/theme_view_model.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/init.dart';
 import 'package:cheetah/modules/repositories/contexts.dart';
+import 'package:cheetah/view/screens/intro_screen.dart';
 import 'package:cheetah/view/screens/main_page_screen.dart';
 import 'package:cheetah/view/splash_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -46,10 +47,11 @@ class CheetahApp extends StatelessWidget {
                   GeneralUtils.closeKeyboardWhenUnFocus(context);
                 },
                 child: MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  theme: (themeData.themeState != true)  ? DarkThemeData.init() : LightThemeData.init(),
-                  home:  MainScreen(),
-                ),
+                      debugShowCheckedModeBanner: false,
+                      theme: (themeData.themeState != true)  ? DarkThemeData.init() : LightThemeData.init(),
+                      home:  const IntroPage(),
+                    )
+
               );
             }
           }),

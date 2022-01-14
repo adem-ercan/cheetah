@@ -86,7 +86,7 @@ class RegisterForm extends StatelessWidget {
       ),
       const SizedBox(height: 50),
       GradientRaisedButton(
-          buttonText: "Sign Up", func: () => formModel.formSaveAndSignUp(formKey)),
+          buttonText: "Sign Up", func: () => formModel.formSaveAndSignUp(formKey,context)),
       const SizedBox(
         height: 20,
       ),

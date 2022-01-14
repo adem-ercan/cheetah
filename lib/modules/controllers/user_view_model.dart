@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class UserModelView with ChangeNotifier implements AuthBase {
   
-  late UserCheetah currentUserX;
+   UserCheetah? currentUserX;
 
   final Repository _repository = locator<Repository>();
 
@@ -26,18 +26,18 @@ class UserModelView with ChangeNotifier implements AuthBase {
     return userCheetah;
   }
 
-  
 
   @override
   Future<UserCheetah> currentUser() async{
     UserCheetah? userCheetah = await _repository.currentUser();
     currentUserX = userCheetah;
-    return currentUserX;
+    return currentUserX!;
   }
 
   @override
   Future<void> signOut() async{
     await _repository.signOut();
+    currentUserX = null;
   }
 
   @override
