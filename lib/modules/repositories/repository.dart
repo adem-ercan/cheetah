@@ -4,6 +4,7 @@ import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/modules/repositories/change_user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class Repository implements AuthBase{
 
@@ -24,9 +25,10 @@ class Repository implements AuthBase{
   }
 
   @override
-  Future<UserCheetah> signInWithEmailAndPassword(String email, String password) {
-    // TODO: implement signInWithEmailAndPassword
-    throw UnimplementedError();
+  Future<UserCheetah> signInWithEmailAndPassword(String email, String password) async {
+    _user = (await _firebaseAuthX.signInWithEmailAndPassword(email, password))!;
+    UserCheetah userCheetah = ChangeUserModel.fromFirebaseUserToUserCheetah(_user);
+    return userCheetah;
   }
 
 

@@ -1,7 +1,10 @@
 import 'package:cheetah/modules/controllers/locator.dart';
+import 'package:cheetah/modules/controllers/route_view_model.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/models/user_model.dart';
+import 'package:cheetah/view/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -9,10 +12,12 @@ import 'package:flutter/material.dart';
 class FormViewModel with ChangeNotifier {
 
   late String  _email, _password, _confirmPassword, _name;
-  String? _emailLogin, _passwordLogin;
+  late String _emailLogin, _passwordLogin;
   final List<int> fieldNumberIdList = [1,2,3,4];
 
+
   final UserModelView _userModelView = locator<UserModelView>();
+  final RouteModel _routeModel = locator<RouteModel>();
 
   formValidate(String? value){
     if (value == null || value.isEmpty) {
@@ -40,6 +45,10 @@ class FormViewModel with ChangeNotifier {
       _password = value;
     }else if(fieldId==4){
       _confirmPassword = value;
+    }else if(fieldId==5){
+      _emailLogin = value;
+    }else if(fieldId==6){
+      _passwordLogin = value;
     }
   }
 
@@ -54,9 +63,10 @@ class FormViewModel with ChangeNotifier {
   void signInWithEmailAndPassword(GlobalKey<FormState> formKey) async{
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
-      //UserCheetah _userCheetah = await _userModelView..signInWithEmailAndPassword(_emailLogin, _passwordLogin);
-      //debugPrint(_userCheetah.email);
-      debugPrint("dfdfffffffffffffffff");
+      UserCheetah _userCheetah = await _userModelView.signInWithEmailAndPassword(_emailLogin, _passwordLogin);
+      if(_userCheetah != null){
+        //_routeModel.goToMainScreen();
+      }
     }
   }
 

@@ -14,7 +14,8 @@ class SignInForm extends StatelessWidget {
   List<int> idWillSentToForm = [5,6];
 
   SignInForm({Key? key,
-  required this.formKey}) : super(key: key);
+  required this.formKey
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
