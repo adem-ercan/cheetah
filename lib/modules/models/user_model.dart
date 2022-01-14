@@ -3,10 +3,9 @@ class UserCheetah {
    String? userID;
    String? email;
    String? userName;
-   String? name;
+   String? fullName;
    String? profilePhotoURL;
    String? documentURL;
-
 
   UserCheetah({
     required this.userID,
