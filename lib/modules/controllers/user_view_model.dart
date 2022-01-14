@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 
 
 class UserModelView with ChangeNotifier implements AuthBase {
-
-
+  
+  late UserCheetah currentUserX;
 
   final Repository _repository = locator<Repository>();
 
@@ -24,6 +24,26 @@ class UserModelView with ChangeNotifier implements AuthBase {
 
     UserCheetah userCheetah = await _repository.signInWithEmailAndPassword(email, password);
     return userCheetah;
+  }
+
+  
+
+  @override
+  Future<UserCheetah> currentUser() async{
+    UserCheetah? userCheetah = await _repository.currentUser();
+    currentUserX = userCheetah;
+    return currentUserX;
+  }
+
+  @override
+  Future<void> signOut() async{
+    await _repository.signOut();
+  }
+
+  @override
+  Stream<UserCheetah> userChange(UserCheetah user) {
+    // TODO: implement userChange
+    throw UnimplementedError();
   }
 
 }

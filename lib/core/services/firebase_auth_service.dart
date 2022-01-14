@@ -43,4 +43,27 @@ class FirebaseAuthX implements FirebaseAuthBase{
     }
   }
 
+  Stream<User?> userChange(User? user) async*{
+    auth
+    .userChanges()
+    .listen((user)  {
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        print("User is signed in!");
+      }
+    });
+  }
+
+  @override
+  Future<User?> currentUser() async {
+    User user = (auth.currentUser)!;
+    return user;
+  }
+
+  @override
+  Future<void> signOut() async{
+    return await auth.signOut();
+  }
+
 }

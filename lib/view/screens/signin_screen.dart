@@ -12,7 +12,6 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final route = Provider.of<RouteModel>(context, listen: false);
-    final userModelView = Provider.of<UserModelView>(context, listen: false);
 
     return SafeArea(
       top: false,
@@ -46,7 +45,7 @@ class SignInScreen extends StatelessWidget {
                   margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*.15, bottom: 20),
                   child: const Center(
                     child: Text(
-                      "Welcome to Cheetah! xxxxx",
+                      "Welcome to Cheetah!",
                       style: TextStyle(
                           fontSize: 28,
                           fontFamily: 'Relaway',

@@ -14,14 +14,7 @@ class UserCheetah {
   });
 
 
-  Map<String, dynamic> toMap(){
-  return {
-      'userID' : userName,
-      'email' : email,
-      'userName' : userName,
-      'profilePhotoURL' : profilePhotoURL,
-    };
-  }
+
 
   UserCheetah.fromMap(Map<String, dynamic> map){
    userID = map['userID'];
@@ -30,5 +23,12 @@ class UserCheetah {
    profilePhotoURL = map['profilePhotoURL'];
   }
 
-
+   Map<String, dynamic> toMap(){
+     return {
+       'userID' : userName,
+       'email' : email,
+       'userName' : userName,
+       'profilePhotoURL' : profilePhotoURL,
+     };
+   }
 }

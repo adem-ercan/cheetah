@@ -11,10 +11,9 @@ import 'gradient_button.dart';
 class SignInForm extends StatelessWidget {
 
   final GlobalKey<FormState> formKey;
-  final List<int> _idWillSentToForm = [5,6];
 
   SignInForm({Key? key,
-  required this.formKey
+  required this.formKey,
   }) : super(key: key);
 
   @override
@@ -35,8 +34,8 @@ class SignInForm extends StatelessWidget {
               labelTextC: "Email Address",
               hintTextC: "Enter your email",
               prefixIconC: const Icon(Icons.alternate_email),
-              validator: (value) => formModel.formValidate(value),
-              onSaved: (value) => formModel.onSave(value!, _idWillSentToForm[0]),
+              validator: (value) => formModel.formValidate(value, formModel.idWillSentToForm[4]),
+              onSaved: (value) => formModel.onSave(value!, formModel.idWillSentToForm[4]),
               onChange: (value) => formModel.onChange(value, formKey),
             ),
             const SizedBox(height: 10),
@@ -47,8 +46,8 @@ class SignInForm extends StatelessWidget {
               labelTextC: "Password",
               hintTextC: "Enter your password",
               prefixIconC: const Icon(Icons.vpn_key_outlined),
-              validator: (value) => formModel.formValidate(value),
-              onSaved: (value) => formModel.onSave(value!, _idWillSentToForm[1]),
+              validator: (value) => formModel.formValidate(value, formModel.idWillSentToForm[5]),
+              onSaved: (value) => formModel.onSave(value!, formModel.idWillSentToForm[5]),
               onChange: (value) => formModel.onChange(value, formKey),
             ),
             const SizedBox(
@@ -63,7 +62,7 @@ class SignInForm extends StatelessWidget {
             const SizedBox(height: 50),
             GradientRaisedButton(
               buttonText: "Sign In",
-              func: () => formModel.signInWithEmailAndPassword(formKey),
+              func: () => formModel.signInWithEmailAndPassword(formKey, context),
             ),
             const SizedBox(
               height: 20,

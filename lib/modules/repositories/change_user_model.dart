@@ -11,4 +11,8 @@ class  ChangeUserModel {
     };
     return UserCheetah.fromMap(userMap);
   }
+
+  static Map<String, dynamic> fromUserCheetahToFirebaseUser(UserCheetah user){
+    return user.toMap();
+  }
 }

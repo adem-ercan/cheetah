@@ -1,8 +1,9 @@
 import 'package:cheetah/modules/controllers/locator.dart';
+import 'package:cheetah/modules/controllers/route_view_model.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 
 
 
@@ -10,15 +11,27 @@ class FormViewModel with ChangeNotifier {
 
   late String  _email, _password, _confirmPassword, _name;
   late String _emailLogin, _passwordLogin;
-  final List<int> fieldNumberIdList = [1,2,3,4];
+  final List<int> idWillSentToForm = [1,2,3,4,5,6];
 
 
   final UserModelView _userModelView = locator<UserModelView>();
 
-  formValidate(String? value){
+  formValidate(String? value, int fieldId){
     if (value == null || value.isEmpty) {
-      //Error mesajı için bir switch oluşturulacak.
-      return 'Enter your first name';
+      if(fieldId==1){
+        return 'Enter your full name';
+      }else if(fieldId==2){
+        return 'Enter your email address';
+      }else if(fieldId==3){
+        return 'Enter password';
+      }else if(fieldId==4){
+        return 'Confirm password';
+      }else if(fieldId==5){
+        return 'Enter your email address';
+      }else if(fieldId==6){
+        return 'Enter your password';
+      }
+
     }
     return null;
   }
@@ -56,14 +69,14 @@ class FormViewModel with ChangeNotifier {
     }
   }
 
-  void signInWithEmailAndPassword(GlobalKey<FormState> formKey) async{
+  void signInWithEmailAndPassword(GlobalKey<FormState> formKey, BuildContext context) async{
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
       UserCheetah _userCheetah = await _userModelView.signInWithEmailAndPassword(_emailLogin, _passwordLogin);
       if(_userCheetah != null){
-        //_routeModel.goToMainScreen();
+        RouteModel routeModel = Provider.of<RouteModel>(context, listen: false);
+        routeModel.goToMainScreen(context);
       }
     }
   }
-
 }

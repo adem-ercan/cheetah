@@ -4,7 +4,6 @@ import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/modules/repositories/change_user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class Repository implements AuthBase{
 
@@ -29,6 +28,25 @@ class Repository implements AuthBase{
     _user = (await _firebaseAuthX.signInWithEmailAndPassword(email, password))!;
     UserCheetah userCheetah = ChangeUserModel.fromFirebaseUserToUserCheetah(_user);
     return userCheetah;
+  }
+
+
+  @override
+  Future<UserCheetah> currentUser() async{
+   User? user = await _firebaseAuthX.currentUser();
+   UserCheetah? userCheetah = ChangeUserModel.fromFirebaseUserToUserCheetah(user!);
+   return userCheetah;
+  }
+
+  @override
+  Future<void> signOut() async{
+    await _firebaseAuthX.signOut();
+  }
+
+  @override
+  Stream<UserCheetah> userChange(UserCheetah user) {
+    // TODO: implement userChange
+    throw UnimplementedError();
   }
 
 
