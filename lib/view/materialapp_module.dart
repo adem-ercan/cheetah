@@ -8,9 +8,10 @@ import 'package:cheetah/modules/controllers/theme_view_model.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/init.dart';
 import 'package:cheetah/modules/repositories/contexts.dart';
-import 'package:cheetah/view/screens/intro_screen.dart';
 import 'package:cheetah/view/screens/main_page_screen.dart';
+import 'package:cheetah/view/screens/signin_screen.dart';
 import 'package:cheetah/view/splash_scaffold.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +36,7 @@ class CheetahApp extends StatelessWidget {
           future: Init.instance.initialize(),
           builder: (context, snapshot) {
             final themeData = Provider.of<ThemeModeView>(context, listen: true);
+            final userModelView= Provider.of<UserModelView>(context, listen: true);
 
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const MaterialApp(
@@ -44,17 +46,63 @@ class CheetahApp extends StatelessWidget {
             } else {
               return GestureDetector(
                 onTap: (){
-                  GeneralUtils.closeKeyboardWhenUnFocus(context);
+                  //GeneralUtils.closeKeyboardWhenUnFocus(context);
                 },
-                child: MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      theme: (themeData.themeState != true)  ? DarkThemeData.init() : LightThemeData.init(),
-                      home:  const IntroPage(),
-                    )
-
+                child:StreamBuilder<User?>(
+                  stream: FirebaseAuth.instance.userChanges(),
+                  builder: (context, snapUserChanges) {
+                    if(snapUserChanges.hasData){
+                      return MaterialApp(
+                        debugShowCheckedModeBanner: false,
+                        theme: (themeData.themeState != false)  ? DarkThemeData.init() : LightThemeData.init(),
+                        home: MainScreen(),
+                      );
+                    }else{
+                      return MaterialApp(
+                        debugShowCheckedModeBanner: false,
+                        theme: (themeData.themeState != false)  ? DarkThemeData.init() : LightThemeData.init(),
+                        home: SignInScreen(),
+                      );
+                    }
+                  }
+                )
               );
             }
-          }),
+          }
+          ),
     );
   }
 }
+
+/*StreamBuilder<UserCheetah?>(
+stream: userModelView.userCheetahChange(),
+builder: (context, AsyncSnapshot<UserCheetah?> snapshotX) {
+if(snapshotX.hasData){
+if(snapshotX.connectionState==ConnectionState.done){
+debugPrint("içerdeyiz gardaşşş "+snapshotX.data!.email.toString());
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+theme: (themeData.themeState != false)  ? DarkThemeData.init() : LightThemeData.init(),
+home: MainScreen(),);
+}else if(snapshotX.connectionState==ConnectionState.waiting){
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+theme: (themeData.themeState != false)  ? DarkThemeData.init() : LightThemeData.init(),
+home: const IntroPage(),);
+}else{
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+theme: (themeData.themeState != false)  ? DarkThemeData.init() : LightThemeData.init(),
+home:  const IntroPage());
+}
+
+
+}else{
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+theme: (themeData.themeState != false)  ? DarkThemeData.init() : LightThemeData.init(),
+home: SignInScreen(),);
+}
+
+}
+)*/

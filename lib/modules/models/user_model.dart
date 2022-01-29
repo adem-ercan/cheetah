@@ -3,6 +3,8 @@ class UserCheetah {
    String? userID;
    String? email;
    String? userName;
+   String? phoneNumber;
+   String? aboutMe;
    String? fullName;
    String? profilePhotoURL;
    String? documentURL;
@@ -12,10 +14,11 @@ class UserCheetah {
     required this.email,
     this.userName,
     this.profilePhotoURL,
+    this.aboutMe,
+    this.documentURL,
+    this.fullName,
+    this.phoneNumber,
   });
-
-
-
 
   UserCheetah.fromMap(Map<String, dynamic> map){
    userID = map['userID'];
@@ -26,7 +29,7 @@ class UserCheetah {
 
    Map<String, dynamic> toMap(){
      return {
-       'userID' : userName,
+       'userID' : userID,
        'email' : email,
        'userName' : userName,
        'profilePhotoURL' : profilePhotoURL,

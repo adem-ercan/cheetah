@@ -1,5 +1,6 @@
 import 'package:cheetah/modules/controllers/form_view_model.dart';
 import 'package:cheetah/modules/controllers/route_view_model.dart';
+import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/view/components/google_sign_in_button.dart';
 import 'package:cheetah/view/components/register_text_form_field.dart';
 import 'package:cheetah/view/components/text_button.dart';
@@ -12,7 +13,7 @@ class SignInForm extends StatelessWidget {
 
   final GlobalKey<FormState> formKey;
 
-  SignInForm({Key? key,
+  const SignInForm({Key? key,
   required this.formKey,
   }) : super(key: key);
 
@@ -22,6 +23,7 @@ class SignInForm extends StatelessWidget {
     //UserModelView userModel = Provider.of<UserModelView>(context, listen: false);
     RouteModel routeModel = Provider.of<RouteModel>(context, listen: false);
     FormViewModel formModel = Provider.of<FormViewModel>(context, listen: false);
+    UserModelView userModelView = Provider.of<UserModelView>(context, listen: false);
 
     return Form(
         key: formKey,

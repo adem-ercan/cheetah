@@ -5,5 +5,5 @@ abstract class FirebaseAuthBase {
   Future<User?> signInWithEmailAndPassword(String email, String password);
   Future<User?> currentUser();
   Future<void> signOut();
-  Stream<User?> userChange(User? user);
+  Stream<User?> userChange();
 }

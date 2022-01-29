@@ -6,23 +6,23 @@ import 'package:provider/provider.dart';
 
 
 class MainScreen extends StatelessWidget {
-  MainScreen({Key? key}) : super(key: key);
+ const MainScreen({Key? key}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
-    UserModelView userModelView = Provider.of<UserModelView>(context);
+    UserModelView userModelView = Provider.of<UserModelView>(context, listen: false);
     userModelView.currentUser();
 
     return SafeArea(
         child: Scaffold(
-          appBar: CheetahAppBar(),
+          appBar: const CheetahAppBar(),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton(
                 child: const Text("Current User"),
-                onPressed: () async {
+                onPressed: ()  {
                   debugPrint(userModelView.currentUserX!.email.toString());
                   }
                   ),
@@ -32,7 +32,7 @@ class MainScreen extends StatelessWidget {
               TextButton(
                   child: const Text("Sign out"),
                   onPressed: () async{
-                    await userModelView.signOut();
+                    await userModelView.signOut(context);
                   }
               ),
             ]
@@ -40,6 +40,4 @@ class MainScreen extends StatelessWidget {
         )
     );
   }
-
-
 }
