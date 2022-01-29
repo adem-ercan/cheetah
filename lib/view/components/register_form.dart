@@ -45,6 +45,7 @@ class RegisterForm extends StatelessWidget {
       UserModelView userModel){
     formWidgetList =  [
       CheetahTextFormField(
+        keyboardType: TextInputType.name,
         labelTextC: "Full Name",
         hintTextC: "Enter your name",
         prefixIconC: const Icon(Icons.account_circle_outlined),
@@ -54,6 +55,7 @@ class RegisterForm extends StatelessWidget {
       ),
       const SizedBox(height: 10),
       CheetahTextFormField(
+        keyboardType: TextInputType.emailAddress,
         labelTextC: "Email",
         hintTextC: "Enter your email",
         prefixIconC: const Icon(Icons.alternate_email),
@@ -76,7 +78,7 @@ class RegisterForm extends StatelessWidget {
         isRightPrefix: true,
         labelTextC: "Confirm Password",
         hintTextC: "Enter your password again",
-        prefixIconC: const Icon(Icons.vpn_key_outlined),
+        prefixIconC: const Icon(Icons.warning_amber_outlined),
         validator: (value) => formModel.formValidate(value,formModel.idWillSentToForm[3]),
         onSaved: (value) => formModel.onSave(value!, formModel.idWillSentToForm[3]),
         onChange: (value) => formModel.onChange(value, formKey),

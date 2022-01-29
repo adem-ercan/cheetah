@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
 
     return SafeArea(
         child: Scaffold(
-          appBar: CheetahAppBar(),
+          appBar: const CheetahAppBar(),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -32,7 +32,7 @@ class MainScreen extends StatelessWidget {
               TextButton(
                   child: const Text("Sign out"),
                   onPressed: () async{
-                    await userModelView.signOut();
+                    await userModelView.signOut(context);
                   }
               ),
             ]

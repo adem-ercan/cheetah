@@ -1,6 +1,6 @@
 
-abstract class FireStoreBase{
+import 'package:firebase_auth/firebase_auth.dart';
 
-  void signUpReadData();
+abstract class FireStoreBase{
 
 }

@@ -8,10 +8,14 @@ import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+
   await Firebase.initializeApp();
+
   setupLocator();
+
   runApp(const CheetahApp());
 }
 

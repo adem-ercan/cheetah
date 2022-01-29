@@ -7,15 +7,19 @@ class FirebaseAuthX implements FirebaseAuthBase{
 
   late String _email, _password;
   FirebaseAuth auth = FirebaseAuth.instance;
+  User? _currentUser;
+
+
 
   @override
   Future<User?> createUserWithEmailAndPassword(String email, String password) async {
     _email = email;
     _password = password;
+
+
     try{
         UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: _email, password: _password);
         return userCredential.user;
-
     }on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         debugPrint('The password provided is too weak.');
@@ -44,18 +48,15 @@ class FirebaseAuthX implements FirebaseAuthBase{
   }
 
   @override
-  Stream<User?> userChange(User? user) async*{
-    auth.userChanges().listen((user){
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print("User is signed in!");
-      }});
+  Stream<User?> userChange() async*{
+    Stream<User?>  _userChange = auth.userChanges();
+   yield* _userChange;
   }
 
   @override
   Future<User?> currentUser() async {
     User user = (auth.currentUser)!;
+    _currentUser =user;
     return user;
   }
 
@@ -64,4 +65,8 @@ class FirebaseAuthX implements FirebaseAuthBase{
     return await auth.signOut();
   }
 
+
+  Stream<User?> userChangeX() {
+    return auth.userChanges();
+  }
 }

@@ -39,7 +39,6 @@ class FormViewModel with ChangeNotifier {
   onChange(String? value, GlobalKey<FormState> formKey){
 
     if(value != null){
-      debugPrint("onChange çalıştı");
       formKey.currentState!.validate();
       return null;
     }
@@ -65,21 +64,19 @@ class FormViewModel with ChangeNotifier {
     _userModelView = Provider.of<UserModelView>(context, listen: false);
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
-      UserCheetah _userCheetah = await _userModelView.createUserWithEmailAndPassword(_email,_password);
+      UserCheetah _userCheetah = await _userModelView.createUserWithEmailAndPassword(_email,_password,_name);
       debugPrint(_userCheetah.email);
     }
   }
 
   void signInWithEmailAndPassword(GlobalKey<FormState> formKey, BuildContext context) async{
     _userModelView = Provider.of<UserModelView>(context, listen: false);
+    debugPrint("Hey gidi hey!");
 
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
       UserCheetah _userCheetah = await _userModelView.signInWithEmailAndPassword(_emailLogin, _passwordLogin);
-      if(_userCheetah != null){
-        RouteModel routeModel = Provider.of<RouteModel>(context, listen: false);
-        routeModel.goToMainScreen(context);
-      }
+      debugPrint("burası çalıştı: "+_userCheetah.email.toString());
     }
   }
 }

@@ -1,28 +1,36 @@
 import 'package:cheetah/core/bases/authentication_base.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
+import 'package:cheetah/modules/controllers/route_view_model.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/modules/repositories/repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
 
 class UserModelView with ChangeNotifier implements AuthBase {
   
-   UserCheetah? currentUserX;
+   UserCheetah? _currentUserX;
 
   final Repository _repository = locator<Repository>();
+  final RouteModel _route = locator<RouteModel>();
 
-  @override
-  Future<UserCheetah> createUserWithEmailAndPassword(String email, String password) async{
+   UserCheetah? get currentUserX => _currentUserX;
 
-    UserCheetah userCheetah = await _repository.createUserWithEmailAndPassword(email, password);
+
+
+   @override
+  Future<UserCheetah> createUserWithEmailAndPassword(String email, String password, String name) async{
+
+    UserCheetah userCheetah = await _repository.createUserWithEmailAndPassword(email, password, name);
+    _currentUserX = userCheetah;
     return userCheetah;
   }
 
   @override
   Future<UserCheetah> signInWithEmailAndPassword(String email, String password) async{
-
     UserCheetah userCheetah = await _repository.signInWithEmailAndPassword(email, password);
+    _currentUserX = userCheetah;
     return userCheetah;
   }
 
@@ -30,20 +38,23 @@ class UserModelView with ChangeNotifier implements AuthBase {
   @override
   Future<UserCheetah> currentUser() async{
     UserCheetah? userCheetah = await _repository.currentUser();
-    currentUserX = userCheetah;
-    return currentUserX!;
+    _currentUserX = userCheetah;
+    return _currentUserX!;
   }
 
   @override
-  Future<void> signOut() async{
-    await _repository.signOut();
-    currentUserX = null;
+  Future<void> signOut(BuildContext? context) async{
+     try{
+       await _repository.signOut(context);
+       _currentUserX = null;
+      // _route.goToLoginScreen(context!);
+     }catch(e){
+       debugPrint(e.toString());
+     }
+
   }
 
-  @override
-  Stream<UserCheetah> userChange(UserCheetah user) {
-    // TODO: implement userChange
-    throw UnimplementedError();
-  }
+
+
 
 }
