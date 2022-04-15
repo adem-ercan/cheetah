@@ -1,5 +1,3 @@
-import 'package:cheetah/modules/controllers/locator.dart';
-import 'package:cheetah/modules/controllers/route_view_model.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:flutter/material.dart';
@@ -64,8 +62,8 @@ class FormViewModel with ChangeNotifier {
     _userModelView = Provider.of<UserModelView>(context, listen: false);
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
-      UserCheetah _userCheetah = await _userModelView.createUserWithEmailAndPassword(_email,_password,_name);
-      debugPrint(_userCheetah.email);
+      UserCheetah? _userCheetah = await _userModelView.createUserWithEmailAndPassword(_email,_password,_name);
+      debugPrint(_userCheetah!.email);
     }
   }
 
@@ -76,8 +74,8 @@ class FormViewModel with ChangeNotifier {
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
       _userModelView.getCurrentContext(context);
-      UserCheetah _userCheetah = await _userModelView.signInWithEmailAndPassword(_emailLogin, _passwordLogin);
-      debugPrint("burası çalıştı: "+_userCheetah.email.toString());
+      UserCheetah? _userCheetah = await _userModelView.signInWithEmailAndPassword(_emailLogin, _passwordLogin);
+      debugPrint("burası çalıştı: "+_userCheetah!.email.toString());
     }
   }
 }

@@ -19,19 +19,8 @@ Light Palette:
 
 
 => Tema controlü GetX paketi ile yapılabilir.
+=> userChange'i dinleyen stream builder farklı context lerde gezinince çalışmıyor bu ayarlanacak. 
+    
 
 
- /*Padding(
-                  padding: const EdgeInsets.all(40),
-                  child: Container(
-                    padding: const EdgeInsets.only(top: 50),
-                    child: Center(
-                        heightFactor: .5,
-                        widthFactor: .3,
-                        child: Image.asset(
-                          "assets/images/cheetah.png",
-                          width: 100,
-                          height: 100,
-                        )),
-                  ),
-                ),*/
+ 

@@ -55,8 +55,9 @@ class FirebaseAuthX implements FirebaseAuthBase{
 
   @override
   Future<User?> currentUser() async {
+
     User? user = auth.currentUser;
-    _currentUser = user;
+    _currentUser =user;
     return user;
   }
 

@@ -1,7 +1,6 @@
-import 'package:cheetah/modules/controllers/user_view_model.dart';
-import 'package:cheetah/view/components/cheetah_scaffold_appbar.dart';
+import 'package:cheetah/view/components/mainscreen/main_screen_drawer.dart';
+import 'package:cheetah/view/components/mainscreen/main_screen_with_sliver_style.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 
 
@@ -11,33 +10,20 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserModelView userModelView = Provider.of<UserModelView>(context, listen: false);
-    userModelView.currentUser();
 
-    return SafeArea(
-        child: Scaffold(
-          appBar: const CheetahAppBar(),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                child: const Text("Current User"),
-                onPressed: ()  {
-                  debugPrint(userModelView.currentUserX!.email.toString());
-                  }
-                  ),
-              const SizedBox(
-                height: 50,
-              ),
-              TextButton(
-                  child: const Text("Sign out"),
-                  onPressed: () async{
-                    await userModelView.signOut(context);
-                  }
-              ),
-            ]
-          ),
-        )
+    return  SafeArea(
+        child:Scaffold(
+            drawer: const CheetahMainScreenDrawer(),
+            body: const CheetahSliverStyleBody(),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: FloatingActionButton(onPressed: (){}, child: const Icon(Icons.chat),),
+         
+         ),
+        
     );
   }
+
+
+
+  
 }

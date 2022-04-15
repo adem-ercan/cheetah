@@ -9,6 +9,9 @@ class DarkThemeData extends ThemeData {
 
   static ThemeData init(){
     return ThemeData(
+      drawerTheme: const DrawerThemeData(
+        backgroundColor:  Color(0xff181920), 
+      ),
       textTheme: const TextTheme(
         bodyText2: TextStyle(color: Color(0xffE7E6E9), fontSize: 14.0,),
       ),
@@ -20,12 +23,12 @@ class DarkThemeData extends ThemeData {
       backgroundColor: const Color(0xff5568FE),
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xff000000),
-          shape: RoundedRectangleBorder(
+          /*shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(25.0),
                   bottomRight: Radius.circular(25.0)
               )
-          ),
+          ),*/
 
         titleTextStyle: TextStyle(
           color: Color(0xff686A70),

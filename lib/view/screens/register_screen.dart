@@ -1,8 +1,5 @@
-import 'package:cheetah/modules/controllers/route_view_model.dart';
-import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/view/components/register_form.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
 
@@ -17,9 +14,6 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-   final route = Provider.of<RouteModel>(context, listen: false);
-   final userModel = Provider.of<UserModelView>(context, listen: false);
-
 
     return WillPopScope(
       onWillPop: () async{
@@ -33,7 +27,7 @@ class SignUpScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children: [ 
                 Container(
                   margin:  EdgeInsets.only(top:MediaQuery.of(context).size.height*.12, bottom: 20),
                   child: const Center(

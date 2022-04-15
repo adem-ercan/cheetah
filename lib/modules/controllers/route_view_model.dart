@@ -1,4 +1,5 @@
 import 'package:cheetah/view/screens/intro_screen.dart';
+import 'package:cheetah/view/screens/landing_switch.dart';
 import 'package:cheetah/view/screens/main_page_screen.dart';
 import 'package:cheetah/view/screens/signin_screen.dart';
 import 'package:cheetah/view/screens/register_screen.dart';
@@ -17,5 +18,8 @@ class RouteModel extends ChangeNotifier {
       .push(MaterialPageRoute(builder: (context) => const IntroPage()));
 
   void goToMainScreen(BuildContext context) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => MainScreen()));
+      .push(MaterialPageRoute(builder: (context) =>const MainScreen()));
+
+  void goToLandingScreen(BuildContext context) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) =>const LandingPage()));
 }

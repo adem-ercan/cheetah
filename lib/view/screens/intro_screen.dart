@@ -67,7 +67,7 @@ class IntroPage extends StatelessWidget {
                       child: GradientRaisedButton(
                         buttonText: "Let's get started!",
                         letterSpace: 2,
-                        func: ()=>route.goToLoginScreen(context),
+                        func: ()=>route.goToLandingScreen (context),
                       ),
 
                       /*ElevatedButton(

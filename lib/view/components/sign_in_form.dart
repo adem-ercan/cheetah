@@ -23,7 +23,6 @@ class SignInForm extends StatelessWidget {
     //UserModelView userModel = Provider.of<UserModelView>(context, listen: false);
     RouteModel routeModel = Provider.of<RouteModel>(context, listen: false);
     FormViewModel formModel = Provider.of<FormViewModel>(context, listen: false);
-    UserModelView userModelView = Provider.of<UserModelView>(context, listen: false);
 
     return Form(
         key: formKey,

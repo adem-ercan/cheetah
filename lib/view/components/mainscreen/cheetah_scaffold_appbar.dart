@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 
-
 class CheetahAppBar extends StatelessWidget implements PreferredSizeWidget {
-   const CheetahAppBar({Key? key}) : super(key: key,);
+  CheetahAppBar({Key? key}) : super(key: key,);
+
+  Widget titleWidget = const Text("Cheetah");
+  List<Widget> actionsWidget = const <Widget>[
+      Icon(Icons.search),
+      SizedBox(width: 20,),
+    ];
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      title: const Text("Cheetah"),
+      title: titleWidget,
+      actions: actionsWidget,
     );
   }
+
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  
 }
+
+
+
+

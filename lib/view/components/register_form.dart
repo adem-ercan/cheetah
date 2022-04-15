@@ -103,7 +103,7 @@ class RegisterForm extends StatelessWidget {
           ButtonText(
             text: "Sign In",
             color: const Color(0xff5568fe),
-            func: () => routeModel.goToLoginScreen(context),
+            func: () => routeModel.goToLandingScreen(context),
           )
         ],
       )
