@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
 
-class ComponentState extends ChangeNotifier{
 
-  bool obscureText=true;
+class ComponentState extends ChangeNotifier {
+    
 
+
+  bool obscureText = true;
   Color? obscureIconColor = const Color(0xff181920);
 
-  void obscureToggle(){
-
-    if(obscureText){
+  void obscureToggle() {
+    if (obscureText) {
       obscureText = false;
       obscureIconColor = const Color(0xffE7E6E9);
       notifyListeners();
-
-    }else{
+    } else {
       obscureText = true;
       obscureIconColor = const Color(0xff181920);
       notifyListeners();
     }
-
   }
-
-
-
-
 
 }

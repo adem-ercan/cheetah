@@ -19,7 +19,9 @@ Light Palette:
 
 
 => Tema controlü GetX paketi ile yapılabilir.
-=> userChange'i dinleyen stream builder farklı context lerde gezinince çalışmıyor bu ayarlanacak. 
+=> userChange'i dinleyen stream builder farklı context lerde gezinince çalışmıyor bu ayarlanacak. (KISMEN ÇÖZÜLDÜ. TEKRAR TEST EDİLECEK.)
+=> SnackBar kullanımı daha modüler bir yapıya geliştirilecek.
+=> Hata modeli oluşturulup tüm hatalar bu model üzerinden kontrol edilecek.
     
 
 

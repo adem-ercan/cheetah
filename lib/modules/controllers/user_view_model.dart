@@ -4,66 +4,87 @@ import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/modules/repositories/repository.dart';
 import 'package:flutter/material.dart';
 
-
+enum WaitingState { busy, notBusy }
+enum ResponseAuthentication {
+  idle,
+  userFound,
+  userNotFound,
+  error,
+  emailFormatNotSuitable
+}
 
 class UserModelView with ChangeNotifier implements AuthBase {
+  WaitingState _waitingState = WaitingState.notBusy;
 
-    
-   UserCheetah? _currentUserX;
+  ResponseAuthentication _responseAuthentication =
+      ResponseAuthentication.idle;
 
-
+  UserCheetah? _currentUserX;
   final Repository _repository = locator<Repository>();
+  UserCheetah? get currentUserX => _currentUserX;
 
-   UserCheetah? get currentUserX => _currentUserX;
+  set responseAuthentication(ResponseAuthentication value) {
+    _responseAuthentication = value;
+    notifyListeners();
+  }
 
+  ResponseAuthentication get responseAuthentication => _responseAuthentication;
 
+  set waitingState(WaitingState value) {
+    _waitingState = value;
+    notifyListeners();
+  }
 
-   @override
-  Future<UserCheetah?> createUserWithEmailAndPassword(String email, String password, String name) async{
+  WaitingState get waitingState => _waitingState;
 
-    UserCheetah? userCheetah = await _repository.createUserWithEmailAndPassword(email, password, name);
+  @override
+  Future<UserCheetah?> createUserWithEmailAndPassword(
+      String email, String password, String name) async {
+    UserCheetah? userCheetah =
+        await _repository.createUserWithEmailAndPassword(email, password, name);
     _currentUserX = userCheetah;
     return userCheetah;
   }
 
   @override
-  Future<UserCheetah?> signInWithEmailAndPassword(String email, String password) async{
-    UserCheetah? userCheetah = await _repository.signInWithEmailAndPassword(email, password);
+  Future<UserCheetah?> signInWithEmailAndPassword(
+      String email, String password) async {
+    waitingState = WaitingState.busy;
+    UserCheetah? userCheetah =
+        await _repository.signInWithEmailAndPassword(email, password);
     _currentUserX = userCheetah;
-    if(userCheetah?.email==email){
-     // _route.goToMainScreen(_currentContext!);
+
+    if (userCheetah != null) {
+      Future.delayed(const Duration(seconds: 2), () {
+        waitingState = WaitingState.notBusy;
+        responseAuthentication = ResponseAuthentication.userNotFound;
+      });
+    } else {
+      waitingState = WaitingState.busy;
     }
 
     return userCheetah;
   }
 
-
   @override
-  Future<UserCheetah?> currentUser() async{
+  Future<UserCheetah?> currentUser() async {
     UserCheetah? userCheetah = await _repository.currentUser();
     _currentUserX = userCheetah;
     return _currentUserX;
   }
 
   @override
-  Future<void> signOut(BuildContext? context) async{
-     try{
-       await _repository.signOut(context);
-       _currentUserX = null;
+  Future<void> signOut(BuildContext? context) async {
+    try {
+      await _repository.signOut(context);
+      _currentUserX = null;
       // _route.goToLoginScreen(context!);
-     }catch(e){
-       debugPrint(e.toString());
-     }
-
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
-  BuildContext getCurrentContext(BuildContext context){
-     return context;
+  BuildContext getCurrentContext(BuildContext context) {
+    return context;
   }
-
-
-
-
-
-
 }
