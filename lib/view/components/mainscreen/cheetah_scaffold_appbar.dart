@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CheetahAppBar extends StatelessWidget implements PreferredSizeWidget {
-  CheetahAppBar({Key? key}) : super(key: key,);
 
-  Widget titleWidget = const Text("Cheetah");
-  List<Widget> actionsWidget = const <Widget>[
-      Icon(Icons.search),
-      SizedBox(width: 20,),
-    ];
+  Widget? titleWidget;
+  List<Widget>? actionsWidget; 
+
+   CheetahAppBar({Key? key,
+      
+   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
