@@ -1,4 +1,6 @@
 import 'package:cheetah/core/bases/firebase_authentication_base.dart';
+import 'package:cheetah/core/services/error_catch_service.dart';
+import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +8,7 @@ class FirebaseAuthX implements FirebaseAuthBase {
   late String _email, _password;
   FirebaseAuth auth = FirebaseAuth.instance;
   User? _currentUser;
+  final CatchErrorService _catchErrorService = locator<CatchErrorService>();
 
   @override
   Future<User?> createUserWithEmailAndPassword(
@@ -37,10 +40,10 @@ class FirebaseAuthX implements FirebaseAuthBase {
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       debugPrint("servisten gelen: " + e.toString());
-      
+      getErrorData(e.code, e.toString()+"boookkk deliiii");
+
       if (e.code == 'user-not-found') {
         debugPrint('No user found for that email.');
-
       } else if (e.code == 'wrong-password') {
         debugPrint('Wrong password provided for that user.');
       }
@@ -69,5 +72,11 @@ class FirebaseAuthX implements FirebaseAuthBase {
 
   Stream<User?> userChangeX() {
     return auth.userChanges();
+  }
+
+  CatchErrorService getErrorData(String errorCodeData, String errorTextData) {
+    _catchErrorService.errorCode = errorCodeData;
+    _catchErrorService.errorText = errorTextData;
+    return _catchErrorService;
   }
 }

@@ -1,3 +1,5 @@
+import 'package:cheetah/core/services/error_catch_service.dart';
+import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/view/components/snackbar_cheetah.dart';
@@ -9,6 +11,7 @@ class FormViewModel with ChangeNotifier {
   late String _emailLogin, _passwordLogin;
   final List<int> idWillSentToForm = [1, 2, 3, 4, 5, 6];
   late UserModelView _userModelView;
+  final CatchErrorService _catchErrorService = locator<CatchErrorService>();
 
   formValidate(String? value, int fieldId) {
     if (value == null || value.isEmpty) {
@@ -75,9 +78,7 @@ class FormViewModel with ChangeNotifier {
           .signInWithEmailAndPassword(_emailLogin, _passwordLogin);
       if (_userModelView.responseAuthentication ==
           ResponseAuthentication.userNotFound) {
-       
-
-        SnackBar snackBar = CheetahSnackBar.build("Deneme", "Undo", () {
+        SnackBar snackBar = CheetahSnackBar.build(_catchErrorService.errorText??"Bir hata oluştu", "Undo", () {
           debugPrint("boklu gibi çalıştı");
         });
 

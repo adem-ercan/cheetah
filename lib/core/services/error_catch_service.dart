@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CatchErrorService extends ChangeNotifier {
-  String errorText;
+class CatchErrorService {
+  String? errorText;
   String? errorCode;
 
   CatchErrorService({
-    required this.errorText,
+    this.errorText,
     this.errorCode,
     });
+
 }

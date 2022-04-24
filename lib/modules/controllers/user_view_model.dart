@@ -1,4 +1,5 @@
 import 'package:cheetah/core/bases/authentication_base.dart';
+import 'package:cheetah/core/services/error_catch_service.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/modules/repositories/repository.dart';
@@ -16,11 +17,12 @@ enum ResponseAuthentication {
 class UserModelView with ChangeNotifier implements AuthBase {
   WaitingState _waitingState = WaitingState.notBusy;
 
-  ResponseAuthentication _responseAuthentication =
-      ResponseAuthentication.idle;
+  ResponseAuthentication _responseAuthentication = ResponseAuthentication.idle;
 
   UserCheetah? _currentUserX;
   final Repository _repository = locator<Repository>();
+  final CatchErrorService _catchErrorService = locator<CatchErrorService>();
+
   UserCheetah? get currentUserX => _currentUserX;
 
   set responseAuthentication(ResponseAuthentication value) {
@@ -58,6 +60,8 @@ class UserModelView with ChangeNotifier implements AuthBase {
       Future.delayed(const Duration(seconds: 2), () {
         waitingState = WaitingState.notBusy;
         responseAuthentication = ResponseAuthentication.userNotFound;
+        debugPrint(_catchErrorService.errorText);
+        debugPrint(_catchErrorService.errorCode);
       });
     } else {
       waitingState = WaitingState.busy;
