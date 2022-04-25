@@ -1,4 +1,4 @@
-import 'package:cheetah/view/components/mainscreen/cheetah_scaffold_appbar.dart';
+import 'package:cheetah/view/components/mainscreen/body/appbars/chat_page_app_bar.dart';
 import 'package:flutter/material.dart';
 
 
@@ -8,7 +8,8 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CheetahAppBar(),
+      appBar: ChatPageAppBar(),
+      body: Container(),
     );
   }
 }

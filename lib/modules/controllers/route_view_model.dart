@@ -1,3 +1,4 @@
+import 'package:cheetah/view/screens/chat_page_screen.dart';
 import 'package:cheetah/view/screens/intro_screen.dart';
 import 'package:cheetah/view/screens/landing_switch.dart';
 import 'package:cheetah/view/screens/main_page_screen.dart';
@@ -22,4 +23,7 @@ class RouteModel extends ChangeNotifier {
 
   void goToLandingScreen(BuildContext context) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) =>const LandingPage()));
+  
+  void goToChatScreen(BuildContext context) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) =>const ChatPage()));
 }

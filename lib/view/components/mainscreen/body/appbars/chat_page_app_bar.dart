@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
-class CheetahAppBar extends StatelessWidget implements PreferredSizeWidget {
+class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   Widget? titleWidget;
   List<Widget>? actionsWidget; 
 
-   CheetahAppBar({Key? key,
-      
+   ChatPageAppBar({Key? key,
+      this.titleWidget,
+      this.actionsWidget
    }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      title: titleWidget,
+      title: Text("Deneme"),
       actions: actionsWidget,
     );
   }
