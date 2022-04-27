@@ -6,9 +6,17 @@ import 'package:flutter/material.dart';
 
 class FirebaseAuthX implements FirebaseAuthBase {
   late String _email, _password;
-  FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
   User? _currentUser;
   final CatchErrorService _catchErrorService = locator<CatchErrorService>();
+
+  bool isVerifiedEmailX() {
+    if (auth.currentUser != null && auth.currentUser!.emailVerified) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   @override
   Future<User?> createUserWithEmailAndPassword(
@@ -19,6 +27,7 @@ class FirebaseAuthX implements FirebaseAuthBase {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: _email, password: _password);
+      userCredential.user!.sendEmailVerification();
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -37,10 +46,16 @@ class FirebaseAuthX implements FirebaseAuthBase {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
+      /* if (userCredential.user != null && !userCredential.user!.emailVerified) {
+        await userCredential.user!.sendEmailVerification();
+        debugPrint("verify yapıldı");
+      } else if(userCredential.user!.emailVerified) {
+        return userCredential.user;
+      }*/
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       debugPrint("servisten gelen: " + e.toString());
-      getErrorData(e.code, e.toString()+"boookkk deliiii");
+      getErrorData(e.code, e.toString() + "boookkk deliiii");
 
       if (e.code == 'user-not-found') {
         debugPrint('No user found for that email.');

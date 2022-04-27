@@ -15,11 +15,9 @@ enum ResponseAuthentication {
 }
 
 class UserModelView with ChangeNotifier implements AuthBase {
-  WaitingState _waitingState = WaitingState.notBusy;
-
-  ResponseAuthentication _responseAuthentication = ResponseAuthentication.idle;
-
   UserCheetah? _currentUserX;
+  WaitingState _waitingState = WaitingState.notBusy;
+  ResponseAuthentication _responseAuthentication = ResponseAuthentication.idle;
   final Repository _repository = locator<Repository>();
   final CatchErrorService _catchErrorService = locator<CatchErrorService>();
 
@@ -38,6 +36,10 @@ class UserModelView with ChangeNotifier implements AuthBase {
   }
 
   WaitingState get waitingState => _waitingState;
+
+  bool isVerifiedEmail() {
+    return _repository.isVerifiedEmail();
+  }
 
   @override
   Future<UserCheetah?> createUserWithEmailAndPassword(
@@ -59,11 +61,12 @@ class UserModelView with ChangeNotifier implements AuthBase {
     if (userCheetah != null) {
       Future.delayed(const Duration(seconds: 2), () {
         waitingState = WaitingState.notBusy;
-        responseAuthentication = ResponseAuthentication.userNotFound;
+        if(!isVerifiedEmail()) responseAuthentication = ResponseAuthentication.userNotFound;
         debugPrint(_catchErrorService.errorText);
         debugPrint(_catchErrorService.errorCode);
       });
     } else {
+     // responseAuthentication = ResponseAuthentication.userNotFound;
       waitingState = WaitingState.busy;
     }
 

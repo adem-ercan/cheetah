@@ -25,6 +25,10 @@ class Repository implements AuthBase {
   final FirebaseAuthX _firebaseAuthX = locator<FirebaseAuthX>();
   final FireStoreDB _fireStoreDB = locator<FireStoreDB>();
 
+  bool isVerifiedEmail() {
+    return _firebaseAuthX.isVerifiedEmailX();
+  }
+
   @override
   Future<UserCheetah?> createUserWithEmailAndPassword(
       String email, String password, String name) async {

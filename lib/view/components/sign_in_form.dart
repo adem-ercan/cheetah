@@ -1,6 +1,5 @@
 import 'package:cheetah/modules/controllers/form_view_model.dart';
 import 'package:cheetah/modules/controllers/route_view_model.dart';
-import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/view/components/google_sign_in_button.dart';
 import 'package:cheetah/view/components/register_text_form_field.dart';
 import 'package:cheetah/view/components/text_button.dart';

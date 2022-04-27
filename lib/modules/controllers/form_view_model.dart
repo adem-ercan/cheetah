@@ -5,6 +5,7 @@ import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/view/components/snackbar_cheetah.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FormViewModel with ChangeNotifier {
   late String _email, _password, _confirmPassword, _name;
@@ -69,7 +70,6 @@ class FormViewModel with ChangeNotifier {
   void signInWithEmailAndPassword(
       GlobalKey<FormState> formKey, BuildContext context) async {
     _userModelView = Provider.of<UserModelView>(context, listen: false);
-    debugPrint("Hey gidi hey!");
 
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
@@ -78,11 +78,30 @@ class FormViewModel with ChangeNotifier {
           .signInWithEmailAndPassword(_emailLogin, _passwordLogin);
       if (_userModelView.responseAuthentication ==
           ResponseAuthentication.userNotFound) {
-        SnackBar snackBar = CheetahSnackBar.build(_catchErrorService.errorText??"Bir hata oluştu", "Undo", () {
+        SnackBar snackBar = CheetahSnackBar.build(
+            _catchErrorService.errorText ?? "Bir hata oluştu", "Undo", () {
           debugPrint("boklu gibi çalıştı");
         });
+        SnackBar snackBarIsVerified = CheetahSnackBar.build(
+            "Email is not verified!", "Now verify!", () {});
 
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        if(_catchErrorService.errorCode !=null) ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+        if (!_userModelView.isVerifiedEmail() && _catchErrorService.errorCode == null){
+            ScaffoldMessenger.of(context).showSnackBar(snackBarIsVerified);  
+            }
+          
+
+        _catchErrorService.errorCode = null;
+        _catchErrorService.errorText = null;
+        /* showModalBottomSheet(
+            context: context,
+            builder: (BuildContext contxt) {
+              return Container(
+                height: 200,
+                child: Text("BottomSheet Deneme"),
+              );
+            });*/
       }
       debugPrint("burası çalıştı: " + _userCheetah!.email.toString());
     }
