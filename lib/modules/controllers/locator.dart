@@ -8,9 +8,11 @@ import 'package:get_it/get_it.dart';
 GetIt locator = GetIt.I;
 
 void setupLocator() {
+
   locator.registerLazySingleton(() => Repository());
   locator.registerLazySingleton(() => FirebaseAuthX());
   locator.registerLazySingleton(() => RouteModel());
   locator.registerLazySingleton(() => FireStoreDB());
   locator.registerLazySingleton(() => CatchErrorService());
+
 }

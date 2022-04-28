@@ -79,4 +79,8 @@ class Repository implements AuthBase {
     data.addAll({'userName': name});
     await _fireStoreDB.createUser(data);
   }
+
+  Stream? userChangeX() {
+    return _firebaseAuthX.userChangeX();
+  }
 }

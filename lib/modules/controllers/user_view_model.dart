@@ -61,12 +61,13 @@ class UserModelView with ChangeNotifier implements AuthBase {
     if (userCheetah != null) {
       Future.delayed(const Duration(seconds: 2), () {
         waitingState = WaitingState.notBusy;
-        if(!isVerifiedEmail()) responseAuthentication = ResponseAuthentication.userNotFound;
+        if (!isVerifiedEmail())
+          responseAuthentication = ResponseAuthentication.userNotFound;
         debugPrint(_catchErrorService.errorText);
         debugPrint(_catchErrorService.errorCode);
       });
     } else {
-     // responseAuthentication = ResponseAuthentication.userNotFound;
+      // responseAuthentication = ResponseAuthentication.userNotFound;
       waitingState = WaitingState.busy;
     }
 
@@ -93,5 +94,9 @@ class UserModelView with ChangeNotifier implements AuthBase {
 
   BuildContext getCurrentContext(BuildContext context) {
     return context;
+  }
+
+  Stream? userChangeX() {
+    return _repository.userChangeX();
   }
 }
