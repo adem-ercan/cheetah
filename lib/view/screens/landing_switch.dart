@@ -1,4 +1,5 @@
 import 'package:cheetah/modules/controllers/user_view_model.dart';
+import 'package:cheetah/view/screens/intro_screen.dart';
 import 'package:cheetah/view/screens/main_page_screen.dart';
 import 'package:cheetah/view/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,6 @@ class LandingPage extends StatelessWidget {
     UserModelView _userModelView =
         Provider.of<UserModelView>(context, listen: true);
     return StreamBuilder(
-        //Sadece  Firebase dinlemesi için stream. Farklı çatılarda işlem yapıldığında çalışmayacaktır.
         stream: _userModelView.userChangeX(), 
         builder: (context, snapshot) {
           if (snapshot.hasData) {
