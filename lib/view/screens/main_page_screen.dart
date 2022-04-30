@@ -12,7 +12,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return  SafeArea(
-        child:Scaffold(
+        child: Scaffold(
             drawer: const CheetahMainScreenDrawer(),
             body: const CheetahSliverStyleBody(),
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

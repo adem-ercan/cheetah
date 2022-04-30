@@ -1,4 +1,5 @@
 import 'package:cheetah/modules/controllers/route_view_model.dart';
+import 'package:cheetah/view/components/mainscreen/body/appbars/sliver_app_bar.dart';
 import 'package:cheetah/view/components/mainscreen/body/chat_tab/chat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,38 +14,9 @@ class CheetahSliverStyleBody extends StatelessWidget {
       length: 3,
       child: NestedScrollView(
         headerSliverBuilder: (context, value) {
-          return [
-            const SliverAppBar(
-              expandedHeight: 120,
-              pinned: true,
-              snap: true,
-              floating: true,
-              actions: [
-                Center(
-                    child: Text(
-                  "Cheetah",
-                  style: TextStyle(fontSize: 24),
-                )),
-                SizedBox(
-                  width: 100,
-                ),
-                Icon(Icons.search_outlined),
-                SizedBox(
-                  width: 20,
-                ),
-                Icon(Icons.bookmark_outline_sharp)
-              ],
-              bottom: TabBar(
-                tabs: [
-                  Tab(icon: Icon(Icons.message)),
-                  Tab(icon: Icon(Icons.call)),
-                  Tab(icon: Icon(Icons.share)),
-                ],
-              ),
-            ),
-          ];
+          return [SliverAppBarOnMainPage(boolValue: value)];
         },
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             ChatList(),
             Icon(Icons.accessibility_new_rounded),

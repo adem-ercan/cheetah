@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 class ChatListCard extends StatelessWidget {
   final int index;
+  Widget? profilePhoto;
 
-  ChatListCard({Key? key, required this.index}) : super(key: key);
+  ChatListCard({Key? key, 
+  required this.index,
+  this.profilePhoto,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class ChatListCard extends StatelessWidget {
             CircleAvatar(
               backgroundColor:
                   index % 2 == 0 ? Colors.deepOrange : Colors.brown,
-              child: FlutterLogo(),
+              child: profilePhoto ?? const FlutterLogo(),
             ),
             SizedBox(
               width: 15,
