@@ -1,4 +1,5 @@
 import 'package:cheetah/modules/controllers/route_view_model.dart';
+import 'package:cheetah/view/components/mainscreen/body/chat_tab/chat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -45,75 +46,7 @@ class CheetahSliverStyleBody extends StatelessWidget {
         },
         body: TabBarView(
           children: [
-            CustomScrollView(
-              slivers: [
-                SliverList(delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: () {
-                      debugPrint("GestureDetecter çalıştı");
-                      _routeModel.goToChatScreen(context);
-                    },
-                    child: Container(
-                        height: 80.0,
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            CircleAvatar(
-                              backgroundColor: index % 2 == 0
-                                  ? Colors.deepOrange
-                                  : Colors.brown,
-                              child: FlutterLogo(),
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text("Adem ERCAN"),
-                                    SizedBox(
-                                      width: 150,
-                                    ),
-                                    Container(
-                                      alignment: Alignment.centerRight,
-                                      child: Text("14.03.2022"),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.check_circle_outlined,
-                                      color: index % 2 == 0
-                                          ? Colors.green
-                                          : Colors.grey,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                        "Naber lan kıraolar nasılsınız bakalım?",
-                                        style:
-                                            TextStyle(color: Colors.blueGrey)),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
-                        )),
-                  );
-                }))
-              ],
-            ),
+            ChatList(),
             Icon(Icons.accessibility_new_rounded),
             Icon(Icons.share),
           ],
