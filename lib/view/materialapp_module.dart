@@ -51,7 +51,7 @@ class CheetahApp extends StatelessWidget {
                               theme: (themeData.themeState != false)
                                   ? DarkThemeData.init()
                                   : LightThemeData.init(),
-                              home: const LandingPage(),
+                              home: LandingPage(),
                             )
                 );
               }

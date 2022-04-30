@@ -5,6 +5,7 @@ import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/view/components/snackbar_cheetah.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FormViewModel with ChangeNotifier {
   late String _email, _password, _confirmPassword, _name;
@@ -84,12 +85,13 @@ class FormViewModel with ChangeNotifier {
         SnackBar snackBarIsVerified = CheetahSnackBar.build(
             "Email is not verified!", "Now verify!", () {});
 
-        if(_catchErrorService.errorCode !=null) ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        if (_catchErrorService.errorCode != null)
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-        if (!_userModelView.isVerifiedEmail() && _catchErrorService.errorCode == null){
-            ScaffoldMessenger.of(context).showSnackBar(snackBarIsVerified);  
-            }
-          
+        if (!_userModelView.isVerifiedEmail() &&
+            _catchErrorService.errorCode == null) {
+          ScaffoldMessenger.of(context).showSnackBar(snackBarIsVerified);
+        }
 
         _catchErrorService.errorCode = null;
         _catchErrorService.errorText = null;
@@ -104,5 +106,9 @@ class FormViewModel with ChangeNotifier {
       }
       debugPrint("burası çalıştı: " + _userCheetah!.email.toString());
     }
+  }
+
+  Future<void> isAppFirstLaunch() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
   }
 }

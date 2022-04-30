@@ -16,13 +16,13 @@ class RouteModel extends ChangeNotifier {
       .push(MaterialPageRoute(builder: (context)=>SignUpScreen()));
 
   void goToIntroScreen(BuildContext context) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => const IntroPage()));
+      .push(MaterialPageRoute(builder: (context) =>  IntroPage()));
 
   void goToMainScreen(BuildContext context) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) =>const MainScreen()));
 
   void goToLandingScreen(BuildContext context) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) =>const LandingPage()));
+      .push(MaterialPageRoute(builder: (context) => LandingPage()));
   
   void goToChatScreen(BuildContext context) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) =>const ChatPage()));
