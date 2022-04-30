@@ -17,7 +17,7 @@ class GradientRaisedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserModelView _userModelView = Provider.of<UserModelView>(context, listen: true );
+    UserModelView _userModelView = Provider.of<UserModelView>(context, listen: false );
 
     return RaisedGradientButton(
         width: MediaQuery.of(context).size.width * .9,

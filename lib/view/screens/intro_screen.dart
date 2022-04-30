@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/controllers/route_view_model.dart';
+import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/init.dart';
 import 'package:cheetah/view/components/gradient_button.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,8 @@ class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final route = Provider.of<RouteModel>(context, listen: false);
+    final UserModelView userModelView =
+        Provider.of<UserModelView>(context, listen: true);
 
     return WillPopScope(
       onWillPop: () async {
@@ -72,11 +75,14 @@ class IntroPage extends StatelessWidget {
                       letterSpace: 2,
                       func: () async {
                         //Buradaki fonksiyonlar view model de birleştirilecek
+                        userModelView.waitingState = WaitingState.busy;
                         SharedPreferences preferences =
                             await SharedPreferences.getInstance();
                         preferences.setBool("isFirstLaunch", false);
-                        
+
                         await _init.firstLaunchSet();
+                        await _init.initialize();
+                        userModelView.waitingState = WaitingState.notBusy;
 
                         route.goToLandingScreen(context);
                       }),
