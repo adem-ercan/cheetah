@@ -1,4 +1,4 @@
-import 'package:cheetah/core/services/error_catch_service.dart';
+import 'package:cheetah/modules/models/error_catch_model.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/models/user_model.dart';

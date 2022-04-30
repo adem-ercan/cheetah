@@ -1,5 +1,5 @@
 import 'package:cheetah/core/bases/firebase_authentication_base.dart';
-import 'package:cheetah/core/services/error_catch_service.dart';
+import 'package:cheetah/modules/models/error_catch_model.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
