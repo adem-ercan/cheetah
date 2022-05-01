@@ -1,4 +1,6 @@
 import 'package:cheetah/view/components/mainscreen/body/appbars/chat_page_app_bar.dart';
+import 'package:cheetah/view/components/mainscreen/body/chat_page/chat_console.dart';
+import 'package:cheetah/view/components/register_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
@@ -15,9 +17,14 @@ class ChatPage extends StatelessWidget {
       
       ),
       body: Column(
-        children: [Container(
-        child: Center(child: Text((index+1).toString(), style: const TextStyle(fontSize:32),),),
-      ),
+        children: [
+      
+          Expanded(
+            child: Container(
+                  child: Center(child: Text((index+1).toString(), style: const TextStyle(fontSize:32),),),
+                ),
+          ),
+          ChatConsole()
       
       ]
       ),
