@@ -2,17 +2,36 @@ import 'package:cheetah/view/components/mainscreen/body/appbars/chat_page_app_ba
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
-  final int? index;
+  final int index;
 
   const ChatPage({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ChatPageAppBar(),
-      body: Container(
-        child: Center(child: Text((index!+1).toString(), style: TextStyle(fontSize:32),),),
+      appBar: ChatPageAppBar(
+        index: index,
+        actionsWidget: [],
+      
       ),
+      body: Column(
+        children: [Container(
+        child: Center(child: Text((index+1).toString(), style: const TextStyle(fontSize:32),),),
+      ),
+      
+      ]
+      ),
+      
     );
+  }
+}
+
+
+class ChatPageBody extends StatelessWidget {
+  const ChatPageBody({Key? key}) : super(key: key);
+
+  @override 
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
