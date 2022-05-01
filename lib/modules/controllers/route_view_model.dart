@@ -24,8 +24,8 @@ class RouteModel extends ChangeNotifier {
   void goToLandingScreen(BuildContext context) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) => LandingPage()));
   
-  void goToChatScreen(BuildContext context) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) =>const ChatPage()));
+  void goToChatScreen(BuildContext context, int index) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => ChatPage(index: index,)));
 
    
 }

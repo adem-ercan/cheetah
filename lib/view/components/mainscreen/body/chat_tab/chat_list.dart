@@ -18,7 +18,7 @@ class ChatList extends StatelessWidget {
                     (BuildContext context, int index) {
                   return InkWell(
                     onTap: () {
-                      _routeModel.goToChatScreen(context);
+                      _routeModel.goToChatScreen(context, index);
                     },
                     child: ChatListCard(index: index)
                   );

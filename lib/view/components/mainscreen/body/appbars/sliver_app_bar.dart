@@ -16,13 +16,17 @@ class SliverAppBarOnMainPage extends StatelessWidget {
       floating: true,
       actions: [
         Center(
-            child: Text(
+          
+        child: Text(
           "Cheetah",
           style: TextStyle(fontSize: 24),
-        )),
-        SizedBox(
-          width: 100,
         ),
+        ),
+        SizedBox(
+          width: 20 //MediaQuery.of(context).size.width*0.3
+        ),
+
+
         Icon(Icons.search_outlined),
         SizedBox(
           width: 20,
