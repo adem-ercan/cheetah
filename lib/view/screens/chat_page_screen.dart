@@ -1,6 +1,5 @@
 import 'package:cheetah/view/components/mainscreen/body/appbars/chat_page_app_bar.dart';
 import 'package:cheetah/view/components/mainscreen/body/chat_page/chat_console.dart';
-import 'package:cheetah/view/components/register_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
@@ -14,30 +13,41 @@ class ChatPage extends StatelessWidget {
       appBar: ChatPageAppBar(
         index: index,
         actionsWidget: [],
-      
       ),
-      body: Column(
-        children: [
-      
-          Expanded(
-            child: Container(
-                  child: Center(child: Text((index+1).toString(), style: const TextStyle(fontSize:32),),),
+      body: Column(children: [
+        Flexible(
+          fit: FlexFit.tight,
+          child: RefreshIndicator(
+            child: ListView(
+              children: [
+                Container(
+                  height: 300,
+                  child: Center(
+                    child: Text(
+                      (index + 1).toString(),
+                      style: const TextStyle(fontSize: 32),
+                    ),
+                  ),
                 ),
+               
+              ],
+            ),
+            onRefresh: () async {
+              debugPrint("On refresh çalıştı");
+              await Future.delayed(const Duration(seconds: 2));
+            },
           ),
-          ChatConsole()
-      
-      ]
-      ),
-      
+        ),
+        ChatConsole()
+      ]),
     );
   }
 }
 
-
 class ChatPageBody extends StatelessWidget {
   const ChatPageBody({Key? key}) : super(key: key);
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Container();
   }

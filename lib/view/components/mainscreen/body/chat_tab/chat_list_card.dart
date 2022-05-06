@@ -15,15 +15,15 @@ class ChatListCard extends StatelessWidget {
         height: 80.0,
         child: Row(
           children: [
-            SizedBox(
-              width: 5,
+            const SizedBox(
+              width: 10,
             ),
             CircleAvatar(
               backgroundColor:
                   index % 2 == 0 ? Colors.deepOrange : Colors.brown,
               child: profilePhoto ?? const FlutterLogo(),
             ),
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
             Column(
@@ -32,8 +32,8 @@ class ChatListCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text("Adem ERCAN"),
-                    SizedBox(
+                    const Text("Adem ERCAN"),
+                   const SizedBox(
                       width: 150,
                     ),
                     Container(

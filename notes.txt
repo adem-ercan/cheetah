@@ -18,10 +18,12 @@ Light Palette:
 
 
 
-=> Tema controlü GetX paketi ile yapılabilir.
-=> userChange'i dinleyen stream builder farklı context lerde gezinince çalışmıyor bu ayarlanacak. (KISMEN ÇÖZÜLDÜ. TEKRAR TEST EDİLECEK.)
+=> Tema controlü GetX paketi ile yapılabilir. (İPTAL)
+=> userChange'i dinleyen stream builder farklı context lerde gezinince çalışmıyor bu ayarlanacak. (ÇÖZÜLDÜ. AMA FARKLI SENARYOLAR İLE TEKRAR TEST EDİLECEK.)
 => SnackBar kullanımı daha modüler bir yapıya geliştirilecek.
 => Hata modeli oluşturulup tüm hatalar bu model üzerinden kontrol edilecek.
+=> Uygulama ilk açılışta IntroPage'te "Let's get started" butonuna basıldığında runtime bir hata oluşuyor. Buna tekrar bir bakalım.
+=> Responsive opsiyon kodlanacak
     
 
 
