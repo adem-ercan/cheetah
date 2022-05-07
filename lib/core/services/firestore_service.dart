@@ -1,9 +1,10 @@
+import 'package:cheetah/core/bases/firestore_cloud_base.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 
 
-class FireStoreDB  {
+class FireStoreDB implements FireStoreBase {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -15,7 +16,6 @@ class FireStoreDB  {
       'userID' : data['userID'],
     }).then((value) => print("Kayıt Yapıldı")).catchError((onError)=>print("hata var DB'de: $onError"));
   }*/
-
    Future<void> createUser(Map<String, dynamic> data){
     CollectionReference users = _firestore.collection('users');
     return users.doc(data['userID']).set({
@@ -26,7 +26,12 @@ class FireStoreDB  {
     })
     .then((value) => debugPrint("Kayıt Yapıldı"))
     .catchError((onError)=>debugPrint("hata var DB'de: $onError"));
-
-
   }
+
+  @override
+  Future<void> updateUserData() {
+    throw UnimplementedError();
+  }  
+
+  
 }

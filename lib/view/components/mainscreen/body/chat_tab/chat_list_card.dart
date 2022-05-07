@@ -1,16 +1,21 @@
+import 'package:cheetah/modules/controllers/route_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChatListCard extends StatelessWidget {
   final int index;
   Widget? profilePhoto;
 
-  ChatListCard({Key? key, 
-  required this.index,
-  this.profilePhoto,
+  ChatListCard({
+    Key? key,
+    required this.index,
+    this.profilePhoto,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    RouteModel _routeModel = Provider.of<RouteModel>(context);
+
     return Container(
         height: 80.0,
         child: Row(
@@ -18,10 +23,15 @@ class ChatListCard extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            CircleAvatar(
-              backgroundColor:
-                  index % 2 == 0 ? Colors.deepOrange : Colors.brown,
-              child: profilePhoto ?? const FlutterLogo(),
+            GestureDetector(
+              onTap: () {
+                _routeModel.goToProfileScreen(context);
+              },
+              child: CircleAvatar(
+                backgroundColor:
+                    index % 2 == 0 ? Colors.deepOrange : Colors.brown,
+                child: profilePhoto ?? const FlutterLogo(),
+              ),
             ),
             const SizedBox(
               width: 15,
@@ -33,7 +43,7 @@ class ChatListCard extends StatelessWidget {
                 Row(
                   children: [
                     const Text("Adem ERCAN"),
-                   const SizedBox(
+                    const SizedBox(
                       width: 150,
                     ),
                     Container(
