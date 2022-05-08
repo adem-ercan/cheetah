@@ -30,7 +30,7 @@ class ChatListCard extends StatelessWidget {
               child: CircleAvatar(
                 backgroundColor:
                     index % 2 == 0 ? Colors.deepOrange : Colors.brown,
-                child: profilePhoto ?? const FlutterLogo(),
+                child:  Hero(tag: "adem",child:FlutterLogo(size: 32,)),
               ),
             ),
             const SizedBox(

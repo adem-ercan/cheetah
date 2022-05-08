@@ -10,9 +10,10 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("Profile Page"),),
       body:  Container(
-        child :Center(
-          child: Text("Profile Page", style: TextStyle(fontSize: 32),),
-        ),
+        child :
+            Center(
+              child: Hero(tag: "adem",child: FlutterLogo(size: 500,)),
+            ),
         ),
     );
   }
