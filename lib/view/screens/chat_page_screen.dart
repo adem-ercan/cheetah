@@ -12,7 +12,6 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
       appBar: ChatPageAppBar(
         index: index,
-        actionsWidget: [],
       ),
       body: Column(children: [
         Flexible(

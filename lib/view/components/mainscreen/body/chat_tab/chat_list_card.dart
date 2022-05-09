@@ -1,4 +1,5 @@
 import 'package:cheetah/modules/controllers/route_view_model.dart';
+import 'package:cheetah/view/screens/my_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,12 +26,12 @@ class ChatListCard extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                _routeModel.goToProfileScreen(context);
+                _routeModel.goToProfileScreen(context, index);
               },
               child: CircleAvatar(
                 backgroundColor:
                     index % 2 == 0 ? Colors.deepOrange : Colors.brown,
-                child:  Hero(tag: "adem",child:FlutterLogo(size: 32,)),
+                child:  Hero(tag: index.toString(),child:FlutterLogo(size: 32,)),
               ),
             ),
             const SizedBox(

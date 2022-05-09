@@ -16,8 +16,7 @@ class TestApp extends StatelessWidget {
         child: Center(
           child: InkWell(
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const Page()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Page()));
             },
             child: CircleAvatar(
               child: FlutterLogo(),

@@ -23,7 +23,7 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
           style: TextStyle(fontSize: 20),
         ),
         actions: [
-          FlutterLogo(),
+          Hero(transitionOnUserGestures: true,tag: index.toString(), child: FlutterLogo()),
           SizedBox(width: 20,),
           IconButton(onPressed: () {}, icon: Icon(Icons.photo_camera_front)),
           IconButton(onPressed: () {}, icon: Icon(Icons.call)),
