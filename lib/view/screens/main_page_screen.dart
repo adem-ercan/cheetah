@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
             drawer: const CheetahMainScreenDrawer(),
             body: const CheetahSliverStyleBody(),
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-            floatingActionButton: FloatingActionButton(heroTag: "adem2",onPressed: (){}, child: const Icon(Icons.chat),),
+            floatingActionButton: FloatingActionButton(onPressed: (){}, child: const Icon(Icons.chat),),
          
          ),
         

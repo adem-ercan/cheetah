@@ -8,25 +8,20 @@ class CheetahSliverStyleBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return Stack(
-      children: 
-    
-      [DefaultTabController(
-      length: 3,
-      child: NestedScrollView(
-        headerSliverBuilder: (context, value) {
-          return [SliverAppBarOnMainPage(boolValue: value)];
-        },
-        body: const TabBarView(
-          children: [
-            ChatList(),
-            Icon(Icons.accessibility_new_rounded),
-            Icon(Icons.share),
-          ],
-        ),
+    return DefaultTabController(
+    length: 3,
+    child: NestedScrollView(
+      headerSliverBuilder: (context, value) {
+        return [SliverAppBarOnMainPage(boolValue: value)];
+      },
+      body: const TabBarView(
+        children: [
+          ChatList(),
+          Icon(Icons.accessibility_new_rounded),
+          Icon(Icons.share),
+        ],
       ),
-    )
-    ],
+    ),
     );
   }
 }
