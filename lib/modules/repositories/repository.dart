@@ -42,7 +42,8 @@ class Repository implements AuthBase {
         _email, _password));
     UserCheetah userCheetah =
         ChangeUserModel.fromFirebaseUserToUserCheetah(_user);
-        if(_user!=null) await createUserOnDatabaseDuringSignUp(userCheetah, _name);
+    if (_user != null)
+      await createUserOnDatabaseDuringSignUp(userCheetah, _name);
     return userCheetah;
   }
 
@@ -70,6 +71,8 @@ class Repository implements AuthBase {
 
   @override
   Future<void> signOut(BuildContext? context) async {
+    // UserCheetah? userCheetah = await currentUser();
+    // await _fireStoreDB.updateUserData(userCheetah!.toMap(), "Name");
     await _firebaseAuthX.signOut();
   }
 
@@ -78,6 +81,11 @@ class Repository implements AuthBase {
     Map<String, dynamic> data = userCheetah.toMap();
     data.addAll({'userName': name});
     await _fireStoreDB.createUser(data);
+  }
+
+  Future<void> updateUserData(UserCheetah? userCheetah,
+      String updateID, dynamic data) async {
+    await _fireStoreDB.updateUserData(userCheetah, updateID, data);
   }
 
   Stream? userChangeX() {

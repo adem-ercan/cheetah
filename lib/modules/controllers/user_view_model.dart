@@ -6,6 +6,7 @@ import 'package:cheetah/modules/repositories/repository.dart';
 import 'package:flutter/material.dart';
 
 enum WaitingState { busy, notBusy }
+
 enum ResponseAuthentication {
   idle,
   userFound,
@@ -90,6 +91,16 @@ class UserModelView with ChangeNotifier implements AuthBase {
     } catch (e) {
       debugPrint(e.toString());
     }
+  }
+
+
+  Future<void> updateUserData(String updateId, data) async {
+    //Kullancı profil bilgilerini güncelleme fonksiyonu
+    UserCheetah? currentCheetahUser = await _repository.currentUser();
+    try {
+          await _repository.updateUserData(currentCheetahUser, updateId, data);
+      }
+     catch (e) {}
   }
 
   BuildContext getCurrentContext(BuildContext context) {

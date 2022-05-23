@@ -1,3 +1,4 @@
+import 'package:cheetah/view/components/profile_page_screen/profile_sliver_appbar.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -15,33 +16,11 @@ class ProfilePage extends StatelessWidget {
             child: NestedScrollView(
               headerSliverBuilder: (context, value) {
                 return const [
-                  SliverAppBar(
-                    
-                    expandedHeight: 300,
-                    pinned: true,
-                    snap: true,
-                    floating: true,
-                    
-                    actions: [
-                      Center(
-                        child: Text(
-                          "Cheetah",
-                          style: TextStyle(fontSize: 24),
-                        ),
-                      ),
-                      SizedBox(width: 20 //MediaQuery.of(context).size.width*0.3
-                          ),
-                      Icon(Icons.search_outlined),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Icon(Icons.bookmark_outline_sharp)
-                    ],
-                  )
-                ];
+                  ProfileSliverAppBar(),
+                 ];
               },
               body: Center(
-                child: Hero(tag:index.toString(),child: FlutterLogo(size: 300,),),
+                child: Hero(tag:index.toString(),child: const FlutterLogo(size: 300,),),
               ),
             )),
       ),
