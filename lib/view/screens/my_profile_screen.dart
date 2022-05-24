@@ -7,22 +7,37 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: GestureDetector(
-            onHorizontalDragCancel: () {
-              // Navigator.pop(context);
-            },
-            child: NestedScrollView(
-              headerSliverBuilder: (context, value) {
-                return const [
-                  ProfileSliverAppBar(),
-                 ];
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          child: GestureDetector(
+              onHorizontalDragCancel: () {
+                // Navigator.pop(context);
               },
-              body: Center(
-                child: Hero(tag:index.toString(),child: const FlutterLogo(size: 300,),),
+              child: CustomScrollView(
+                slivers: [
+                  ProfileSliverAppBar(index: index,),
+    
+    
+    
+                   SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (_, int index) {
+              return ListTile(
+                leading: Container(
+                    padding: EdgeInsets.all(8),
+                    width: 100,
+                    child: Placeholder()),
+                title: Text('Place ${index + 1}', textScaleFactor: 2),
+              );
+            },
+            childCount: 20,
+          ),
+        ),
+                ],
+              )
               ),
-            )),
+        ),
       ),
     );
   }

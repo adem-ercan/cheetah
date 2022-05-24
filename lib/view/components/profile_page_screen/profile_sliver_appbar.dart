@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class ProfileSliverAppBar extends StatelessWidget {
-  const ProfileSliverAppBar({Key? key}) : super(key: key);
+  int? index;
+  ProfileSliverAppBar({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const SliverAppBar(
-      expandedHeight: 300,
+    return SliverAppBar(
+      expandedHeight: 200,
       pinned: true,
       snap: true,
       floating: true,
+      centerTitle: true,
       actions: [
         Center(
           child: Text(
-            "Cheetah",
+            "Profile",
             style: TextStyle(fontSize: 24),
           ),
         ),
@@ -25,6 +27,31 @@ class ProfileSliverAppBar extends StatelessWidget {
         ),
         Icon(Icons.bookmark_outline_sharp)
       ],
+      flexibleSpace: FlexibleSpaceBar(
+       // centerTitle: true,
+        titlePadding: EdgeInsets.only(left: 50, bottom: 10),
+        background: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text("Adem ERCAN",style: TextStyle(fontSize: 12),),
+                  SizedBox(height: 5),
+                  Text("admerc.ss@gmail.com", style: TextStyle(fontSize: 12),)
+                ],
+              ),
+        title:
+            Container(
+              height: 75,
+              width: 75,
+              decoration: BoxDecoration(
+
+              ),
+              child: CircleAvatar(
+                child: Hero(tag: index.toString(), child: FlutterLogo()),
+              ),
+            ),
+           
+      ),
     );
   }
 }
