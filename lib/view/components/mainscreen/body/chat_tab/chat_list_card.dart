@@ -1,5 +1,5 @@
 import 'package:cheetah/modules/controllers/route_view_model.dart';
-import 'package:cheetah/view/screens/my_profile_screen.dart';
+import 'package:cheetah/view/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -2,7 +2,7 @@ import 'package:cheetah/view/screens/chat_page_screen.dart';
 import 'package:cheetah/view/screens/intro_screen.dart';
 import 'package:cheetah/view/screens/landing_switch.dart';
 import 'package:cheetah/view/screens/main_page_screen.dart';
-import 'package:cheetah/view/screens/my_profile_screen.dart';
+import 'package:cheetah/view/screens/profile_screen.dart';
 import 'package:cheetah/view/screens/signin_screen.dart';
 import 'package:cheetah/view/screens/register_screen.dart';
 import 'package:flutter/material.dart';

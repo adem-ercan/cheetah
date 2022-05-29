@@ -1,7 +1,26 @@
+import 'package:cheetah/view/components/profile_page_screen/profile_page_appbar.dart';
+import 'package:cheetah/view/components/profile_page_screen/profile_page_body.dart';
 import 'package:cheetah/view/components/profile_page_screen/profile_sliver_appbar.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
+  int? index;
+  ProfilePage({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+      appBar: ProfilePageAppBar(index: index,),
+      body: ProfilePageBody(index: index),
+    ));
+  }
+}
+
+/*class ProfilePage extends StatelessWidget {
   int? index;
   ProfilePage({Key? key, required this.index}) : super(key: key);
 
@@ -41,4 +60,4 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
-}
+}*/
