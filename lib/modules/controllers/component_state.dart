@@ -1,3 +1,4 @@
+import 'package:cheetah/view/components/profile_page_screen/profile_photo_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,5 +63,12 @@ class ComponentState extends ChangeNotifier {
       obscureIconColor = const Color(0xff181920);
       notifyListeners();
     }
+  }
+
+  void showPPDialog(BuildContext context, int? index) {
+    showDialog(context: (context), builder: (context) => Hero(
+      tag:index.toString(),
+      child: ProfilePhotoDialog(),
+      ));
   }
 }
