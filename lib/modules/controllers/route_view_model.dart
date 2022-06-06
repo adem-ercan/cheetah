@@ -2,6 +2,7 @@ import 'package:cheetah/view/screens/chat_page_screen.dart';
 import 'package:cheetah/view/screens/intro_screen.dart';
 import 'package:cheetah/view/screens/landing_switch.dart';
 import 'package:cheetah/view/screens/main_page_screen.dart';
+import 'package:cheetah/view/screens/profile_photo_setting_screen.dart';
 import 'package:cheetah/view/screens/profile_screen.dart';
 import 'package:cheetah/view/screens/signin_screen.dart';
 import 'package:cheetah/view/screens/register_screen.dart';
@@ -30,5 +31,8 @@ class RouteModel extends ChangeNotifier {
 
   void goToProfileScreen(BuildContext context, int index) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) => ProfilePage(index: index)));
+
+  void goToProfilePhotoScreen(BuildContext context, int? index) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => ProfilePhotoPage(index: index)));
    
 }

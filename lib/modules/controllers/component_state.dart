@@ -1,6 +1,7 @@
+import 'package:cheetah/modules/controllers/route_view_model.dart';
 import 'package:cheetah/view/components/profile_page_screen/profile_photo_setting.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class ComponentState extends ChangeNotifier {
   bool obscureText = true;
@@ -66,9 +67,17 @@ class ComponentState extends ChangeNotifier {
   }
 
   void showPPDialog(BuildContext context, int? index) {
-    showDialog(context: (context), builder: (context) => Hero(
-      tag:index.toString(),
-      child: ProfilePhotoDialog(),
-      ));
+    showDialog(
+        context: (context),
+        builder: (context) => ProfilePhotoDialog(
+              index: index,
+            ));
+  }
+
+  void goToPPScreen(BuildContext context, int? index) {
+    RouteModel route = Provider.of<RouteModel>(context, listen: false);
+    Navigator.pop(context);
+    route.goToProfilePhotoScreen(context, index);
+    
   }
 }

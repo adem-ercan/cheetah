@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePageBody extends StatelessWidget {
-  static const List<double> _profilePhotoSize = [150, 150];
+  static const List<double> _profilePhotoSize = [100, 100];
   static const EdgeInsets _profilePhotoPadding = EdgeInsets.only(top: 50);
   int? index;
   ProfilePageBody({
@@ -31,7 +31,7 @@ class ProfilePageBody extends StatelessWidget {
                       tag: index.toString(),
                       child: const FlutterLogo(
                         size: 50,
-                      )),
+                      )), 
                 ),
               ),
             ),
