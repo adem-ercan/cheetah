@@ -11,20 +11,21 @@ class ChatList extends StatelessWidget {
   Widget build(BuildContext context) {
     
   RouteModel _routeModel = Provider.of<RouteModel>(context, listen: false);
-
+    //Arkadaş listesi ve sohbet listesi oluşturulacak
     return CustomScrollView(
               slivers: [
                 SliverList(delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
                   return InkWell(
                     onTap: () {
+                      
                       _routeModel.goToChatScreen(context, index);
                     },
                     child: ChatListCard(index: index)
                   );
                 }))
-              ],
-            );
+            ],
+      );
   }
 }
 
