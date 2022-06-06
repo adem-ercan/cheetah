@@ -13,7 +13,8 @@ class ProfilePhotoPage extends StatelessWidget {
           SizedBox(
             width: 20,
           ),
-          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert_rounded))
+          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert_rounded)),
+          
         ],
       ),
     );

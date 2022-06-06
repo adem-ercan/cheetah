@@ -37,9 +37,38 @@ class ProfilePageBody extends StatelessWidget {
             ),
           ),
         ),
+
+        SizedBox(height: 30,),
+       
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(child: Text("Adem ERCAN", style: TextStyle(fontSize: 24, color: Colors.blueGrey),)),
+            SizedBox(width: 10,),
+            GestureDetector(
+              onTap: (){},
+              child: Icon(Icons.settings_backup_restore_rounded, color: Colors.grey,),
+            )
+          ],
+        ),
+
+         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(child: Text("ademerc.ss@gmail.com", style: TextStyle(fontSize: 20, color: Colors.blueGrey),)),
+            SizedBox(width: 10,),
+            GestureDetector(
+              onTap: (){},
+              child: Icon(Icons.settings_backup_restore_rounded, color: Colors.grey,),
+            )
+          ],
+        ),
+
+
       ],
     );
   }
+
 
  
 }
