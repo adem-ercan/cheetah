@@ -13,6 +13,7 @@ class ChatPage extends StatelessWidget {
       appBar: ChatPageAppBar(
         index: index,
       ),
+
       body: Column(children: [
         Flexible(
           fit: FlexFit.tight,

@@ -85,7 +85,7 @@ class ChatConsole extends StatelessWidget {
                   child: IconButton(
                     autofocus: true,
                     onPressed: () {},
-                    icon: Icon(Icons.mic),
+                    icon: const Icon(Icons.mic),
                     color: Colors.yellow,
                     highlightColor: Colors.green,
                     splashColor: Colors.red,

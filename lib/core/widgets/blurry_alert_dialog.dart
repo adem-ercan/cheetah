@@ -1,7 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class BlurryAlertDialog extends StatelessWidget {
   double? sigmaX, sigmaY;
   AlertDialog? alertDialog;

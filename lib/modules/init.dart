@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
 
 class Init {
   bool? isShared;
@@ -27,4 +27,6 @@ class Init {
       debugPrint("Preferences FALSE olarak çalıştı");
     }
   }
+
+  
 }

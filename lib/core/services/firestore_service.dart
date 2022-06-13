@@ -22,7 +22,6 @@ class FireStoreDB implements FireStoreBase {
           'email': data['email'],
           'userName': data['userName'],
           'userID': data['userID'],
-            
         })
         .then((value) => debugPrint("Kayıt Yapıldı"))
         .catchError((onError) => debugPrint("hata var DB'de: $onError"));
@@ -42,9 +41,29 @@ class FireStoreDB implements FireStoreBase {
         case "EMAİL":
           await users.doc(userData['userID']).update({'email': data});
           break;
-        }
+      }
     } catch (e) {
       debugPrint("Update işleminde hata çıktı. Çıkan hata şu: " + e.toString());
     }
+  }
+
+  Future<QuerySnapshot> getAllUserList() async {
+    CollectionReference users = FirebaseFirestore.instance.collection("users");
+    QuerySnapshot documentSnapshot = await users.get();
+    return documentSnapshot;
+  }
+
+  Future<void> createChatDialog(Map<String, dynamic> data) {
+    CollectionReference messages = _firestore.collection('messages');
+    return messages
+        .doc()
+        .set({
+          'userIDs': [],
+          'content': data['content'],
+          'timeInfo': data['timeInfo'],
+        })
+        .then((value) => debugPrint("Message Kayıt Yapıldı"))
+        .catchError(
+            (onError) => debugPrint("Message hata var DB'de: $onError"));
   }
 }

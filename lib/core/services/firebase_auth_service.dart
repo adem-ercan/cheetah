@@ -52,6 +52,7 @@ class FirebaseAuthX implements FirebaseAuthBase {
       } else if(userCredential.user!.emailVerified) {
         return userCredential.user;
       }*/
+
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       debugPrint("servisten gelen: " + e.toString());
@@ -76,6 +77,7 @@ class FirebaseAuthX implements FirebaseAuthBase {
   @override
   Future<User?> currentUser() async {
     User? user = auth.currentUser;
+
     _currentUser = user;
     return user;
   }
@@ -86,6 +88,7 @@ class FirebaseAuthX implements FirebaseAuthBase {
   }
 
   Stream<User?> userChangeX() {
+
     return auth.userChanges();
   }
 
@@ -93,5 +96,9 @@ class FirebaseAuthX implements FirebaseAuthBase {
     _catchErrorService.errorCode = errorCodeData;
     _catchErrorService.errorText = errorTextData;
     return _catchErrorService;
+  }
+
+  Future<void> deleteAccount() async {
+    auth.currentUser!.delete();
   }
 }

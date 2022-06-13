@@ -54,7 +54,7 @@ class ChatListCard extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 20,
                 ),
                 Row(
                   children: [
