@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SliverAppBarOnMainPage extends StatelessWidget {
   final bool? boolValue;
 
-  SliverAppBarOnMainPage({Key? key,
+  const SliverAppBarOnMainPage({Key? key,
     this.boolValue,
   }) : super(key: key);
 
