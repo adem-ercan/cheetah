@@ -8,7 +8,8 @@ class ComponentState extends ChangeNotifier {
   Color? obscureIconColor = const Color(0xff181920);
   Color chatConsoleIconColor = Colors.grey;
   CrossAxisAlignment _crossAxisAlignmentChatConsole = CrossAxisAlignment.end;
-  final consoleFormKey = GlobalKey<FormState>();
+  GlobalKey consoleFormKey = GlobalKey<FormState>();
+  String? chatFromTextValue;
 
   bool _isConsoleExtand = false;
 
@@ -78,6 +79,8 @@ class ComponentState extends ChangeNotifier {
     RouteModel route = Provider.of<RouteModel>(context, listen: false);
     Navigator.pop(context);
     route.goToProfilePhotoScreen(context, index);
-    
   }
+
+  
+
 }

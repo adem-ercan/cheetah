@@ -24,7 +24,7 @@ class UserCheetah {
    userID = map['userID'];
    email = map['email'];
    userName = map['userName'];
-   profilePhotoURL = map['profilePhotoURL'];
+   profilePhotoURL = map['profilePhotoURL'] ?? "https://pixabay.com/tr/vectors/bo%c5%9f-profil-resmi-gizemli-adam-avatar-973460/";
   }
 
    Map<String, dynamic> toMap(){
@@ -32,7 +32,7 @@ class UserCheetah {
        'userID' : userID,
        'email' : email,
        'userName' : userName,
-       'profilePhotoURL' : profilePhotoURL,
+       'profilePhotoURL' : profilePhotoURL ?? "https://pixabay.com/tr/vectors/bo%c5%9f-profil-resmi-gizemli-adam-avatar-973460/",
      };
    }
 }

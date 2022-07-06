@@ -1,6 +1,5 @@
 import 'package:cheetah/view/components/profile_page_screen/profile_page_appbar.dart';
 import 'package:cheetah/view/components/profile_page_screen/profile_page_body.dart';
-import 'package:cheetah/view/components/profile_page_screen/profile_sliver_appbar.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {

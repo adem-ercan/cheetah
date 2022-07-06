@@ -38,7 +38,8 @@ class ChatPage extends StatelessWidget {
             },
           ),
         ),
-        ChatConsole()
+        
+        ChatConsole(index: index.toString(),)
       ]),
     );
   }

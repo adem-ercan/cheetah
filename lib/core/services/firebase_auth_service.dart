@@ -88,7 +88,6 @@ class FirebaseAuthX implements FirebaseAuthBase {
   }
 
   Stream<User?> userChangeX() {
-
     return auth.userChanges();
   }
 

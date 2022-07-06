@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ChatConsole extends StatelessWidget {
-  ChatConsole({Key? key}) : super(key: key);
+  String? index;
 
+  ChatConsole({Key? key, required this.index}) : super(key: key);
 
   FocusNode focusNode = FocusNode();
 
@@ -24,7 +25,7 @@ class ChatConsole extends StatelessWidget {
               end: Alignment.centerRight,
               colors: [Colors.purple, Color(0xff5568FE)]),
         ),
-        child:   Row(
+        child: Row(
           crossAxisAlignment: _componentState.crossAxisAlignmentChatConsole,
           children: [
             IconButton(
@@ -39,17 +40,20 @@ class ChatConsole extends StatelessWidget {
               onKey: (event) {
                 if (event.logicalKey.keyLabel == "Enter" ||
                     focusNode.size.width ==
-                        _componentState.consoleFormKey.currentContext!.size!.width) {
+                        _componentState
+                            .consoleFormKey.currentContext!.size!.width) {
                   debugPrint("oldu gibi ya!" +
-                      _componentState.consoleFormKey.currentContext!.size!.longestSide.toString());
+                      _componentState
+                          .consoleFormKey.currentContext!.size!.longestSide
+                          .toString());
                 }
               },
               child: Form(
-                key: _componentState.consoleFormKey,
-                child:TextFormField(
+                  key: _componentState.consoleFormKey,
+                  child: TextFormField(
                     controller: _componentState.textEditingController,
                     //selectionHeightStyle: BoxHeightStyle.includeLineSpacingMiddle,
-                    style: const  TextStyle(color: Colors.white, fontSize: 20),
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
                     decoration: const InputDecoration(
                         // isDense: true,
                         //isCollapsed: true
@@ -61,11 +65,9 @@ class ChatConsole extends StatelessWidget {
                     textInputAction: TextInputAction.newline,
                     onChanged: (e) {
                       _componentState.increaseConsoleHeight();
-                  },
-                )
-              ),
-            )
-            ),
+                    },
+                  )),
+            )),
             IconButton(
                 onPressed: () {},
                 icon: Icon(
@@ -79,7 +81,10 @@ class ChatConsole extends StatelessWidget {
                   color: _componentState.chatConsoleIconColor,
                 )),
             Padding(
-              padding: const EdgeInsets.only(bottom: 8.0, right: 8.0), //_componentState.isConsoleExtand ? EdgeInsets.only(bottom: 8.0, right: 8.0) : EdgeInsets.only(bottom: 0, right: 8.0),
+              padding: const EdgeInsets.only(
+                  bottom: 8.0,
+                  right:
+                      8.0), //_componentState.isConsoleExtand ? EdgeInsets.only(bottom: 8.0, right: 8.0) : EdgeInsets.only(bottom: 0, right: 8.0),
               child: CircleAvatar(
                   backgroundColor: Colors.purpleAccent,
                   child: IconButton(

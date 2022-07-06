@@ -13,5 +13,10 @@ void main() async {
 
   setupLocator();
 
+
   runApp(const CheetahApp());
+}
+
+void alternaative(){
+
 }

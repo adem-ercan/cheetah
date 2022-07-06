@@ -22,6 +22,7 @@ class FireStoreDB implements FireStoreBase {
           'email': data['email'],
           'userName': data['userName'],
           'userID': data['userID'],
+          'profilePhotoURL' : data['profilePhotoURL']
         })
         .then((value) => debugPrint("Kayıt Yapıldı"))
         .catchError((onError) => debugPrint("hata var DB'de: $onError"));

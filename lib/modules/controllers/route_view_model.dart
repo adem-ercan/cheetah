@@ -34,5 +34,5 @@ class RouteModel extends ChangeNotifier {
 
   void goToProfilePhotoScreen(BuildContext context, int? index) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) => ProfilePhotoPage(index: index)));
-   
+      
 }
