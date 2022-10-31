@@ -6,7 +6,6 @@ import 'package:cheetah/view/screens/main_page_screen.dart';
 import 'package:cheetah/view/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LandingPage extends StatelessWidget {
 
@@ -36,8 +35,7 @@ class LandingPage extends StatelessWidget {
               debugPrint("Deneme2");
               return IntroPage();
             } else {
-              debugPrint("Deneme3");
-              return SignInScreen();
+                 return SignInScreen();
             }
           }
         });

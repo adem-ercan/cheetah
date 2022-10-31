@@ -5,7 +5,13 @@ import 'package:flutter/material.dart';
 class ChatPage extends StatelessWidget {
   final int index;
 
-  const ChatPage({Key? key, required this.index}) : super(key: key);
+  //ChatPage({required this.index}) : super();
+
+  ChatPage._internal({required this.index});
+
+  factory ChatPage (int index) {
+    return ChatPage(index);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +19,13 @@ class ChatPage extends StatelessWidget {
       appBar: ChatPageAppBar(
         index: index,
       ),
-
       body: Column(children: [
         Flexible(
           fit: FlexFit.tight,
           child: RefreshIndicator(
             child: ListView(
               children: [
-                Container(
+                SizedBox(
                   height: 300,
                   child: Center(
                     child: Text(
@@ -29,7 +34,6 @@ class ChatPage extends StatelessWidget {
                     ),
                   ),
                 ),
-               
               ],
             ),
             onRefresh: () async {
@@ -38,8 +42,9 @@ class ChatPage extends StatelessWidget {
             },
           ),
         ),
-        
-        ChatConsole(index: index.toString(),)
+        ChatConsole(
+          index: index.toString(),
+        )
       ]),
     );
   }
@@ -53,3 +58,4 @@ class ChatPageBody extends StatelessWidget {
     return Container();
   }
 }
+

@@ -27,7 +27,7 @@ class FirebaseAuthX implements FirebaseAuthBase {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: _email, password: _password);
-      userCredential.user!.sendEmailVerification();
+     userCredential.user?.sendEmailVerification();
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

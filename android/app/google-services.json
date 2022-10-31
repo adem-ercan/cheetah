@@ -1,43 +1,41 @@
 {
   "project_info": {
-    "project_number": "71559583262",
-    "firebase_url": "https://cheetah-71447-default-rtdb.firebaseio.com",
-    "project_id": "cheetah-71447",
-    "storage_bucket": "cheetah-71447.appspot.com"
+    "project_number": "976688896745",
+    "project_id": "cheetah-c6b84",
+    "storage_bucket": "cheetah-c6b84.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:71559583262:android:3996c333842ad7df00c00f",
+        "mobilesdk_app_id": "1:976688896745:android:152d49f6354becdc6f6e78",
         "android_client_info": {
           "package_name": "com.ademercan.cheetah"
         }
       },
       "oauth_client": [
         {
-          "client_id": "71559583262-3qskr1l8de83h76qcrt1l3542tv54l89.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ademercan.cheetah",
-            "certificate_hash": "9d9f3a6ff65dd9b90a63c6750807b83638ff026a"
-          }
-        },
-        {
-          "client_id": "71559583262-b9837jigu6f4kv6c3o0gcq419kqcol2q.apps.googleusercontent.com",
+          "client_id": "976688896745-q1u2psgk5dt9kdgkj6qjh7bc45724he4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB7_-ZxW0YYnJHcRVrYYHND2QcoTWj2dgA"
+          "current_key": "AIzaSyBzJBvRo26U2OP62aTDIzCdQlG1kYkPMfw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "71559583262-b9837jigu6f4kv6c3o0gcq419kqcol2q.apps.googleusercontent.com",
+              "client_id": "976688896745-q1u2psgk5dt9kdgkj6qjh7bc45724he4.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "976688896745-4ocnrjmqd3k6kba9ppt48m6ma7mfaunl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ademercan.cheetah"
+              }
             }
           ]
         }

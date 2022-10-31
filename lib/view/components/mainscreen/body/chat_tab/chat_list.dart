@@ -1,9 +1,7 @@
 import 'package:cheetah/core/services/firestore_service.dart';
 import 'package:cheetah/modules/controllers/route_view_model.dart';
-import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/view/components/mainscreen/body/chat_tab/chat_list_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

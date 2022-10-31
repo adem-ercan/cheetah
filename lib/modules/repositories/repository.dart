@@ -42,8 +42,9 @@ class Repository implements AuthBase {
         _email, _password));
     UserCheetah userCheetah =
         ChangeUserModel.fromFirebaseUserToUserCheetah(_user);
-    if (_user != null)
+    if (_user != null) {
       await createUserOnDatabaseDuringSignUp(userCheetah, _name);
+    }
     return userCheetah;
   }
 

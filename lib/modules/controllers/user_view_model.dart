@@ -62,7 +62,7 @@ class UserModelView with ChangeNotifier implements AuthBase {
     if (userCheetah != null) {
       Future.delayed(const Duration(seconds: 2), () {
         waitingState = WaitingState.notBusy;
-        if (!isVerifiedEmail()) responseAuthentication = ResponseAuthentication.userNotFound;
+        if (!isVerifiedEmail()) responseAuthentication =  ResponseAuthentication.userNotFound;
         debugPrint(_catchErrorService.errorText);
         debugPrint(_catchErrorService.errorCode);
       });

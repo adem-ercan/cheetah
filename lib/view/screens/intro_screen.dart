@@ -4,14 +4,39 @@ import 'package:cheetah/modules/controllers/route_view_model.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/init.dart';
 import 'package:cheetah/view/components/gradient_button.dart';
+import 'package:cheetah/view/screens/landing_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class IntroPage extends StatelessWidget {
+class IntroPage extends StatefulWidget {
   IntroPage({Key? key}) : super(key: key);
 
+  @override
+  State<IntroPage> createState() => _IntroPageState();
+}
+
+class _IntroPageState extends State<IntroPage> {
+  //late NavigatorState _navigator;
   Init _init = locator<Init>();
+
+   /* @override
+  void initState() {
+    _navigator = Navigator.of(context);
+    super.initState();
+  }
+
+@override
+  void didChangeDependencies() {
+    _navigator = Navigator.of(context);
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    _navigator.pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>LandingPage()), (Route<dynamic> route) => true);
+    super.dispose();
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +76,9 @@ class IntroPage extends StatelessWidget {
                   blendMode: BlendMode.dstOut,
                   child: Image.asset("assets/images/dark_grey.jpg",
                       fit: BoxFit.cover, alignment: Alignment.bottomCenter),
-                )),
+                )
+                ),
+                
             Positioned(
                 bottom: 150,
                 child: Container(
@@ -78,14 +105,16 @@ class IntroPage extends StatelessWidget {
                         userModelView.waitingState = WaitingState.busy;
                         SharedPreferences preferences =
                             await SharedPreferences.getInstance();
-                        preferences.setBool("isFirstLaunch", false);
+                        await preferences.setBool("isFirstLaunch", false);
 
                         await _init.firstLaunchSet();
                         await _init.initialize();
                         userModelView.waitingState = WaitingState.notBusy;
 
                         route.goToLandingScreen(context);
-                      }),
+                        print("Rapçilere sada heyy!");
+                      }
+                      ),
 
                   /*ElevatedButton(
                         style: ElevatedButton.styleFrom(

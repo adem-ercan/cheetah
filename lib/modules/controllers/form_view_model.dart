@@ -58,12 +58,16 @@ class FormViewModel with ChangeNotifier {
 
   void formSaveAndSignUp(
       GlobalKey<FormState> formKey, BuildContext context) async {
+    debugPrint("test register form ");
     _userModelView = Provider.of<UserModelView>(context, listen: false);
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       UserCheetah? _userCheetah = await _userModelView
           .createUserWithEmailAndPassword(_email, _password, _name);
       debugPrint(_userCheetah!.email);
+      debugPrint("validate işlemi oldu");
+    } else {
+      debugPrint("validate işlemi olmadı");
     }
   }
 
