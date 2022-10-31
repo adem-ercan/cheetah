@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>452369519436-vs1stcrhd8dda9gphg5aapt4ei4n622o.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.452369519436-vs1stcrhd8dda9gphg5aapt4ei4n622o</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC3agHT6snxG9pmiVl33n1Q33hkjfCXU3E</string>
+	<key>GCM_SENDER_ID</key>
+	<string>452369519436</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ademercan.cheetah</string>
+	<key>PROJECT_ID</key>
+	<string>cheetah2-2fc27</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cheetah2-2fc27.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:452369519436:ios:bbe496fbbefa35f04cf5e9</string>
+</dict>
+</plist>
