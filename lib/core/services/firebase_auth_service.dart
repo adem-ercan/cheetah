@@ -1,4 +1,5 @@
 import 'package:cheetah/core/bases/firebase_authentication_base.dart';
+import 'package:cheetah/core/services/firestore_service.dart';
 import 'package:cheetah/modules/models/error_catch_model.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +10,7 @@ class FirebaseAuthX implements FirebaseAuthBase {
   final FirebaseAuth auth = FirebaseAuth.instance;
   User? _currentUser;
   final CatchErrorService _catchErrorService = locator<CatchErrorService>();
+  final FireStoreDB _fireStoreDB = locator<FireStoreDB>();
 
   bool isVerifiedEmailX() {
     if (auth.currentUser != null && auth.currentUser!.emailVerified) {
@@ -27,7 +29,8 @@ class FirebaseAuthX implements FirebaseAuthBase {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: _email, password: _password);
-     userCredential.user?.sendEmailVerification();
+      userCredential.user?.sendEmailVerification();
+      await _fireStoreDB.createUser(userToMap(userCredential.user!));
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -38,6 +41,7 @@ class FirebaseAuthX implements FirebaseAuthBase {
     } catch (e) {
       debugPrint("servisten gelen: " + e.toString());
     }
+    return null;
   }
 
   @override
@@ -99,5 +103,18 @@ class FirebaseAuthX implements FirebaseAuthBase {
 
   Future<void> deleteAccount() async {
     auth.currentUser!.delete();
+  }
+
+  Map<String, dynamic> userToMap(User user) {
+    Map<String, dynamic> userMap = {
+      'email': user.email,
+      'userName': "Belirlenmiş Name yok",
+      'userID': user.uid,
+      'profilePhotoURL':
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+          
+      'isEmailVerify' : user.emailVerified,
+    };
+    return userMap;
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ChatList extends StatelessWidget {
+  Map<String, dynamic>? userList;
   ChatList({Key? key}) : super(key: key);
 
   FireStoreDB fireDB = FireStoreDB();
@@ -18,41 +19,46 @@ class ChatList extends StatelessWidget {
     return FutureBuilder<QuerySnapshot>(
         future: fireDB.getAllUserList(),
         builder: (context, snapShot) {
-
           //bu kısmı controller da yapmak lazım
-          if(snapShot.hasData){
-            Iterable<Map<String, dynamic>> dataX = snapShot.data!.docs
-                            .map((DocumentSnapshot document) {
-                          Map<String, dynamic> data =
-                              document.data()! as Map<String, dynamic>;
-                          return data;
-                        });
+          if (snapShot.hasData) {
+            Iterable<Map<String, dynamic>?> dataX =
+                snapShot.data!.docs.map((DocumentSnapshot document) {
+              userList = document.data()! as Map<String, dynamic>;
+              return userList;
+            });
 
-          if (snapShot.connectionState == ConnectionState.done) {
-            return CustomScrollView(
-              semanticChildCount: 20,
-              slivers: [
-                SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                        (BuildContext context, int index) {
-                  return InkWell(
-                      onTap: () {
-                        debugPrint(
-                            "merhaba ulan it " + dataX.length.toString());
-                            
-                        _routeModel.goToChatScreen(context, index);
-                      },
-                      child: ChatListCard(index: index));
-                }, childCount: dataX.length))
-              ],
-            );
+            if (snapShot.connectionState == ConnectionState.done) {
+              return CustomScrollView(
+                semanticChildCount: 20,
+                slivers: [
+                  SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                    return InkWell(
+                        onTap: () async {
+                          dataX.forEach(((element) {
+                            userList = element;
+                            debugPrint("Bok " + element.toString());
+                          }));
+
+
+                          _routeModel.goToChatScreen(context, index);
+                        },
+                        child: ChatListCard(
+                          index: index,
+                        ));
+                  }, childCount: dataX.length))
+                ],
+              );
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+                child: CircularProgressIndicator(
+              color: Colors.pink,
+            ));
           }
-          }else{
-            return const Center(child: CircularProgressIndicator(color: Colors.pink,));
-          }
-          
         });
   }
 }

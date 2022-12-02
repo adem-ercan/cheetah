@@ -1,8 +1,13 @@
+import 'package:cheetah/modules/controllers/locator.dart';
+import 'package:cheetah/modules/repositories/repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class Init {
   bool? isShared;
+
+  final Repository _repository = locator<Repository>();
 
   Init._();
   static final instance = Init._();
@@ -28,5 +33,10 @@ class Init {
     }
   }
 
-  
+ 
+
+  Future<User?> userDataState() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    return auth.currentUser;
+  }
 }

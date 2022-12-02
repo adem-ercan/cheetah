@@ -1,4 +1,3 @@
-import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/view/screens/chat_page_screen.dart';
 import 'package:cheetah/view/screens/intro_screen.dart';
 import 'package:cheetah/view/screens/landing_switch.dart';
@@ -9,10 +8,7 @@ import 'package:cheetah/view/screens/signin_screen.dart';
 import 'package:cheetah/view/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
-
-
 class RouteModel extends ChangeNotifier {
-
 
   //Routes
   void goToLoginScreen(BuildContext context) => Navigator.of(context)
@@ -30,13 +26,8 @@ class RouteModel extends ChangeNotifier {
   void goToLandingScreen(BuildContext context) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) => LandingPage()));
 
-  void goToChatScreen(BuildContext context, int index) =>
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-        ChatPage chatPage = ChatPage(index);
-        return chatPage;
-      }
-     )
-      );
+  void goToChatScreen(BuildContext context, int index) => Navigator.of(context)
+  .push(MaterialPageRoute(builder: (context) => ChatPage(index: index)));
 
   void goToProfileScreen(BuildContext context, int index) =>
       Navigator.of(context).push(
@@ -45,10 +36,5 @@ class RouteModel extends ChangeNotifier {
   void goToProfilePhotoScreen(BuildContext context, int? index) =>
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ProfilePhotoPage(index: index)));
-
-
   //Routes functions
-  
-
-
 }

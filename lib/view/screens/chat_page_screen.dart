@@ -1,23 +1,24 @@
+import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/view/components/mainscreen/body/appbars/chat_page_app_bar.dart';
 import 'package:cheetah/view/components/mainscreen/body/chat_page/chat_console.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChatPage extends StatelessWidget {
   final int index;
 
-  //ChatPage({required this.index}) : super();
-
-  ChatPage._internal({required this.index});
-
-  factory ChatPage (int index) {
-    return ChatPage(index);
-  }
+  ChatPage({
+    required this.index,
+  }) : super();
 
   @override
   Widget build(BuildContext context) {
+    UserModelView _modelView =
+        Provider.of<UserModelView>(context, listen: false);
+
     return Scaffold(
       appBar: ChatPageAppBar(
-        index: index,
+        index: 0,
       ),
       body: Column(children: [
         Flexible(
@@ -29,7 +30,9 @@ class ChatPage extends StatelessWidget {
                   height: 300,
                   child: Center(
                     child: Text(
-                      (index + 1).toString(),
+                      _modelView.currentUser().toString() ??
+                          (index + 1).toString(),
+                      //,
                       style: const TextStyle(fontSize: 32),
                     ),
                   ),
@@ -58,4 +61,3 @@ class ChatPageBody extends StatelessWidget {
     return Container();
   }
 }
-

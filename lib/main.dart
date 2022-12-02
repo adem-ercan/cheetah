@@ -1,7 +1,5 @@
-import 'package:cheetah/core/services/firebase_auth_service.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/view/materialapp_module.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';

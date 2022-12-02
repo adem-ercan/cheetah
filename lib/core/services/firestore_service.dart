@@ -22,7 +22,8 @@ class FireStoreDB implements FireStoreBase {
           'email': data['email'],
           'userName': data['userName'],
           'userID': data['userID'],
-          'profilePhotoURL' : data['profilePhotoURL']
+          'profilePhotoURL': data['profilePhotoURL'],
+          'isEmailVerify': data['isEmailVerify']
         })
         .then((value) => debugPrint("Kayıt Yapıldı"))
         .catchError((onError) => debugPrint("hata var DB'de: $onError"));
@@ -41,6 +42,9 @@ class FireStoreDB implements FireStoreBase {
           break;
         case "EMAİL":
           await users.doc(userData['userID']).update({'email': data});
+          break;
+        case "EMAIL_VERIFY":
+          await users.doc(userData['userID']).update({'isEmailVerify': data});
           break;
       }
     } catch (e) {

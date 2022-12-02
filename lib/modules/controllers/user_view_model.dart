@@ -22,6 +22,7 @@ class UserModelView with ChangeNotifier implements AuthBase {
   final Repository _repository = locator<Repository>();
   final CatchErrorService _catchErrorService = locator<CatchErrorService>();
 
+
   UserCheetah? get currentUserX => _currentUserX;
 
   set responseAuthentication(ResponseAuthentication value) {
@@ -62,7 +63,8 @@ class UserModelView with ChangeNotifier implements AuthBase {
     if (userCheetah != null) {
       Future.delayed(const Duration(seconds: 2), () {
         waitingState = WaitingState.notBusy;
-        if (!isVerifiedEmail()) responseAuthentication =  ResponseAuthentication.userNotFound;
+        if (!isVerifiedEmail())
+          responseAuthentication = ResponseAuthentication.userNotFound;
         debugPrint(_catchErrorService.errorText);
         debugPrint(_catchErrorService.errorCode);
       });
@@ -92,14 +94,12 @@ class UserModelView with ChangeNotifier implements AuthBase {
     }
   }
 
-
   Future<void> updateUserData(String updateId, data) async {
     //Kullancı profil bilgilerini güncelleme fonksiyonu
     UserCheetah? currentCheetahUser = await _repository.currentUser();
     try {
-          await _repository.updateUserData(currentCheetahUser, updateId, data);
-      }
-     catch (e) {}
+      await _repository.updateUserData(currentCheetahUser, updateId, data);
+    } catch (e) {}
   }
 
   BuildContext getCurrentContext(BuildContext context) {
@@ -108,5 +108,9 @@ class UserModelView with ChangeNotifier implements AuthBase {
 
   Stream? userChangeX() {
     return _repository.userChangeX();
+  }
+
+  Future<List<UserCheetah>?> getAllUserList() async{
+    List<UserCheetah>? a =  await _repository.getAllUserList();
   }
 }

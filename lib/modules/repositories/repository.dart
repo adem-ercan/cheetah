@@ -6,6 +6,7 @@ import 'package:cheetah/core/services/firestore_service.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/modules/repositories/change_user_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -56,7 +57,7 @@ class Repository implements AuthBase {
         ChangeUserModel.fromFirebaseUserToUserCheetah(_user);
     return userCheetah;
   }
-
+ 
   @override
   Future<UserCheetah?> currentUser() async {
     User? user = await _firebaseAuthX.currentUser();
@@ -84,12 +85,20 @@ class Repository implements AuthBase {
     await _fireStoreDB.createUser(data);
   }
 
-  Future<void> updateUserData(UserCheetah? userCheetah,
-      String updateID, dynamic data) async {
+  Future<void> updateUserData(
+      UserCheetah? userCheetah, String updateID, dynamic data) async {
     await _fireStoreDB.updateUserData(userCheetah, updateID, data);
   }
 
   Stream? userChangeX() {
     return _firebaseAuthX.userChangeX();
+  }
+
+  Future<List<UserCheetah>?> getAllUserList() async {
+    QuerySnapshot<Object?> _snapFromFirebase =
+        await _fireStoreDB.getAllUserList();
+
+    return await ChangeUserModel.fromFirebaseUserListToCheetahUserList(
+        _snapFromFirebase);
   }
 }

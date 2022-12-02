@@ -3,7 +3,7 @@ import 'package:cheetah/view/components/mainscreen/body/chat_tab/chat_list.dart'
 import 'package:flutter/material.dart';
 
 class CheetahSliverStyleBody extends StatelessWidget {
-   CheetahSliverStyleBody({Key? key}) : super(key: key);
+   const CheetahSliverStyleBody({Key? key}) : super(key: key);
 
 
   @override
@@ -17,8 +17,8 @@ class CheetahSliverStyleBody extends StatelessWidget {
         body:  TabBarView(
           children: [
             ChatList(),
-            Icon(Icons.accessibility_new_rounded),
-            Icon(Icons.share),
+            const Icon(Icons.accessibility_new_rounded),
+            const Icon(Icons.share),
 
           ],
         ),

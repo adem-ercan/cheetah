@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class LandingPage extends StatelessWidget {
-
   Init init = locator<Init>();
 
   LandingPage({
@@ -35,7 +34,7 @@ class LandingPage extends StatelessWidget {
               debugPrint("Deneme2");
               return IntroPage();
             } else {
-                 return SignInScreen();
+              return SignInScreen();
             }
           }
         });
