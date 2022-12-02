@@ -3,6 +3,7 @@ import 'package:cheetah/modules/models/error_catch_model.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/modules/repositories/repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 enum WaitingState { busy, notBusy }
@@ -21,7 +22,6 @@ class UserModelView with ChangeNotifier implements AuthBase {
   ResponseAuthentication _responseAuthentication = ResponseAuthentication.idle;
   final Repository _repository = locator<Repository>();
   final CatchErrorService _catchErrorService = locator<CatchErrorService>();
-
 
   UserCheetah? get currentUserX => _currentUserX;
 
@@ -110,7 +110,8 @@ class UserModelView with ChangeNotifier implements AuthBase {
     return _repository.userChangeX();
   }
 
-  Future<List<UserCheetah>?> getAllUserList() async{
-    List<UserCheetah>? a =  await _repository.getAllUserList();
+  Future<QuerySnapshot<Object?>> getAllUserList() async {
+    QuerySnapshot<Object?> a = await _repository.getAllUserList();
+    return a;
   }
 }

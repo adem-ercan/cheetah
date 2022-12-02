@@ -94,7 +94,7 @@ class Repository implements AuthBase {
     return _firebaseAuthX.userChangeX();
   }
 
-  Future<List<UserCheetah>?> getAllUserList() async {
+  Future<QuerySnapshot<Object?>> getAllUserList() async {
     QuerySnapshot<Object?> _snapFromFirebase =
         await _fireStoreDB.getAllUserList();
 

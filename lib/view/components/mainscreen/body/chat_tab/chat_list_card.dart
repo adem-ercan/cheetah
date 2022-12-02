@@ -26,6 +26,10 @@ class ChatListCard extends StatelessWidget {
     FireStoreDB fireStoreDB = locator<FireStoreDB>();
 
     return FutureBuilder<QuerySnapshot<Object?>>(
+      //Burası modüler yapıya (MVVM) aykırı oldu, model view ve repository'i atlayarak
+      //direk FireStore'dan çekilen veri burada render edildi. Firebase'den 
+      //gelen data QuerSnapShot olarak dönülmesi lazım.
+      // Bunun çaresine bilahare  bakılacak.
         future: fireStoreDB.getAllUserList(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {

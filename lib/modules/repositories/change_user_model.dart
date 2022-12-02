@@ -18,9 +18,8 @@ class ChangeUserModel {
     return userCheetah.toMap();
   }
 
-  static Future<List<UserCheetah>?> fromFirebaseUserListToCheetahUserList(
+  static Future<QuerySnapshot<Object?>> fromFirebaseUserListToCheetahUserList(
       QuerySnapshot<Object?> snapshot) async {
-
     List<UserCheetah>? cheetahUserList;
 
     snapshot.docs.map((e) => cheetahUserList?.add(UserCheetah(
@@ -28,7 +27,7 @@ class ChangeUserModel {
         email: e['email'],
         profilePhotoURL: e['profilePhotoURL'],
         userName: e['userName'])));
-        
-    return cheetahUserList;
+
+    return cheetahUserList as QuerySnapshot<Object?>;
   }
 }
