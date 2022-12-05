@@ -111,7 +111,7 @@ class UserModelView with ChangeNotifier implements AuthBase {
   }
 
   Future<QuerySnapshot<Object?>> getAllUserList() async {
-    QuerySnapshot<Object?> a = await _repository.getAllUserList();
-    return a;
+    QuerySnapshot<Object?> snapshot = await _repository.getAllUserList();
+    return snapshot;
   }
 }

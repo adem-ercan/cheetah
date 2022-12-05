@@ -17,11 +17,12 @@ class Repository implements AuthBase {
   StreamController<UserCheetah?> get userChangeController =>
       _userChangeController;
 
-  Sink get userChangeSink => _userChangeController;
+  //Sink get userChangeSink => _userChangeController;
 
   late String _email, _password, _name;
   User? _user;
   User? _currentUser;
+  List<Map<String, dynamic>?>? usersMap;
 
   final FirebaseAuthX _firebaseAuthX = locator<FirebaseAuthX>();
   final FireStoreDB _fireStoreDB = locator<FireStoreDB>();
@@ -39,8 +40,8 @@ class Repository implements AuthBase {
 
     //Burada if yapısı ile null kontrolü yapılacakk. Çünkü girilen değer
     // hatalı olursa herhangi bir user döndürülmez!
-    _user = (await _firebaseAuthX.createUserWithEmailAndPassword(
-        _email, _password));
+    _user =
+        await _firebaseAuthX.createUserWithEmailAndPassword(_email, _password);
     UserCheetah userCheetah =
         ChangeUserModel.fromFirebaseUserToUserCheetah(_user);
     if (_user != null) {
@@ -57,7 +58,7 @@ class Repository implements AuthBase {
         ChangeUserModel.fromFirebaseUserToUserCheetah(_user);
     return userCheetah;
   }
- 
+
   @override
   Future<UserCheetah?> currentUser() async {
     User? user = await _firebaseAuthX.currentUser();
@@ -97,8 +98,14 @@ class Repository implements AuthBase {
   Future<QuerySnapshot<Object?>> getAllUserList() async {
     QuerySnapshot<Object?> _snapFromFirebase =
         await _fireStoreDB.getAllUserList();
-
-    return await ChangeUserModel.fromFirebaseUserListToCheetahUserList(
-        _snapFromFirebase);
+    List<QueryDocumentSnapshot<Object?>> users = _snapFromFirebase.docs;
+    users.forEach((element) {
+      print("serap fistik " + element.data().toString());
+      usersMap?.add(element.data() as Map<String, dynamic>);
+    });
+    usersMap?.forEach((element) {
+      print("offfff " + element.toString());
+    });
+    return _snapFromFirebase;
   }
 }
