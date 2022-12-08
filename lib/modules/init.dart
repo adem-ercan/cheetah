@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 class Init {
   bool? isShared;
+  bool _isSignOut = false;
 
   final Repository _repository = locator<Repository>();
 
@@ -40,13 +41,23 @@ class Init {
   Future<UserCheetah?> userDataState() async {
     UserCheetah? currentUser = await _repository.currentUser();
     print("oturum açık mı: " + currentUser.toString());
+    if (currentUser != null) {
+      _isSignOut = true;
+    } else {
+      _isSignOut = false;
+    }
     return currentUser;
   }
 
   //Şimdilik
-  Future<QuerySnapshot<Object?>> getAllUserList() async {
-    QuerySnapshot<Object?> userList = await _repository.getAllUserList();
-    print("Liste init edildi mi? " + userList.toString());
-    return userList;
+  Future<QuerySnapshot<Object?>?> getAllUserList() async {
+    if (_isSignOut) {
+      QuerySnapshot<Object?> userList = await _repository.getAllUserList();
+      print("Liste init edildi mi? " + userList.toString());
+      return userList;
+    } else {
+      print("Oturum kapalı olduğu için kullanıcılar getirilemedi");
+      return null;
+    }
   }
 }
