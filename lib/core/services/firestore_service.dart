@@ -12,7 +12,8 @@ class FireStoreDB implements FireStoreBase {
       'email': data['email'],
       'userName' : data['userName'],
       'userID' : data['userID'],
-    }).then((value) => print("Kayıt Yapıldı")).catchError((onError)=>print("hata var DB'de: $onError"));
+    }).then((value) => print("Kayıt Yapıldı"))
+    .catchError((onError)=>print("hata var DB'de: $onError"));
   }*/
   Future<void> createUser(Map<String, dynamic> data) {
     CollectionReference users = _firestore.collection('users');

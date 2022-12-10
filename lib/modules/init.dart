@@ -6,15 +6,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class Init {
-  bool? isShared;
+  // ignore: unused_field
+  bool? _isShared;
   bool _isSignOut = false;
+
+  get isShared {
+    return _isShared;
+  }
 
   final Repository _repository = locator<Repository>();
 
   Init._();
-  static final instance = Init._();
+  static final Init instance = Init._();
 
-  Future initialize() async {
+  Future<void> initialize() async {
     // This is where you can initialize the resources needed by your app while
     // the splash screen is displayed.  Remove the following example because
     // delaying the user experience is a bad design practice!,
@@ -25,15 +30,15 @@ class Init {
   }
 
   Future<void> firstLaunchSet() async {
+    // Bu metot uygulamanın yüklendikten sonra ilk defa açılıp açılmadığını
+    // sorguluyor.
     SharedPreferences preferences = await SharedPreferences.getInstance();
     if (preferences.getBool("isFirstLaunch") == null) {
       preferences.setBool("isFirstLaunch", true);
-      isShared = true;
-      debugPrint("Preferences TRUE olarak çalıştı");
+      _isShared = true;
     } else {
       preferences.setBool("isFirstLaunch", false);
-      isShared = false;
-      debugPrint("Preferences FALSE olarak çalıştı");
+      _isShared = false;
     }
   }
 
@@ -48,10 +53,26 @@ class Init {
     return currentUser;
   }
 
-  //Şimdilik
+  // Şimdilik direk firebase'den işlem yapılacak. Daha sonra burası düzeltilip
+  // MVVM'e sadık kalınacak.
   Future<QuerySnapshot<Object?>?> getAllUserList() async {
     if (_isSignOut) {
       QuerySnapshot<Object?> userList = await _repository.getAllUserList();
+      userList.docs.forEach(
+        (element) {
+          Map<dynamic, dynamic> user = element.data() as Map;
+          //print("POLAT: " + user.toString());
+          Map<String, dynamic> addMapValue =
+              element.data() as Map<String, dynamic>;
+          _repository.userListFromInit?.add(addMapValue);
+        },
+      );
+
+      _repository.userListFromInit.forEach(
+        (element) {
+          print("Mehmet KARAHANLI (init.dart) "+element.toString());
+        },
+      );
       print("Liste init edildi mi? " + userList.toString());
       return userList;
     } else {

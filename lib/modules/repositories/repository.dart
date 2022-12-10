@@ -11,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 class Repository implements AuthBase {
+  // degisken tanimlari baslangic
   final StreamController<UserCheetah?> _userChangeController =
       StreamController<UserCheetah?>();
 
@@ -21,11 +22,32 @@ class Repository implements AuthBase {
 
   late String _email, _password, _name;
   User? _user;
+  // ignore: unused_field
   User? _currentUser;
   List<Map<String, dynamic>?>? usersMap;
 
+  // ignore: unused_field
+  List<Map<String, dynamic>> _userListFromInit = [];
+
+  
+
   final FirebaseAuthX _firebaseAuthX = locator<FirebaseAuthX>();
   final FireStoreDB _fireStoreDB = locator<FireStoreDB>();
+
+  // Degisken tanimlari bitis
+
+
+  // set ve get işlemleri baslangic
+
+  set userListFromInit(value) {
+    _userListFromInit = value;
+  }
+
+  List<Map<String, dynamic>> get userListFromInit {
+    return _userListFromInit;
+  }
+
+  // set ve get islemleri bitis
 
   bool isVerifiedEmail() {
     return _firebaseAuthX.isVerifiedEmailX();
