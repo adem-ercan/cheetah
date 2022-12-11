@@ -1,6 +1,9 @@
+import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
+import 'package:cheetah/modules/repositories/repository.dart';
 import 'package:cheetah/view/components/mainscreen/body/appbars/chat_page_app_bar.dart';
 import 'package:cheetah/view/components/mainscreen/body/chat_page/chat_console.dart';
+import 'package:cheetah/view/components/mainscreen/body/chat_page/message_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +14,8 @@ class ChatPage extends StatelessWidget {
     required this.index,
   }) : super();
 
+  Repository _repository = locator<Repository>();
+
   @override
   Widget build(BuildContext context) {
     UserModelView _modelView =
@@ -18,9 +23,10 @@ class ChatPage extends StatelessWidget {
 
     return Scaffold(
       appBar: ChatPageAppBar(
-        index: 0,
+        index: index,
       ),
-      body: Column(children: [
+      body: Column(
+        children: [
         Flexible(
           fit: FlexFit.tight,
           child: RefreshIndicator(
@@ -30,13 +36,36 @@ class ChatPage extends StatelessWidget {
                   height: 300,
                   child: Center(
                     child: Text(
-                      _modelView.currentUser().toString() ??
+                      _repository.userListFromInit[index]['userName'] ??
                           (index + 1).toString(),
                       //,
                       style: const TextStyle(fontSize: 32),
                     ),
                   ),
                 ),
+                 SizedBox(
+                  height: 300,
+                  child: Center(
+                    child: Text(
+                      _repository.userListFromInit[index]['email'] ??
+                          (index + 1).toString(),
+                      //,
+                      style: const TextStyle(fontSize: 32),
+                    ),
+                  ),
+                ),
+                 SizedBox(
+                  height: 300,
+                  child: Center(
+                    child: Text(
+                      _repository.userListFromInit[index]['profilePhotoURL'].toString() ??
+                          (index + 1).toString(),
+                      //,
+                      style: const TextStyle(fontSize: 32),
+                    ),
+                  ),
+                ),
+                MessageCard(index: index,)
               ],
             ),
             onRefresh: () async {

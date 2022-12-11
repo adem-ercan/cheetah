@@ -2,6 +2,8 @@ import 'package:cheetah/core/services/firestore_service.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/controllers/route_view_model.dart';
 import 'package:cheetah/modules/controllers/user_view_model.dart';
+import 'package:cheetah/modules/init.dart';
+import 'package:cheetah/modules/repositories/repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +11,10 @@ import 'package:provider/provider.dart';
 class ChatListCard extends StatelessWidget {
   final int index;
   Widget? profilePhoto;
-  List<Map<String, dynamic>?> userList=[];
+  List<Map<String, dynamic>?> userList = [];
+
+  final Init init = locator<Init>();
+  final Repository _repository = locator<Repository>();
 
   ChatListCard({
     Key? key,
@@ -27,11 +32,11 @@ class ChatListCard extends StatelessWidget {
 
     return FutureBuilder<QuerySnapshot<Object?>>(
 
-      //Burası modüler yapıya (MVVM) aykırı oldu, model view ve repository'i atlayarak
-      //direk FireStore'dan çekilen veri burada render edildi. Firebase'den 
-      //gelen data QuerSnapShot olarak dönülmesi lazım.
-      // Bunun çaresine bilahare  bakılacak.
-      
+        //Burası modüler yapıya (MVVM) aykırı oldu, model view ve repository'i atlayarak
+        //direk FireStore'dan çekilen veri burada render edildi. Firebase'den
+        //gelen data QuerSnapShot olarak dönülmesi lazım.
+        // Bunun çaresine bilahare  bakılacak.
+
         future: fireStoreDB.getAllUserList(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -41,8 +46,7 @@ class ChatListCard extends StatelessWidget {
                 userList.add(element.data() as Map<String, dynamic>);
               });
 
-                        
-              return  Container(
+              return Container(
                   height: 80.0,
                   child: Row(
                     children: [
@@ -57,10 +61,10 @@ class ChatListCard extends StatelessWidget {
                           height: 40,
                           width: 40,
                           child: Hero(
-                            tag: index.toString(),
-                            child: ClipOval(
-                              child: Image.network(userList[index]?['profilePhotoURL']))
-                          ),
+                              tag: index.toString(),
+                              child: ClipOval(
+                                  child: Image.network(
+                                      userList[index]?['profilePhotoURL']))),
                         ),
                       ),
                       const SizedBox(
@@ -72,19 +76,20 @@ class ChatListCard extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                userList[index]?['userName'] ?? "Adem ERCAN",
-                              ),
+                              Text( _repository.userListFromInit[index]['userName'] ??
+                                      "Unknown"
+                                  //userList[index]?['userName'] ?? "Adem ERCAN",
+                                  ),
                               const SizedBox(
                                 width: 150,
                               ),
                               Container(
                                 alignment: Alignment.centerRight,
-                                child: Text("14.03.2022"),
+                                child: const Text("14.03.2022"),
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(

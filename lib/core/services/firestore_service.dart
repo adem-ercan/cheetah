@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class FireStoreDB implements FireStoreBase {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  /* Future<void> createUser(Map<String, dynamic> data){
+  /*Future<void> createUser(Map<String, dynamic> data){
     CollectionReference users = _firestore.collection('users');
     return users.add({
       'email': data['email'],
@@ -15,6 +15,7 @@ class FireStoreDB implements FireStoreBase {
     }).then((value) => print("Kayıt Yapıldı"))
     .catchError((onError)=>print("hata var DB'de: $onError"));
   }*/
+  
   Future<void> createUser(Map<String, dynamic> data) {
     CollectionReference users = _firestore.collection('users');
     return users

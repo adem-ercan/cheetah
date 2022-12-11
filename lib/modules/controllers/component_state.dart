@@ -11,6 +11,9 @@ class ComponentState extends ChangeNotifier {
   GlobalKey consoleFormKey = GlobalKey<FormState>();
   String? chatFromTextValue;
 
+  List<String?>? chatConsoleContentList;
+
+
   bool _isConsoleExtand = false;
 
   bool get isConsoleExtand => _isConsoleExtand;
@@ -67,7 +70,7 @@ class ComponentState extends ChangeNotifier {
     }
   }
 
-  void showPPDialog(BuildContext context, int? index) {
+  void showPPDialog(BuildContext context, int index) {
     showDialog(
         context: (context),
         builder: (context) => ProfilePhotoDialog(

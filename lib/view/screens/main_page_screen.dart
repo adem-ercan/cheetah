@@ -14,7 +14,7 @@ class MainScreen extends StatelessWidget {
     return  SafeArea(
         child: Scaffold(
             drawer: const CheetahMainScreenDrawer(),
-            body:  CheetahSliverStyleBody(),
+            body:  const CheetahSliverStyleBody(),
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
             floatingActionButton: FloatingActionButton(onPressed: (){}, child: const Icon(Icons.chat),),
          

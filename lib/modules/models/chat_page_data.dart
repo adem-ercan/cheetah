@@ -3,9 +3,9 @@ class ChatPageRenderDataModel {
   ChatDialogCardModel? chatDialogCardModel;
 
   ChatPageRenderDataModel(
-    {required this.userName, 
-     required this.profilePhotoURL,
-     this.chatDialogCardModel} );
+      {required this.userName,
+      required this.profilePhotoURL,
+      this.chatDialogCardModel});
 }
 
 class ChatDialogCardModel {
@@ -13,10 +13,8 @@ class ChatDialogCardModel {
   String time;
   String? userName;
 
-  ChatDialogCardModel({
-    required this.chatContent, 
-    required this.time,  
-    this.userName});
+  ChatDialogCardModel(
+      {required this.chatContent, required this.time, this.userName});
 }
 
 class ChatConsoleData {

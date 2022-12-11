@@ -1,4 +1,5 @@
 import 'package:cheetah/modules/controllers/locator.dart';
+import 'package:cheetah/modules/models/chat_page_data.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/modules/repositories/repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,6 +10,8 @@ class Init {
   // ignore: unused_field
   bool? _isShared;
   bool _isSignOut = false;
+  List<ChatPageRenderDataModel>? chatPageRenderDataModelList;
+  ChatDialogCardModel? chatDialogCardModel;
 
   get isShared {
     return _isShared;
@@ -60,19 +63,20 @@ class Init {
       QuerySnapshot<Object?> userList = await _repository.getAllUserList();
       userList.docs.forEach(
         (element) {
-          Map<dynamic, dynamic> user = element.data() as Map;
+          //  Map<dynamic, dynamic> user = element.data() as Map;
           //print("POLAT: " + user.toString());
           Map<String, dynamic> addMapValue =
               element.data() as Map<String, dynamic>;
-          _repository.userListFromInit?.add(addMapValue);
+          _repository.userListFromInit.add(addMapValue);
+          debugPrint("Reopyu bi çalıtıralım bakalım "+
+           _repository.userListFromInit[0]['userName'].toString());
         },
       );
 
-      _repository.userListFromInit.forEach(
-        (element) {
-          print("Mehmet KARAHANLI (init.dart) "+element.toString());
-        },
-      );
+
+      print("Bu işlem kullanıcı liste oluşturulmasına yapıldı " +
+          chatPageRenderDataModelList.toString());
+
       print("Liste init edildi mi? " + userList.toString());
       return userList;
     } else {

@@ -42,12 +42,9 @@ class ChatConsole extends StatelessWidget {
                     focusNode.size.width ==
                         _componentState
                             .consoleFormKey.currentContext!.size!.width) {
-                  debugPrint("oldu gibi ya!" +
-                      _componentState
-                          .consoleFormKey.currentContext!.size!.longestSide
-                          .toString());
                 }
               },
+              
               child: Form(
                   key: _componentState.consoleFormKey,
                   child: TextFormField(
