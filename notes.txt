@@ -25,6 +25,11 @@ Light Palette:
 => Uygulama ilk açılışta IntroPage'te "Let's get started" butonuna basıldığında runtime bir hata oluşuyor. Buna tekrar bir bakalım.
 => Responsive opsiyon kodlanacak
 => Backend'i NodeJs ile güçlendirip gerçek ciddi bir proje alt yapısı için fikir ve .
+
+
+    Ö N E M L İ !!!
+=> Uygulama ilk açıldığında oturum kapalı alduğu için index leme yapmmıyor bu yüzden hata veriyor. 
+    Bunun kontrolünü yapacak kodun yazılması gerekiyor.
     
 
 

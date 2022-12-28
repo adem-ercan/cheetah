@@ -18,7 +18,7 @@ class ProfilePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ComponentState _componentState =
-        Provider.of<ComponentState>(context, listen: false);
+        Provider.of<ComponentState>(context, listen: true);
     return Column(
       children: [
         GestureDetector(

@@ -1,22 +1,42 @@
 import 'package:cheetah/modules/controllers/route_view_model.dart';
+import 'package:cheetah/view/components/mainscreen/body/chat_page/message_card.dart';
 import 'package:cheetah/view/components/profile_page_screen/profile_photo_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ComponentState extends ChangeNotifier {
   bool obscureText = true;
+  bool isEmptyChatConsoleText = true;
   Color? obscureIconColor = const Color(0xff181920);
   Color chatConsoleIconColor = Colors.grey;
   CrossAxisAlignment _crossAxisAlignmentChatConsole = CrossAxisAlignment.end;
   GlobalKey consoleFormKey = GlobalKey<FormState>();
-  String? chatFromTextValue;
+  String chatFromTextValue = "";
+  Icon _sendIcon = const Icon(Icons.mic);
+
+  List<Widget> _widgetList = <Widget>[];
 
   List<String?>? chatConsoleContentList;
-
 
   bool _isConsoleExtand = false;
 
   bool get isConsoleExtand => _isConsoleExtand;
+
+  set widgetList(value) {
+    _widgetList.add(value);
+    notifyListeners();
+  }
+
+  List<Widget> get widgetList => _widgetList;
+
+  set sendIcon(value) {
+    _sendIcon = value;
+    notifyListeners();
+  }
+
+  Icon get sendIcon {
+    return _sendIcon;
+  }
 
   set isConsoleExtand(bool value) {
     _isConsoleExtand = value;
@@ -84,6 +104,18 @@ class ComponentState extends ChangeNotifier {
     route.goToProfilePhotoScreen(context, index);
   }
 
-  
+  // Bu fonksiyonun ismi değistirilip daha duzgun yapilacak.
+  void sendIconfonk() {
+    if (!isEmptyChatConsoleText) {
+      sendIcon = const Icon(Icons.mic);
+    } else {
+      sendIcon = const Icon(Icons.send);
+    }
+  }
 
+  void sendMessageRender(String index) {
+    widgetList =
+        MessageCard(index: index, messageContent: textEditingController.text);
+    textEditingController.text = "";
+  }
 }

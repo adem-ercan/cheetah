@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ChatConsole extends StatelessWidget {
-  String? index;
+  String index;
 
   ChatConsole({Key? key, required this.index}) : super(key: key);
 
@@ -12,7 +12,7 @@ class ChatConsole extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ComponentState _componentState =
-        Provider.of<ComponentState>(context, listen: true);
+        Provider.of<ComponentState>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -41,10 +41,8 @@ class ChatConsole extends StatelessWidget {
                 if (event.logicalKey.keyLabel == "Enter" ||
                     focusNode.size.width ==
                         _componentState
-                            .consoleFormKey.currentContext!.size!.width) {
-                }
+                            .consoleFormKey.currentContext!.size!.width) {}
               },
-              
               child: Form(
                   key: _componentState.consoleFormKey,
                   child: TextFormField(
@@ -62,6 +60,7 @@ class ChatConsole extends StatelessWidget {
                     textInputAction: TextInputAction.newline,
                     onChanged: (e) {
                       _componentState.increaseConsoleHeight();
+                      _componentState.sendIconfonk();
                     },
                   )),
             )),
@@ -86,8 +85,10 @@ class ChatConsole extends StatelessWidget {
                   backgroundColor: Colors.purpleAccent,
                   child: IconButton(
                     autofocus: true,
-                    onPressed: () {},
-                    icon: const Icon(Icons.mic),
+                    onPressed: () => _componentState.sendMessageRender(index),
+                    icon: context
+                        .watch<ComponentState>()
+                        .sendIcon, //_componentState.sendIcon,
                     color: Colors.yellow,
                     highlightColor: Colors.green,
                     splashColor: Colors.red,

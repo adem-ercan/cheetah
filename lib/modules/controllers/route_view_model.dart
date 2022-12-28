@@ -9,6 +9,16 @@ import 'package:cheetah/view/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteModel extends ChangeNotifier {
+  List<ChatPage> _chatPageList = [];
+
+  set chatPageList(value) {
+    _chatPageList.add(value);
+    //notifyListeners();
+  }
+
+  List<ChatPage> get chatPageList {
+    return _chatPageList;
+  }
 
   //Routes
   void goToLoginScreen(BuildContext context) => Navigator.of(context)
@@ -26,8 +36,10 @@ class RouteModel extends ChangeNotifier {
   void goToLandingScreen(BuildContext context) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) => LandingPage()));
 
-  void goToChatScreen(BuildContext context, int index) => Navigator.of(context)
-  .push(MaterialPageRoute(builder: (context) => ChatPage(index: index)));
+  void goToChatScreen(BuildContext context, int index) =>
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+        return chatPageList[index];
+      }));
 
   void goToProfileScreen(BuildContext context, int index) =>
       Navigator.of(context).push(

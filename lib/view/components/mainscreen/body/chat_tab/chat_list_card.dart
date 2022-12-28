@@ -99,10 +99,10 @@ class ChatListCard extends StatelessWidget {
                                 color:
                                     index % 2 == 0 ? Colors.green : Colors.grey,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
-                              Text("Naber lan kıraolar nasılsınız bakalım?",
+                              const Text("Naber lan kıraolar nasılsınız bakalım?",
                                   style: TextStyle(color: Colors.blueGrey)),
                             ],
                           )
@@ -122,4 +122,4 @@ class ChatListCard extends StatelessWidget {
           }
         });
   }
-}
+}  
