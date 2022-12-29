@@ -1,14 +1,12 @@
+import 'package:cheetah/core/services/hive/hive_service.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
 import 'package:cheetah/modules/models/chat_page_data.dart';
 import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/modules/repositories/repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
-
-import '../core/services/hive_service.dart';
 
 class Init {
   // ignore: unused_field
@@ -22,6 +20,8 @@ class Init {
   }
 
   final Repository _repository = locator<Repository>();
+  final LocalStorageWithHive _localStorageWithHive =
+      locator<LocalStorageWithHive>();
 
   Init._();
   static final Init instance = Init._();
@@ -30,28 +30,11 @@ class Init {
     // This is where you can initialize the resources needed by your app while
     // the splash screen is displayed.  Remove the following example because
     // delaying the user experience is a bad design practice!,
-    await hiveInit();
+    await _localStorageWithHive.hiveInit();
     await userDataState();
     await getAllUserList();
     await firstLaunchSet();
     await Future.delayed(const Duration(seconds: 2));
-  }
-
-  Future hiveInit() async {
-    await Hive.initFlutter();
-    Hive.registerAdapter(ChatMessageHiveModelAdapter());
-
-    Box box = await Hive.openBox<ChatMessageHiveModel>("test");
-    //await box.putAt(0, ChatMessageHiveModel(contant: "Adeeeeem"));
-    //await box.putAt(1, ChatMessageHiveModel(contant: "ercaaaan"));
-    await box.put(
-        "dd", ChatMessageHiveModel(contant: "Merhaba Lan Naber Hiveciler"));
-
-    //box.put('name', 'Adem');
-    //box.put('surname', 'ERCAN');
-    ChatMessageHiveModel a = box.get("dd");
-
-    print("isim: " + a.contant.toString());
   }
 
   Future<void> firstLaunchSet() async {

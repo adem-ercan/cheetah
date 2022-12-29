@@ -9,6 +9,8 @@ class ChatConsole extends StatelessWidget {
 
   FocusNode focusNode = FocusNode();
 
+  
+
   @override
   Widget build(BuildContext context) {
     ComponentState _componentState =
@@ -85,7 +87,10 @@ class ChatConsole extends StatelessWidget {
                   backgroundColor: Colors.purpleAccent,
                   child: IconButton(
                     autofocus: true,
-                    onPressed: () => _componentState.sendMessageRender(index),
+                    onPressed: () {
+                      _componentState.sendMessageRender(index);
+
+                    },
                     icon: context
                         .watch<ComponentState>()
                         .sendIcon, //_componentState.sendIcon,
