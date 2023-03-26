@@ -58,6 +58,8 @@ class FormViewModel with ChangeNotifier {
 
   void formSaveAndSignUp(
       GlobalKey<FormState> formKey, BuildContext context) async {
+
+      
     debugPrint("test register form ");
     _userModelView = Provider.of<UserModelView>(context, listen: false);
     if (formKey.currentState!.validate()) {

@@ -23,10 +23,10 @@ class RegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserModelView userModel =
-        Provider.of<UserModelView>(context, listen: false);
+        Provider.of<UserModelView>(context, listen: true);
     RouteModel routeModel = Provider.of<RouteModel>(context, listen: false);
     FormViewModel formModel =
-        Provider.of<FormViewModel>(context, listen: false);
+        Provider.of<FormViewModel>(context, listen: true);
 
 
     return Form(

@@ -17,12 +17,13 @@ class ChatConsole extends StatelessWidget {
         Provider.of<ComponentState>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
+       
+        child: Container(
         height: _componentState.chatConsoleHeight,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(16)),
           // color: Colors.grey,
-          gradient: LinearGradient(
+          gradient: LinearGradient (
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [Colors.purple, Color(0xff5568FE)]),

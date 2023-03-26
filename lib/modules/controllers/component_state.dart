@@ -44,7 +44,7 @@ class ComponentState extends ChangeNotifier {
   }
 
   TextEditingController textEditingController = TextEditingController();
-  double _chatConsoleHeight = 60;
+  double _chatConsoleHeight = 58;
 
   set chatConsoleHeight(double value) {
     _chatConsoleHeight = value;
@@ -61,21 +61,26 @@ class ComponentState extends ChangeNotifier {
   CrossAxisAlignment get crossAxisAlignmentChatConsole =>
       _crossAxisAlignmentChatConsole;
 
+
+  //Mesaj Konsolunun genişleyip daralmasını kontrol edip sağlayan fontksiyon
   void increaseConsoleHeight() {
     double currentHeight = consoleFormKey.currentContext!.size!.height;
-    debugPrint(currentHeight.toString());
     if (_chatConsoleHeight < 200) {
-      if (currentHeight > 59) {
+      if (currentHeight > 57) {
         chatConsoleHeight = consoleFormKey.currentContext!.size!.height + 10;
         isConsoleExtand = true;
         //crossAxisAlignmentChatConsole = CrossAxisAlignment.end;
       } else {
-        chatConsoleHeight = 60;
+        chatConsoleHeight = 58;
         isConsoleExtand = false;
         // crossAxisAlignmentChatConsole = CrossAxisAlignment.center;
       }
       //if(currentHeight)
     }
+  }
+
+  void increaseConsoleHeightXX() {
+
   }
 
   void obscureToggle() {
@@ -117,5 +122,6 @@ class ComponentState extends ChangeNotifier {
     widgetList =
         MessageCard(index: index, messageContent: textEditingController.text);
     textEditingController.text = "";
+    increaseConsoleHeight();
   }
 }

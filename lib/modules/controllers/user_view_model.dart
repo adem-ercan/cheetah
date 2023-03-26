@@ -46,6 +46,8 @@ class UserModelView with ChangeNotifier implements AuthBase {
   @override
   Future<UserCheetah?> createUserWithEmailAndPassword(
       String email, String password, String name) async {
+    waitingState = WaitingState.busy;
+
     UserCheetah? userCheetah =
         await _repository.createUserWithEmailAndPassword(email, password, name);
     _currentUserX = userCheetah;
@@ -55,6 +57,7 @@ class UserModelView with ChangeNotifier implements AuthBase {
   @override
   Future<UserCheetah?> signInWithEmailAndPassword(
       String email, String password) async {
+    //Buradaki  button state işlemi component state'e taşınacak
     waitingState = WaitingState.busy;
     UserCheetah? userCheetah =
         await _repository.signInWithEmailAndPassword(email, password);
