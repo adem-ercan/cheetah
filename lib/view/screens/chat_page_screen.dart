@@ -13,12 +13,8 @@ class ChatPage extends StatelessWidget {
   List<Widget>? messageCardList;
   List<dynamic>? contentList;
 
-  ChatPage({required this.index, this.messageCardList, this.contentList}) : super();
-
-  factory ChatPage.factoryInit(int index) {
-    // TODO: implement ChatPage.factoryInit
-    return ChatPage(index: index,);
-  }
+  ChatPage({required this.index, this.messageCardList, this.contentList}) 
+  : super();
 
   Repository _repository = locator<Repository>();
 
@@ -34,7 +30,7 @@ class ChatPage extends StatelessWidget {
 
     return Scaffold(
       appBar: ChatPageAppBar(
-        index: index!,
+        index: index,
       ),
       body: Column(children: [
         Flexible(

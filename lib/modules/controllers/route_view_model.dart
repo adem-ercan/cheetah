@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 class RouteModel extends ChangeNotifier {
   List<ChatPage> _chatPageList = [];
 
+
   int? _index;
 
   set index(value) {
@@ -47,6 +48,7 @@ class RouteModel extends ChangeNotifier {
 
   void goToChatScreen(BuildContext context, int index) =>
       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      
         return chatPageList[index];
       }));
 

@@ -14,10 +14,12 @@ class ComponentState extends ChangeNotifier {
   GlobalKey consoleFormKey = GlobalKey<FormState>();
   String chatFromTextValue = "";
   Icon _sendIcon = const Icon(Icons.mic);
-  bool _searchIconBoolean = false;
+  bool _searchIconBoolean = false; // in ChatPage
+  bool _searchIconBooleanInPersonsPage = false;
 
   //Ana sayfada SliverAppBar'daki searc ikon container'ına ait
-  double _animContainerWidth = 25;
+  double _animContainerWidth = 25; //in ChatPage
+  double _animContainerWidthInPersonsPage = 25;
 
   List<Widget> _widgetList = <Widget>[];
 
@@ -26,6 +28,14 @@ class ComponentState extends ChangeNotifier {
   bool _isConsoleExtand = false;
 
   bool get isConsoleExtand => _isConsoleExtand;
+
+  set animContainerWidthInPersonsPage(value) {
+    _animContainerWidthInPersonsPage = value;
+    notifyListeners();
+  }
+
+  double get animContainerWidthInPersonsPage =>
+      _animContainerWidthInPersonsPage;
 
   set animContainerWidth(value) {
     _animContainerWidth = value;
@@ -42,6 +52,13 @@ class ComponentState extends ChangeNotifier {
   bool get searchIconBoolean {
     return _searchIconBoolean;
   }
+
+  set searchIconBooleanInPersonsPage(value) {
+    _searchIconBooleanInPersonsPage = value;
+    notifyListeners();
+  }
+
+  bool get searchIconBooleanInPersonsPage => _searchIconBooleanInPersonsPage;
 
   set widgetList(value) {
     _widgetList.add(value);
