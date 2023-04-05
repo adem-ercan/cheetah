@@ -1,6 +1,9 @@
+import 'package:cheetah/modules/controllers/component_state.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
+import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/repositories/repository.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
   final int index;
@@ -20,7 +23,8 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("İndex kaç: " + index.toString());
+   
+
     return AppBar(
         centerTitle: false,
         title: Text(
@@ -40,8 +44,14 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
           const SizedBox(
             width: 20,
           ),
-          IconButton(
-              onPressed: () {}, icon: const Icon(Icons.photo_camera_front)),
+          
+           IconButton(
+              onPressed: () {
+              },
+              icon: const Icon(Icons.photo_camera_front)), 
+              
+
+
           IconButton(onPressed: () {}, icon: const Icon(Icons.call)),
           const SizedBox(
             width: 20,

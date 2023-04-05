@@ -2,6 +2,7 @@ import 'package:cheetah/modules/controllers/route_view_model.dart';
 import 'package:cheetah/view/components/mainscreen/body/chat_page/message_card.dart';
 import 'package:cheetah/view/components/profile_page_screen/profile_photo_setting.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class ComponentState extends ChangeNotifier {
@@ -13,6 +14,10 @@ class ComponentState extends ChangeNotifier {
   GlobalKey consoleFormKey = GlobalKey<FormState>();
   String chatFromTextValue = "";
   Icon _sendIcon = const Icon(Icons.mic);
+  bool _searchIconBoolean = false;
+
+  //Ana sayfada SliverAppBar'daki searc ikon container'ına ait
+  double _animContainerWidth = 25;
 
   List<Widget> _widgetList = <Widget>[];
 
@@ -21,6 +26,22 @@ class ComponentState extends ChangeNotifier {
   bool _isConsoleExtand = false;
 
   bool get isConsoleExtand => _isConsoleExtand;
+
+  set animContainerWidth(value) {
+    _animContainerWidth = value;
+    notifyListeners();
+  }
+
+  double get animContainerWidth => _animContainerWidth;
+
+  set searchIconBoolean(value) {
+    _searchIconBoolean = value;
+    notifyListeners();
+  }
+
+  bool get searchIconBoolean {
+    return _searchIconBoolean;
+  }
 
   set widgetList(value) {
     _widgetList.add(value);
@@ -61,12 +82,11 @@ class ComponentState extends ChangeNotifier {
   CrossAxisAlignment get crossAxisAlignmentChatConsole =>
       _crossAxisAlignmentChatConsole;
 
-
   //Mesaj Konsolunun genişleyip daralmasını kontrol edip sağlayan fontksiyon
   void increaseConsoleHeight() {
     double currentHeight = consoleFormKey.currentContext!.size!.height;
     if (_chatConsoleHeight < 200) {
-      if (currentHeight > 57) {
+      if (currentHeight > 57 && textEditingController.text.isNotEmpty) {
         chatConsoleHeight = consoleFormKey.currentContext!.size!.height + 10;
         isConsoleExtand = true;
         //crossAxisAlignmentChatConsole = CrossAxisAlignment.end;
@@ -79,9 +99,7 @@ class ComponentState extends ChangeNotifier {
     }
   }
 
-  void increaseConsoleHeightXX() {
-
-  }
+  void increaseConsoleHeightXX() {}
 
   void obscureToggle() {
     if (obscureText) {
@@ -110,8 +128,10 @@ class ComponentState extends ChangeNotifier {
   }
 
   // Bu fonksiyonun ismi değistirilip daha duzgun yapilacak.
-  void sendIconfonk() {
-    if (!isEmptyChatConsoleText) {
+  void sendIconfonk(String text) {
+    if (text == null) {
+      sendIcon = const Icon(Icons.mic);
+    } else if (text.length == 0) {
       sendIcon = const Icon(Icons.mic);
     } else {
       sendIcon = const Icon(Icons.send);
@@ -119,9 +139,16 @@ class ComponentState extends ChangeNotifier {
   }
 
   void sendMessageRender(String index) {
-    widgetList =
-        MessageCard(index: index, messageContent: textEditingController.text);
-    textEditingController.text = "";
+    String text = textEditingController.text;
+    if (text.isNotEmpty && !text.isBlank!) {
+      widgetList =
+          MessageCard(index: index, messageContent: textEditingController.text);
+      if (text.isNotEmpty) {
+        textEditingController.text = "";
+      }
+    }
+    //textEditingController.text = "";
+    sendIcon = const Icon(Icons.mic);
     increaseConsoleHeight();
   }
 }

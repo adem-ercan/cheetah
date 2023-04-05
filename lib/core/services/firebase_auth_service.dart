@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class FirebaseAuthX implements FirebaseAuthBase {
-  late String _email, _password;
+  late String _email, _password, _name;
   final FirebaseAuth auth = FirebaseAuth.instance;
   User? _currentUser;
   final CatchErrorService _catchErrorService = locator<CatchErrorService>();
@@ -22,15 +22,20 @@ class FirebaseAuthX implements FirebaseAuthBase {
 
   @override
   Future<User?> createUserWithEmailAndPassword(
-      String email, String password) async {
+      String email, String password, String name) async {
     _email = email;
     _password = password;
+    _name = name;
 
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: _email, password: _password);
-      userCredential.user?.sendEmailVerification();
+      // userCredential.user?.sendEmailVerification();
+
+      //Auth işlemi ile beraber Cloud FireStore DB'ye kullanıcı kaydı
+      //bu fonksiyon ile yapılıyor.
       await _fireStoreDB.createUser(userToMap(userCredential.user!));
+
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -39,7 +44,7 @@ class FirebaseAuthX implements FirebaseAuthBase {
         debugPrint('The account already exists for that email.');
       }
     } catch (e) {
-      debugPrint("servisten gelen: " + e.toString());
+      debugPrint("servisten gelen: $e");
     }
     return null;
   }
@@ -59,8 +64,8 @@ class FirebaseAuthX implements FirebaseAuthBase {
 
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
-      debugPrint("servisten gelen: " + e.toString());
-      getErrorData(e.code, e.toString() + "boookkk deliiii");
+      debugPrint("servisten gelen: $e");
+      getErrorData(e.code, "${e} boookkk deliiii");
 
       if (e.code == 'user-not-found') {
         debugPrint('No user found for that email.');
@@ -68,7 +73,7 @@ class FirebaseAuthX implements FirebaseAuthBase {
         debugPrint('Wrong password provided for that user.');
       }
     } catch (e) {
-      debugPrint("servisten gelen2: " + e.toString());
+      debugPrint("servisten gelen2: $e");
     }
   }
 
@@ -108,12 +113,12 @@ class FirebaseAuthX implements FirebaseAuthBase {
   Map<String, dynamic> userToMap(User user) {
     Map<String, dynamic> userMap = {
       'email': user.email,
-      'userName': "Belirlenmiş Name yok",
+      'userName': _name,
       'userID': user.uid,
       'profilePhotoURL':
           "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-          
-      'isEmailVerify' : user.emailVerified,
+      'isEmailVerify': user.emailVerified,
+      'friends': []
     };
     return userMap;
   }

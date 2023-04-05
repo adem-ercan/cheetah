@@ -63,7 +63,7 @@ class ChatConsole extends StatelessWidget {
                     textInputAction: TextInputAction.newline,
                     onChanged: (e) {
                       _componentState.increaseConsoleHeight();
-                      _componentState.sendIconfonk();
+                      _componentState.sendIconfonk(e); 
                     },
                   )),
             )),
@@ -106,3 +106,5 @@ class ChatConsole extends StatelessWidget {
     );
   }
 }
+
+

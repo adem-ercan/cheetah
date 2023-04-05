@@ -15,9 +15,11 @@ class FireStoreDB implements FireStoreBase {
     }).then((value) => print("Kayıt Yapıldı"))
     .catchError((onError)=>print("hata var DB'de: $onError"));
   }*/
-  
+
   Future<void> createUser(Map<String, dynamic> data) {
     CollectionReference users = _firestore.collection('users');
+  
+
     return users
         .doc(data['userID'])
         .set({
@@ -25,9 +27,11 @@ class FireStoreDB implements FireStoreBase {
           'userName': data['userName'],
           'userID': data['userID'],
           'profilePhotoURL': data['profilePhotoURL'],
-          'isEmailVerify': data['isEmailVerify']
+          'isEmailVerify': data['isEmailVerify'],
+          'friends': data['friends'] ?? ["Hic arkadasin yok"],
+          'chatContent': data['chatContent'] ?? {"Henuz sohbet yok": 0}
         })
-        .then((value) => debugPrint("Kayıt Yapıldı"))
+        .then((value) => debugPrint("Kayit yapildi"))
         .catchError((onError) => debugPrint("hata var DB'de: $onError"));
   }
 
@@ -62,6 +66,7 @@ class FireStoreDB implements FireStoreBase {
 
   Future<void> createChatDialog(Map<String, dynamic> data) {
     CollectionReference messages = _firestore.collection('messages');
+    //İlk kullanıcı oluşturulurken veritabanında
     return messages
         .doc()
         .set({
@@ -69,7 +74,7 @@ class FireStoreDB implements FireStoreBase {
           'content': data['content'],
           'timeInfo': data['timeInfo'],
         })
-        .then((value) => debugPrint("Message Kayıt Yapıldı"))
+        .then((value) => debugPrint("Message Kayit Yapildi"))
         .catchError(
             (onError) => debugPrint("Message hata var DB'de: $onError"));
   }

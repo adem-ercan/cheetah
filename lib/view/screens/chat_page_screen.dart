@@ -15,6 +15,11 @@ class ChatPage extends StatelessWidget {
 
   ChatPage({required this.index, this.messageCardList, this.contentList}) : super();
 
+  factory ChatPage.factoryInit(int index) {
+    // TODO: implement ChatPage.factoryInit
+    return ChatPage(index: index,);
+  }
+
   Repository _repository = locator<Repository>();
 
   @override
@@ -29,10 +34,9 @@ class ChatPage extends StatelessWidget {
 
     return Scaffold(
       appBar: ChatPageAppBar(
-        index: index,
+        index: index!,
       ),
       body: Column(children: [
-       
         Flexible(
           fit: FlexFit.tight,
           child: ListView.builder(
@@ -42,46 +46,6 @@ class ChatPage extends StatelessWidget {
                   .messageCardList![index]; //componentState.widgetList[index];
             },
           ),
-
-          /*ListView(
-
-              children: [
-                SizedBox(
-                  height: 300,
-                  child: Center(
-                    child: Text(
-                      _repository.userListFromInit[index]['userName'] ??
-                          (index + 1).toString(),
-                      //,
-                      style: const TextStyle(fontSize: 32),
-                    ),
-                  ),
-                ),
-                 SizedBox(
-                  height: 300,
-                  child: Center(
-                    child: Text(
-                      _repository.userListFromInit[index]['email'] ??
-                          (index + 1).toString(),
-                      //,
-                      style: const TextStyle(fontSize: 32),
-                    ),
-                  ),
-                ),
-                 SizedBox(
-                  height: 300,
-                  child: Center(
-                    child: Text(
-                      _repository.userListFromInit[index]['profilePhotoURL'].toString() ??
-                          (index + 1).toString(),
-                      //,
-                      style: const TextStyle(fontSize: 32),
-                    ),
-                  ),
-                ),
-                MessageCard(index: index,)
-              ],
-            ),*/
         ),
         ChatConsole(
           index: index.toString(),

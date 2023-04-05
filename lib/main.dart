@@ -10,9 +10,9 @@ void main() async {
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  
   setupLocator();
 
   runApp(const CheetahApp());

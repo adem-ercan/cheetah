@@ -11,6 +11,15 @@ import 'package:flutter/material.dart';
 class RouteModel extends ChangeNotifier {
   List<ChatPage> _chatPageList = [];
 
+  int? _index;
+
+  set index(value) {
+    _index = value;
+    notifyListeners();
+  }
+
+  int? get index => _index;
+
   set chatPageList(value) {
     _chatPageList.add(value);
     //notifyListeners();
