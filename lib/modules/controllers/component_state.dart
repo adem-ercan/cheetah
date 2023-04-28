@@ -185,9 +185,4 @@ class ComponentState extends ChangeNotifier {
         }
   }
 
-  void personsPageAppBarSearchComponentVisibilitySwitchX(){
-     
-  }
-
-
-}
+ }

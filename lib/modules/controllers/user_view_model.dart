@@ -127,5 +127,6 @@ class UserModelView with ChangeNotifier implements AuthBase {
     return friends;
   }
 
+  
 
 }
