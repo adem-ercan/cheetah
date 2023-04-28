@@ -30,4 +30,15 @@ class ChangeUserModel {
 
     return cheetahUserList as QuerySnapshot<Object?>;
   }
+
+  static Future<UserCheetah?> fromFireStoreDBToUserCheetah(
+      String friendId) async {
+    FirebaseFirestore _fireInstance = FirebaseFirestore.instance;
+
+    DocumentSnapshot<Map<String, dynamic>> snapShot =
+        await _fireInstance.collection("users").doc(friendId).get();
+    Map<String, dynamic> data = snapShot.data() as Map<String, dynamic>;
+    UserCheetah userCheetah = UserCheetah.fromMap(data);
+    return userCheetah;
+  }
 }

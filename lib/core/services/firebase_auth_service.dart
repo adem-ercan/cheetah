@@ -30,13 +30,16 @@ class FirebaseAuthX implements FirebaseAuthBase {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: _email, password: _password);
-      // userCredential.user?.sendEmailVerification();
+
+      await userCredential.user?.sendEmailVerification().then((value) => print("bitti lan"));
 
       //Auth işlemi ile beraber Cloud FireStore DB'ye kullanıcı kaydı
       //bu fonksiyon ile yapılıyor.
       await _fireStoreDB.createUser(userToMap(userCredential.user!));
 
       return userCredential.user;
+
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         debugPrint('The password provided is too weak.');

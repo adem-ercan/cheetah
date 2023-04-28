@@ -24,7 +24,7 @@ class LandingPage extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (_userModelView.isVerifiedEmail()) {
-              return const MainScreen();
+              return  MainScreen();
             } else {
               debugPrint("Deneme1");
               return SignInScreen();

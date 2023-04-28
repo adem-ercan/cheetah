@@ -1,9 +1,6 @@
-import 'package:cheetah/modules/controllers/component_state.dart';
 import 'package:cheetah/modules/controllers/locator.dart';
-import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:cheetah/modules/repositories/repository.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
   final int index;
@@ -23,12 +20,12 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-   
+    
 
-    return AppBar(
+    return  AppBar(
         centerTitle: false,
         title: Text(
-          _repository.userListFromInit[index]['userName'],
+          _repository.userListFromInit[index]["userName"] ?? "unknown",
           style: const TextStyle(fontSize: 20),
         ),
         actions: [
@@ -38,20 +35,15 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Padding(
                 padding: const EdgeInsets.all(08.0),
                 child: ClipOval(
+                    //Burası düzeltilecek. gelen image null olunca patlıyor.
                     child: Image.network(_repository.userListFromInit[index]
                         ['profilePhotoURL'])),
               )),
           const SizedBox(
             width: 20,
           ),
-          
-           IconButton(
-              onPressed: () {
-              },
-              icon: const Icon(Icons.photo_camera_front)), 
-              
-
-
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.photo_camera_front)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.call)),
           const SizedBox(
             width: 20,

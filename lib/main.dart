@@ -5,7 +5,9 @@ import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() async { 
+void main() async {
+  //Bismillahirrahmanirrahim
+
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
@@ -14,6 +16,5 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   setupLocator();
-
   runApp(const CheetahApp());
 }

@@ -27,15 +27,12 @@ class Repository implements AuthBase {
   List<Map<String, dynamic>?>? usersMap;
 
   // ignore: unused_field
-  List<Map<String, dynamic>> _userListFromInit = [];
-
-  
+  List<Map<String?, dynamic>> _userListFromInit = [];
 
   final FirebaseAuthX _firebaseAuthX = locator<FirebaseAuthX>();
   final FireStoreDB _fireStoreDB = locator<FireStoreDB>();
 
   // Degisken tanimlari bitis
-
 
   // set ve get işlemleri baslangic
 
@@ -43,7 +40,7 @@ class Repository implements AuthBase {
     _userListFromInit = value;
   }
 
-  List<Map<String, dynamic>> get userListFromInit {
+  List<Map<String?, dynamic>> get userListFromInit {
     return _userListFromInit;
   }
 
@@ -62,23 +59,22 @@ class Repository implements AuthBase {
 
     //Burada if yapısı ile null kontrolü yapılacakk. Çünkü girilen değer
     // hatalı olursa herhangi bir user döndürülmez!
-    _user =
-        await _firebaseAuthX.createUserWithEmailAndPassword(_email, _password, _name);
+    _user = await _firebaseAuthX.createUserWithEmailAndPassword(
+        _email, _password, _name);
     UserCheetah userCheetah =
         ChangeUserModel.fromFirebaseUserToUserCheetah(_user);
-   /* if (_user != null) {
+    /* if (_user != null) {
       await createUserOnDatabaseDuringSignUp(userCheetah, _name);
     }*/
     return userCheetah;
   }
 
- /* Future<void> createUserOnDatabaseDuringSignUp(
+  /* Future<void> createUserOnDatabaseDuringSignUp(
       UserCheetah userCheetah, String name) async {
     Map<String, dynamic> data = userCheetah.toMap();
     data.addAll({'userName': name});
    // await _fireStoreDB.createUser(data);
   }*/
-
 
   @override
   Future<UserCheetah?> signInWithEmailAndPassword(
@@ -109,7 +105,6 @@ class Repository implements AuthBase {
     await _firebaseAuthX.signOut();
   }
 
-  
   Future<void> updateUserData(
       UserCheetah? userCheetah, String updateID, dynamic data) async {
     await _fireStoreDB.updateUserData(userCheetah, updateID, data);
@@ -131,5 +126,14 @@ class Repository implements AuthBase {
       print("offfff " + element.toString());
     });
     return _snapFromFirebase;
+  }
+
+  Future<List?> getFriendsList() async {
+    UserCheetah? userCheetah = await currentUser();
+    List? friends = await _fireStoreDB.getFriendsList(userCheetah!.userID);
+    
+    //UserCheetah? a = await ChangeUserModel.fromFireStoreDBToUserCheetah(friends![1]);
+   // print("userCheetah şeklinde gelen " + a!.email.toString());
+    return friends;
   }
 }

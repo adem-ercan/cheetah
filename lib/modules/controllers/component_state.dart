@@ -16,6 +16,7 @@ class ComponentState extends ChangeNotifier {
   Icon _sendIcon = const Icon(Icons.mic);
   bool _searchIconBoolean = false; // in ChatPage
   bool _searchIconBooleanInPersonsPage = false;
+  bool _personsPageAppBarVisibility = false;
 
   //Ana sayfada SliverAppBar'daki searc ikon container'ına ait
   double _animContainerWidth = 25; //in ChatPage
@@ -28,6 +29,13 @@ class ComponentState extends ChangeNotifier {
   bool _isConsoleExtand = false;
 
   bool get isConsoleExtand => _isConsoleExtand;
+
+  set personsPageAppBarVisibility(value) {
+    _personsPageAppBarVisibility = value;
+    notifyListeners();
+  }
+
+  bool get personsPageAppBarVisibility => _personsPageAppBarVisibility;
 
   set animContainerWidthInPersonsPage(value) {
     _animContainerWidthInPersonsPage = value;
@@ -168,4 +176,18 @@ class ComponentState extends ChangeNotifier {
     sendIcon = const Icon(Icons.mic);
     increaseConsoleHeight();
   }
+
+  void personsPageAppBarSearchComponentVisibilitySwitch(){
+     if (personsPageAppBarVisibility) {
+                personsPageAppBarVisibility = false;
+              } else {
+                personsPageAppBarVisibility = true;
+        }
+  }
+
+  void personsPageAppBarSearchComponentVisibilitySwitchX(){
+     
+  }
+
+
 }

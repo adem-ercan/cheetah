@@ -26,15 +26,14 @@ class PersonsPageAppBar extends StatelessWidget implements PreferredSizeWidget {
     ComponentState componentState =
         Provider.of<ComponentState>(context, listen: true);
 
-    return AppBar(
+    return componentState.personsPageAppBarVisibility ? AppBar(
         centerTitle: false,
-        title: const Text(
+        /* title: const Text(
           "Persons List",
           style:  TextStyle(fontSize: 20),
-        ),
+        ),*/
         actions: [
           AnimatedContainer(
-
             height: 10,
             color: Colors.amber,
             onEnd: () {
@@ -53,13 +52,13 @@ class PersonsPageAppBar extends StatelessWidget implements PreferredSizeWidget {
                   onTap: () {
                     Future.delayed(Duration(
                             milliseconds: (_animationDuration / 3).toInt()))
-                        .then(
-                            (value) => componentState.searchIconBooleanInPersonsPage = true);
+                        .then((value) => componentState
+                            .searchIconBooleanInPersonsPage = false);
 
                     componentState.animContainerWidthInPersonsPage = 250.0;
                   },
                 ), //else
-                if (componentState.searchIconBoolean)
+                if (componentState.searchIconBooleanInPersonsPage)
                   Stack(
                     children: [
                       const TextField(
@@ -72,9 +71,11 @@ class PersonsPageAppBar extends StatelessWidget implements PreferredSizeWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: GestureDetector(
                                     onTap: () {
-                                      componentState.animContainerWidthInPersonsPage = 25.0;
+                                      componentState
+                                              .animContainerWidthInPersonsPage =
+                                          25.0;
                                     },
-                                    child: Icon(Icons.cancel_sharp)),
+                                    child: const Icon(Icons.cancel_sharp, color: Colors.red,)),
                               ))),
                     ],
                   ),
@@ -82,7 +83,7 @@ class PersonsPageAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ],
-        leading: leadingWidget);
+        leading: leadingWidget) : AppBar();
   }
 
   @override

@@ -18,7 +18,6 @@ class FireStoreDB implements FireStoreBase {
 
   Future<void> createUser(Map<String, dynamic> data) {
     CollectionReference users = _firestore.collection('users');
-  
 
     return users
         .doc(data['userID'])
@@ -28,7 +27,7 @@ class FireStoreDB implements FireStoreBase {
           'userID': data['userID'],
           'profilePhotoURL': data['profilePhotoURL'],
           'isEmailVerify': data['isEmailVerify'],
-          'friends': data['friends'] ?? ["Hic arkadasin yok"],
+          'friends': [],
           'chatContent': data['chatContent'] ?? {"Henuz sohbet yok": 0}
         })
         .then((value) => debugPrint("Kayit yapildi"))
@@ -77,5 +76,23 @@ class FireStoreDB implements FireStoreBase {
         .then((value) => debugPrint("Message Kayit Yapildi"))
         .catchError(
             (onError) => debugPrint("Message hata var DB'de: $onError"));
+  }
+
+  Future<List?> getFriendsList(String? userID) async {
+  
+    DocumentSnapshot<Map<String, dynamic>> snapshot =
+        await _firestore.collection("users").doc(userID).get();
+    List friends = await snapshot.data()!["friends"];
+    //getFriendData(friends[0]);
+    //List<Map<String, dynamic>> friendDataList = [];
+
+    for (var friend in friends) {
+      DocumentSnapshot<Map<String, dynamic>> snap =
+        await _firestore.collection("users").doc(friend).get();
+        Map<String, dynamic>? data = snap.data();
+        print("aaaa " + data.toString());
+    }
+      
+    return friends;
   }
 }
