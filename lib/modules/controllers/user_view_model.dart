@@ -5,7 +5,6 @@ import 'package:cheetah/modules/models/user_model.dart';
 import 'package:cheetah/modules/repositories/repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 enum WaitingState { busy, notBusy }
 
@@ -126,7 +125,5 @@ class UserModelView with ChangeNotifier implements AuthBase {
     });
     return friends;
   }
-
   
-
 }

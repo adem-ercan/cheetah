@@ -42,7 +42,6 @@ class ChatListCard extends StatelessWidget {
           if (snapshot.hasData) {
             if (snapshot.connectionState == ConnectionState.done) {
               snapshot.data?.docs.forEach((element) {
-                debugPrint("Aaaaa " + element.data().toString());
                 userList.add(element.data() as Map<String, dynamic>);
               });
 
@@ -102,7 +101,7 @@ class ChatListCard extends StatelessWidget {
                               const SizedBox(
                                 width: 5,
                               ),
-                              const Text("Naber lan kıraolar nasılsınız bakalım?",
+                              const Text("Naber?",
                                   style: TextStyle(color: Colors.blueGrey)),
                             ],
                           )

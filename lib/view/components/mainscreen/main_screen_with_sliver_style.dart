@@ -1,5 +1,4 @@
 import 'package:cheetah/view/components/mainscreen/body/appbars/sliver_app_bar.dart';
-import 'package:cheetah/view/components/mainscreen/body/chat_tab/chat_list.dart';
 import 'package:flutter/material.dart';
 
 class CheetahSliverStyleBody extends StatelessWidget {

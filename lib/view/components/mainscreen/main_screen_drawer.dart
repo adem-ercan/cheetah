@@ -1,6 +1,5 @@
 import 'package:cheetah/modules/controllers/user_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class CheetahMainScreenDrawer extends StatelessWidget {

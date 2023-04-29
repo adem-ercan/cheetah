@@ -119,11 +119,10 @@ class Repository implements AuthBase {
         await _fireStoreDB.getAllUserList();
     List<QueryDocumentSnapshot<Object?>> users = _snapFromFirebase.docs;
     users.forEach((element) {
-      print("serap fistik " + element.data().toString());
       usersMap?.add(element.data() as Map<String, dynamic>);
     });
     usersMap?.forEach((element) {
-      print("offfff " + element.toString());
+      print("Adem " + element.toString());
     });
     return _snapFromFirebase;
   }

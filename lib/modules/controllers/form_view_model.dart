@@ -86,7 +86,7 @@ class FormViewModel with ChangeNotifier {
           ResponseAuthentication.userNotFound) {
         SnackBar snackBar = CheetahSnackBar.build(
             _catchErrorService.errorText ?? "Bir hata oluştu", "Undo", () {
-          debugPrint("boklu gibi çalıştı");
+          debugPrint("oppss!");
         });
         SnackBar snackBarIsVerified = CheetahSnackBar.build(
             "Email is not verified!", "Now verify!", () {});
