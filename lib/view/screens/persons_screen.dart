@@ -75,9 +75,9 @@ class PersonsPage extends StatelessWidget {
                       onPressed: () async {
                         // _componentState.personsPageAppBarSearchComponentVisibilitySwitch();
 
-                        context
-                            .read<ComponentState>()
-                            .personsPageAppBarSearchComponentVisibilitySwitch();
+                        _componentState.personsPageAppBarSearchComponentVisibilitySwitch();
+                        
+
                         //await _userModelView.getFriendsList();
                       },
                       child: const Icon(Icons.person_add_alt_1),

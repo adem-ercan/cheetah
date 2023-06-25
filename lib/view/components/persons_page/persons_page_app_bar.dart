@@ -50,10 +50,7 @@ class PersonsPageAppBar extends StatelessWidget implements PreferredSizeWidget {
                 GestureDetector(
                   child: const Icon(Icons.search_outlined),
                   onTap: () {
-                    Future.delayed(Duration(
-                            milliseconds: (_animationDuration / 3).toInt()))
-                        .then((value) => componentState
-                            .searchIconBooleanInPersonsPage = false);
+                    
 
                     componentState.animContainerWidthInPersonsPage = 250.0;
                   },
