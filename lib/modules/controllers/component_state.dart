@@ -153,10 +153,10 @@ class ComponentState extends ChangeNotifier {
   }
 
   // Bu fonksiyonun ismi değistirilip daha duzgun yapilacak.
-  void sendIconfonk(String text) {
+  void sendIconfonk(String? text) {
     if (text == null) {
       sendIcon = const Icon(Icons.mic);
-    } else if (text.length == 0) {
+    } else if (text.isEmpty) {
       sendIcon = const Icon(Icons.mic);
     } else {
       sendIcon = const Icon(Icons.send);
